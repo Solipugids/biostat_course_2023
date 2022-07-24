@@ -1,0 +1,154 @@
+---
+title: |
+  | 《生物实验设计》
+  | 第一章$~$概论
+author: |
+  | 王超
+  | 
+  | 广东药科大学
+  | Email: wangchao@gdpu.edu.cn
+date: "`r Sys.Date()`"
+fontsize: 10pt
+output: beamer_presentation
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dev = 'pdf')
+library(ggplot2)
+library(showtext)
+```
+## 
+
+\LARGE 课程介绍 
+
+## 课程资源
+- 课程资源及代码：[Github Solipugids/biostatistics_course_2022](https://github.com/Solipugids/biostatistics_course_2022.git)
+- 计算语言：![R](./Rlogo.png){width=5%} $~~$ [R](https://www.r-project.org/) & [CRAN](https://cran.r-project.org/)
+
+  > R is ‘GNU S’, a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering, etc. 
+  
+- 计算工具：![RStudio](./rstudio_logo.png){width=10%} <https://www.rstudio.com/>
+ 
+- 参考材料：生物统计学（第五版），李春喜
+
+## DEMO
+
+```{r echo=FALSE, message=FALSE, tidy=TRUE}
+print(diamonds[1:2, 1:5])
+```
+```{r warning=FALSE, message=FALSE, tidy=FALSE, fig.align='center', fig.height=4, crop=TRUE}
+ggplot(diamonds, aes(carat, price,colour=cut)) +
+  geom_point(alpha = 1/3) + 
+  stat_smooth()
+```
+
+## 课程考核
+
+- 成绩评定
+  - 平时成绩
+  - 考试成绩
+  
+- 作业要求
+  - 独立思考
+  - 演算正确
+  - 作图清楚
+  - 书写整齐
+  
+```{r, include=FALSE}
+knitr::opts_chunk$set(dev = 'pdf')
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+```
+```{r fig.showtext = TRUE, fig.height = 5, fig.align = 'center', echo = FALSE, message = FALSE, warning = FALSE, crop = TRUE}
+library(showtext)
+library(ggplot2)
+showtext_auto(enable = TRUE)
+font_add("MicrosoftYaHei", "msyh.ttc")
+#create pie chart
+pie(c(30, 70), labels = c("平时成绩 30%", "考试成绩 70%"), clockwise = TRUE, radius = 0.5, col = RColorBrewer::brewer.pal(3, name = "Pastel1"), family = "MicrosoftYaHei", cex = 0.5)
+# ggplot(data, aes(x="", y="比例", fill="成绩")) +
+#   geom_bar(stat="identity", width=1) +
+#   coord_polar("y", start=0) +
+#   geom_text(aes(label = paste0(amount, "%")), position = position_stack(vjust=0.5)) +
+#   labs(x = NULL, y = NULL) +
+#   theme_classic() +
+#   theme(axis.line = element_blank(),
+#           axis.text = element_blank(),
+#           axis.ticks = element_blank()) +
+#   scale_fill_brewer(palette="Blues")
+```
+
+## 学习重点
+
+- 重点讲解统计方法在生物学中的应用；
+- 了解公式的推导和证明；
+- 及时完成作业，按时提交和反馈。
+
+## 
+
+\LARGE 第一章$~$概论
+
+## 第一节$~$生物统计学的概念
+
+- 生物统计学是数理统计在生物学研究中的应用
+
+- 用数理统计的原理和方法来分析和解释生物界各种现象和试验调查资料的科学
+
+- 属于生物数学的范畴
+  - 涉及到数列、排列、组合、矩阵、微积分等知识
+  
+## 为什么要学习统计学
+
+
+## 第二节$~$统计学发展概况
+- 统计实践随着计数活动开始（原始社会）
+
+- 上升到理论成为系统的统计学（17世纪英国）
+  - 政治算数：Political Arithmetick, 1690, W. Petty. 
+  - 该书分为两部分：英法荷三国国力比较，英国国情国力和增长分析
+
+- 发展经历三个阶段
+  - 古典记录统计学
+  - 近代描述统计学
+  - 现代推断统计学
+
+## 一、古典记录统计学
+
+## 二、近代描述统计学
+
+## 三、现代推断统计学
+
+## 第三节$~$常用统计学术语
+
+- 总体与样本
+
+- 参数与统计数
+
+- 变量与资料
+
+- 因素与水平
+
+## 一、总体与样本
+
+## 二、参数与统计数
+
+## 三、变量与资料
+
+## 四、因素与水平
+
+## 五、处理与重复
+
+## 六、效应与互作
+
+## 七、因素与水平
+
+## 八、误差和错误
+
+- 误差：也称为试验误差，是指观测值偏离真值的差异，分为随机误差和系统误差。
+  - 随机误差：由于试验中许多无法控制的偶然因素所造成的试验结果与真实值之间的差异，是**不可避免**的。
+  - 系统误差：由于试验处理以外的其他条件明显不一致所产生的带有倾向性的或定向性的偏差。
+
+- 错误：在实验过程中，人为因素引起的差错。
+
+## 第四节$~$生物统计学的内容与作用
+
+
+
