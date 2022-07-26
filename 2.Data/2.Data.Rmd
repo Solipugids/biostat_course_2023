@@ -1,7 +1,7 @@
 ---
 title: |
   | 《生物实验设计》
-  | 第一章$~$资料整理与特征数计算
+  | 第二章$~$资料整理与特征数计算
 author: |
   | 王超
   | 
@@ -64,15 +64,16 @@ addmargins(prop.table(sp))
 ```{r}
 set.seed(2022)
 wheat <- round(rnorm(300, mean = 40, sd = 7))
-wheat
+wheat[1:100]
 summary(wheat)
 ```
 ## R demo
+```{r tidy=TRUE}
 sp <- table(cut(wheat, breaks = seq(15, 60, 5), include.lowest = TRUE))
 addmargins(sp)
 prop.table(sp) #频率统计
 addmargins(prop.table(sp))
-
+```
 ## 计量资料的整理
 
 
