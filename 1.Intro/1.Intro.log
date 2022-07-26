@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.23)  25 JUL 2022 00:22
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.23)  25 JUL 2022 21:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1143,7 +1143,7 @@ File: 1.Intro_files/figure-beamer/unnamed-chunk-2-1.pdf Graphic file (type pdf)
 )
 Missing character: There is no 2 ("32) in font nullfont!
 
-Overfull \vbox (18.21527pt too high) detected at line 166
+Overfull \vbox (6.21527pt too high) detected at line 165
  []
 
 Missing character: There is no 2 ("32) in font nullfont!
@@ -1151,7 +1151,7 @@ Missing character: There is no 2 ("32) in font nullfont!
 
 ]
 LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/m/n' will be
-(Font)              scaled to size 8.97981pt on input line 199.
+(Font)              scaled to size 8.97981pt on input line 198.
 File: 1.Intro_files/figure-beamer/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use 1.Intro_files/figure-beamer/unnamed-chunk-4-1.pdf>
 Missing character: There is no 2 ("32) in font nullfont!
@@ -1165,9 +1165,9 @@ Missing character: There is no 2 ("32) in font nullfont!
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 217.
+(Font)              <17.28> on input line 216.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 217.
+(Font)              <12> on input line 216.
 Missing character: There is no 2 ("32) in font nullfont!
 [7
 
@@ -1243,7 +1243,7 @@ Missing character: There is no 2 ("32) in font nullfont!
 
 ]
 LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/b/n' will be
-(Font)              scaled to size 8.46606pt on input line 342.
+(Font)              scaled to size 8.46606pt on input line 341.
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
 [22
@@ -1270,7 +1270,7 @@ Package rerunfilecheck Info: File `1.Intro.out' has not changed.
 Here is how much of TeX's memory you used:
  31518 strings out of 477864
  680428 string characters out of 5844910
- 960329 words of memory out of 5000000
+ 960331 words of memory out of 5000000
  51856 multiletter control sequences out of 15000+600000
  494706 words of font info for 88 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191

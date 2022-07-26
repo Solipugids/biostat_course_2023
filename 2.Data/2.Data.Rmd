@@ -15,6 +15,7 @@ output: beamer_presentation
 knitr::opts_chunk$set(dev = 'pdf')
 library(ggplot2)
 library(showtext)
+showtext::showtext_auto()
 ```
 ## 
 
@@ -53,10 +54,10 @@ summary(egg)
 
 ## R demo
 ```{r}
-sp <- table(egg) #次数统计
-addmargins(sp)
-prop.table(sp) #频率统计
-addmargins(prop.table(sp))
+fdt_eg <- table(egg) #次数统计
+addmargins(fdt_eg)
+prop.table(fdt_eg) #频率统计
+addmargins(prop.table(fdt_eg))
 ```
 
 ## 分组统计
@@ -69,28 +70,66 @@ summary(wheat)
 ```
 ## R demo
 ```{r tidy=TRUE}
-sp <- table(cut(wheat, breaks = seq(15, 60, 5), include.lowest = TRUE))
-addmargins(sp)
-prop.table(sp) #频率统计
-addmargins(prop.table(sp))
+fdt_wt <- table(cut(wheat, breaks = seq(15, 60, 5), include.lowest = TRUE))
+addmargins(fdt_wt)
+prop.table(fdt_wt) #频率统计
+addmargins(prop.table(fdt_wt))
 ```
 ## 计量资料的整理
 
 
-
 ## 频数分布图
 
-
-## DEMO
-
-```{r echo=FALSE, message=FALSE, tidy=TRUE}
-print(diamonds[1:2, 1:5])
+```{r tidy=TRUE, fig.show='hold', fig.asp=1, crop=TRUE, out.width='30%'}
+plot(fdt_eg, type = "h", main = "月产蛋次数分布条形图")
+plot(fdt_eg, type = "p", main = "月产蛋次数分布散点图", pch=20)
+pie(prop.table(fdt_eg), main = "月产蛋次数分布饼图")
 ```
-```{r warning=FALSE, message=FALSE, tidy=FALSE, fig.align='center', fig.height=4, crop=TRUE}
-ggplot(diamonds, aes(carat, price,colour=cut)) +
-  geom_point(alpha = 1/3) + 
-  stat_smooth()
+
+## `plot`之外的方法
+```{r fig.show='hold', fig.asp=1, fig.align='center', crop=TRUE, out.width='50%'}
+barplot(fdt_eg, main = "月产蛋次数分布条形图", 
+        ylab = "次数", xlab = "月产蛋数/枚")
 ```
+
+## 直方图
+
+```{r fig.align='center', fig.asp=1, crop=TRUE, out.width='50%'}
+hist(wheat, main="鲢鱼体长次数分布直方图", ylab="次数", xlab="体长/cm")
+```
+
+## 第二节$~$资料特征数的计算
+
+## 一、平均数
+
+- 算数平均数：
+$$
+\mu = \frac{x_1+x_2+x_3+\cdots+x_N}{N} =\frac{1}{N} \sum_{i=1}^{N} x_i
+$$
+$$
+\bar{x} = \frac{x_1+x_2+x_3+...+x_N}{n} =\frac{1}{n} \sum_{i=1}^{n} x_i
+$$
+- 中位数：
+$$
+M_d=x_\frac{n+1}{2}
+$$
+或者 
+$$
+M_d=(x_\frac{n}{2} + x_{\frac{n}{2}+1})/2
+$$
+
+- 众数：
+$M_o$
+- 几何平均数：
+$$
+G=\sqrt[n]{x_1\cdot x_2\cdot x_3\cdot \cdots \cdot x_n}=\sqrt[n]{\prod_{i=1}^{n}x_i}
+$$
+
+## 算数平均数计算方法
+1.直接及算法
+2.加减常数法
+
+
 
 ## 课程考核
 
