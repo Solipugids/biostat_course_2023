@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.8.10)  11 AUG 2022 00:10
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.8.25)  25 AUG 2022 01:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **3.Probability.tex
 (./3.Probability.tex
 LaTeX2e <2022-06-01> patch level 5
-L3 programming layer <2022-08-05> (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/beamer/beamer.cls
+L3 programming layer <2022-08-23> (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/beamer/beamer.cls
 Document Class: beamer 2022/05/17 v3.67 A class for typesetting presentations
 (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasemodes.sty (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
@@ -579,9 +579,9 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 ) (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/xelatex/xecjk/xeCJK.sty (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2022-08-05 L3 programming layer (loader) 
+Package: expl3 2022-08-23 L3 programming layer (loader) 
 (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
-File: l3backend-xetex.def 2022-08-05 L3 backend support: XeTeX
+File: l3backend-xetex.def 2022-08-23 L3 backend support: XeTeX
 \g__graphics_track_int=\count333
 \l__pdf_internal_box=\box77
 \g__pdf_backend_object_int=\count334
@@ -1198,6 +1198,20 @@ Missing character: There is no 2 ("32) in font nullfont!
 [3
 
 ]
+\openout4 = `3.Probability.vrb'.
+
+(./3.Probability.vrb
+LaTeX Font Info:    Font shape `TU/FandolFang-Regular(0)/m/n' will be
+(Font)              scaled to size 9.69437pt on input line 5.
+LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/m/n' will be
+(Font)              scaled to size 8.97981pt on input line 13.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 13.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 13.
+)
+LaTeX Font Info:    Font shape `TU/FandolFang-Regular(0)/m/n' will be
+(Font)              scaled to size 13.95987pt on input line 167.
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
 [4
@@ -1205,21 +1219,13 @@ Missing character: There is no 2 ("32) in font nullfont!
 ]
 \openout4 = `3.Probability.vrb'.
 
-(./3.Probability.vrb
-LaTeX Font Info:    Font shape `TU/FandolFang-Regular(0)/m/n' will be
-(Font)              scaled to size 9.69437pt on input line 3.
-LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/m/n' will be
-(Font)              scaled to size 8.97981pt on input line 11.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 11.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 11.
-)
+(./3.Probability.vrb)
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
 [5
 
 ]
+Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
 [6
 
@@ -1229,6 +1235,8 @@ Missing character: There is no 2 ("32) in font nullfont!
 [7
 
 ]
+LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/b/n' will be
+(Font)              scaled to size 9.40674pt on input line 283.
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
 [8
@@ -1259,6 +1267,10 @@ Missing character: There is no 2 ("32) in font nullfont!
 [13
 
 ]
+LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/m/n' will be
+(Font)              scaled to size 7.98206pt on input line 387.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 387.
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
 [14
@@ -1314,6 +1326,21 @@ Missing character: There is no 2 ("32) in font nullfont!
 [24
 
 ]
+Missing character: There is no 2 ("32) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
+[25
+
+]
+Missing character: There is no 2 ("32) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
+[26
+
+]
+Missing character: There is no 2 ("32) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
+[27
+
+]
 \openout4 = `3.Probability.vrb'.
 
 (./3.Probability.vrb
@@ -1339,7 +1366,7 @@ Overfull \hbox (128.46013pt too wide) in paragraph at lines 18--18
 )
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
-[25
+[28
 
 ]
 \openout4 = `3.Probability.vrb'.
@@ -1352,7 +1379,7 @@ LaTeX Font Warning: Font shape `TU/FandolFang-Regular(0)/m/it' undefined
 )
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
-[26
+[29
 
 ]
 \openout4 = `3.Probability.vrb'.
@@ -1380,7 +1407,7 @@ Overfull \hbox (128.46013pt too wide) in paragraph at lines 18--18
 )
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
-[27
+[30
 
 ]
 \openout4 = `3.Probability.vrb'.
@@ -1418,16 +1445,16 @@ Overfull \hbox (81.21013pt too wide) in paragraph at lines 42--42
 )
 Missing character: There is no 2 ("32) in font nullfont!
 
-Overfull \vbox (6.61572pt too high) detected at line 479
+Overfull \vbox (6.61572pt too high) detected at line 610
  []
 
 Missing character: There is no 2 ("32) in font nullfont!
-[28
+[31
 
 ]
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
-[29
+[32
 
 ]
 \openout4 = `3.Probability.vrb'.
@@ -1442,7 +1469,7 @@ File: 3.Probability_files/figure-beamer/unnamed-chunk-6-3.pdf Graphic file (type
 )
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
-[30
+[33
 
 ]
 \openout4 = `3.Probability.vrb'.
@@ -1453,7 +1480,7 @@ File: 3.Probability_files/figure-beamer/unnamed-chunk-7-1.pdf Graphic file (type
 )
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
-[31
+[34
 
 ]
 \openout4 = `3.Probability.vrb'.
@@ -1464,22 +1491,22 @@ File: 3.Probability_files/figure-beamer/unnamed-chunk-8-1.pdf Graphic file (type
 )
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
-[32
-
-]
-Missing character: There is no 2 ("32) in font nullfont!
-Missing character: There is no 2 ("32) in font nullfont!
-[33
-
-]
-Missing character: There is no 2 ("32) in font nullfont!
-Missing character: There is no 2 ("32) in font nullfont!
-[34
-
-]
-Missing character: There is no 2 ("32) in font nullfont!
-Missing character: There is no 2 ("32) in font nullfont!
 [35
+
+]
+Missing character: There is no 2 ("32) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
+[36
+
+]
+Missing character: There is no 2 ("32) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
+[37
+
+]
+Missing character: There is no 2 ("32) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
+[38
 
 ]
 \tf@nav=\write7
@@ -1499,12 +1526,12 @@ Package rerunfilecheck Info: File `3.Probability.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 33178 strings out of 477855
- 713398 string characters out of 5844889
- 984136 words of memory out of 5000000
- 53486 multiletter control sequences out of 15000+600000
- 502730 words of font info for 98 fonts, out of 8000000 for 9000
+ 33361 strings out of 477847
+ 723145 string characters out of 5844682
+ 983637 words of memory out of 5000000
+ 53668 multiletter control sequences out of 15000+600000
+ 506771 words of font info for 107 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 99i,18n,137p,443b,737s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,18n,137p,443b,784s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 3.Probability.pdf (35 pages).
+Output written on 3.Probability.pdf (38 pages).
