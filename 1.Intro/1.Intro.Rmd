@@ -16,19 +16,42 @@ knitr::opts_chunk$set(dev = 'pdf')
 library(ggplot2)
 library(showtext)
 ```
+
+## 
+
+- 王超
+- 教育经历：华南理工大学博士毕业，微生物学
+- 工作经历：BGI Shenzhen, COMP@HKBU，SCM@HKBU
+- 电子邮箱：wangchao@gdpu.edu.cn，ch.w@mail.scut.edu.cn
+- 学术主页：wangchao.netlify.com
+- 办公室：广东药科大学科技楼五楼
+- 研究方向：系统生物学，计算生物学，中西医结合临床医学
+
 ## 
 
 \LARGE 课程介绍 
 
 ## 课程资源
-- 课程资源及代码：[Github Solipugids/biostatistics_course_2022](https://github.com/Solipugids/biostatistics_course_2022.git)
+- Github：[ Solipugids/biostatistics_course_2022](https://github.com/Solipugids/biostatistics_course_2022.git)
+- 下载Github Desktop后选择`Clone reposit...`
+- 安装git后在**终端**中输入命令 `git clone https://github.com/Solipugids/biostatistics_course_2022.git`
+
+```{r echo=FALSE, fig.align='center', out.width="80%"}
+knitr::include_graphics("./github.png")
+```
+
+## 计算工具
+
 - 计算语言：![R](./Rlogo.png){width=5%} $~~$ [R](https://www.r-project.org/) & [CRAN](https://cran.r-project.org/)
 
   > R is ‘GNU S’, a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering, etc. 
   
-- 计算工具：![RStudio](./rstudio_logo.png){width=10%} <https://www.rstudio.com/>
+- 计算工具：![RStudio](./rstudio_logo.png){width=10%} RStudio <https://www.rstudio.com/>
  
-- 参考材料：生物统计学（第五版），李春喜
+- 参考材料：
+  - 生物统计学（第五版），李春喜
+  - 概率论与数理统计（第五版）
+
 
 ## DEMO
 

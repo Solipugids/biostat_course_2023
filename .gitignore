@@ -1,9 +1,9 @@
-.Rproj.user
-.Rhistory
-.RData
+*.Rproj.user
+*.Rhistory
+*.RData
 .Ruserdata
-.log
-.tex
-.Rproj
+*.log
+*.tex
+*.Rproj
 .yaml
 biostatistics_course_2022.Rproj
