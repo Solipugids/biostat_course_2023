@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.8.10)  24 AUG 2022 19:05
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.8.31)  1 SEP 2022 18:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **2.Data.tex
 (./2.Data.tex
 LaTeX2e <2022-06-01> patch level 5
-L3 programming layer <2022-08-05> (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/beamer/beamer.cls
+L3 programming layer <2022-08-23> (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/beamer/beamer.cls
 Document Class: beamer 2022/05/17 v3.67 A class for typesetting presentations
 (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasemodes.sty (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
@@ -579,19 +579,15 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 ) (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/xelatex/xecjk/xeCJK.sty (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2022-08-05 L3 programming layer (loader) 
+Package: expl3 2022-08-23 L3 programming layer (loader) 
 (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
-File: l3backend-xetex.def 2022-08-05 L3 backend support: XeTeX
+File: l3backend-xetex.def 2022-08-23 L3 backend support: XeTeX
 \g__graphics_track_int=\count333
 \l__pdf_internal_box=\box77
 \g__pdf_backend_object_int=\count334
 \g__pdf_backend_annotation_int=\count335
 \g__pdf_backend_link_int=\count336
 ))
-
-LaTeX Warning: You have requested package `xecjk',
-               but the package provides `xeCJK'.
-
 Package: xeCJK 2022/08/05 v3.9.1 Typesetting CJK scripts with XeLaTeX
 (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ctex/ctexhook.sty
 Package: ctexhook 2022/07/14 v2.5.10 Document and package hooks (CTEX)
@@ -1493,10 +1489,10 @@ Package rerunfilecheck Info: File `2.Data.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 31671 strings out of 477855
- 685721 string characters out of 5844889
- 965254 words of memory out of 5000000
- 51997 multiletter control sequences out of 15000+600000
+ 31671 strings out of 477847
+ 685740 string characters out of 5844682
+ 965586 words of memory out of 5000000
+ 52006 multiletter control sequences out of 15000+600000
  494746 words of font info for 93 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,18n,137p,436b,737s stack positions out of 10000i,1000n,20000p,200000b,200000s
