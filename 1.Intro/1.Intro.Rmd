@@ -28,6 +28,28 @@ library(showtext)
 - 办公室地址：广东药科大学科技楼五楼
 - 研究方向：系统生物学，计算生物学，中西医结合临床医学
 
+
+
+## 注册学习通
+
+:::::::::::::: {.columns}
+::: {.column width="40%"}
+
+账号：本人学号
+
+初始密码：s654321s
+
+:::
+::: {.column width="60%"}
+
+![](./chaoxing.png){width=50%} 
+
+:::
+::::::::::::::
+
+
+
+
 ## 
 
 \LARGE 课程介绍 
@@ -45,7 +67,7 @@ knitr::include_graphics("./github.png")
 
 - 计算语言：![R](./Rlogo.png){width=5%} $~~$ [R](https://www.r-project.org/) & [CRAN](https://cran.r-project.org/)
 
-| R is ‘GNU S’, a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering, etc. 
+> R is ‘GNU S’, a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering, etc. 
   
 - 参考书籍：
   - 生物统计学（第五版），李春喜
@@ -55,16 +77,18 @@ knitr::include_graphics("./github.png")
 - RStudio Desktop
   - ![RStudio](./rstudio_logo.png){width=10%} RStudio <https://www.rstudio.com/>
 - RStudio Server
-  - 中研院 e032-120-85-130-202.ngrok.io (校内网访问地址 10.91.10.250:8787)
+  - 中研院 e032-120-85-130-202.ngrok.io，校内网访问地址 10.91.10.250:8787（联系我申请使用权限）
   - 官方 https://rstudio.cloud/ (自行注册账号使用)
   
 ```{r echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("./rstudio.png")
 ```
+
 ## DEMO-data
 - `diamonds`数据集是包括近54000颗钻石的价格和其他属性的内置数据集，共`53940`行条目和`10`个变量。
 - 每行数据代表一个不同的钻石的属性数据（价格、重量、颜色、透明度等）。
-```{r echo=FALSE, message=FALSE, tidy=TRUE}
+
+```{r echo=FALSE, message=FALSE}
 print(diamonds[1:5, 1:8])
 ```
 
@@ -79,6 +103,9 @@ ggplot(diamonds, aes(carat, price,colour=cut)) +
 
 - 成绩评定
   - 平时成绩
+    - 课堂考勤
+    - 日常作业
+
   - 考试成绩
   
 - 作业要求
@@ -94,7 +121,6 @@ showtext_auto(enable = TRUE)
 font_add("MicrosoftYaHei", "msyh.ttc")
 #create pie chart
 pie(c(30, 70), labels = c("平时成绩 30%", "考试成绩 70%"), clockwise = TRUE, radius = 0.5, col = RColorBrewer::brewer.pal(3, name = "Pastel1"), family = "MicrosoftYaHei", cex = 0.5)
-
 ```
 
 ## 学习重点
@@ -103,11 +129,24 @@ pie(c(30, 70), labels = c("平时成绩 30%", "考试成绩 70%"), clockwise = T
 - 不强调\textcolor{red}{公式的推导和证明}，但是要大概了解过程；
 - 及时完成作业，按时提交和反馈。
 
+## Q\&A
+
+- Github Issues
+```{r echo=FALSE, fig.align='center', out.width="60%"}
+knitr::include_graphics("./issues.png")
+```
+- QQ群
+  - 生物科学211/212，海洋药学21：476516237
+  - 生物科学213/214：470128909
+
+- 发送邮件$\star$
+  - wangchao@gdpu.edu.cn
+
 ## 
 
 \LARGE 第一章$~$概论
 
-## 第一节$~$生物统计学的概念$~$``
+## 第一节$~$生物统计学的概念
 
 - 生物统计学是数理统计在生物学研究中的应用
 
@@ -116,7 +155,22 @@ pie(c(30, 70), labels = c("平时成绩 30%", "考试成绩 70%"), clockwise = T
 - 属于生物数学的范畴
   - 涉及到数列、排列、组合、矩阵、微积分等知识
   
-## 为什么要学习统计学？
+
+## 第一节$~$生物统计学的概念
+
+生物噪声
+
+```{r echo=FALSE, fig.align='center', out.width="25%"}
+knitr::include_graphics("./noise.jpeg")
+```
+> RNA dynamics in live Escherichia coli cells. Ido Golding and Edward C. Cox, July 26, 2004,
+101 (31) 11310-11315. 
+
+> https://doi.org/10.1073/pnas.0404443101
+
+## 第一节$~$生物统计学的概念
+
+为什么要学习统计学？
 
 - 为我们提供数据整理分析的方法
 
@@ -129,6 +183,7 @@ pie(c(30, 70), labels = c("平时成绩 30%", "考试成绩 70%"), clockwise = T
 - 对试验设计有指导作用
 
 ## 第二节$~$统计学发展概况
+
 - 统计实践随着计数活动开始（原始社会）
 
 - 上升到理论成为系统的统计学（17世纪英国）
@@ -151,11 +206,11 @@ pie(c(30, 70), labels = c("平时成绩 30%", "考试成绩 70%"), clockwise = T
   - 伯努利大数定律
     - 在N重伯努利实验（抛硬币）中，在实验次数足够大条件下某一事件发生的频率可无限接近真实发生的概率。
   
-  - 拉普拉斯定理：拉普拉斯
+  - 拉普拉斯中心极限定理
   
   - 正态分布理论：高斯
   
-  ![](./bernoulli.jpeg){width=10%}
+ <!-- ![](./bernoulli.jpeg){width=10%} -->
 
 ## 第二节$~$统计学发展概况$~$`一、古典记录统计学`
 
@@ -204,7 +259,7 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
 
 ## 第二节$~$统计学发展概况$~$`二、近代描述统计学`
 
--（19世纪中叶-20世纪上半叶）
+- 19世纪中叶-20世纪上半叶
 
 - 统计学应用于生物学研究的开始
 
@@ -228,9 +283,7 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
   
   - 统计假设检验学说：Pearson，Newman
 
-## 第三节$~$常用统计学术语
-
-一、总体与样本
+## 第三节$~$常用统计学术语$~$`一、总体与样本`
 
 - 总体：具有相同性质的个体所组成的集合
   - 个体：组成总体的基本单元
@@ -245,9 +298,7 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
   - 从样本中来估计总体
   - 小样本($< 30$)和大样本（$>= 30$），注意区别
 
-## 第一章$~$概论$~$`第三节$~$常用统计学术语`
-
-二、参数与统计数
+## 第三节$~$常用统计学术语$~$`二、参数与统计数`
 
 - 参数：对一个总体特征的度量（常常是未知的）
   - 总体平均数$\mu$，总体标准差$\sigma$
@@ -257,8 +308,7 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
 
 - 通过抽样，根据样本的统计数来估计总体的参数
 
-## 第一章$~$概论$~$`第三节$~$常用统计学术语`
-三、变量与资料
+## 第三节$~$常用统计学术语$~$`三、变量与资料`
 
 - 变量：相同性质的事物间表现差异性的某项特征或性状，是试验指标
   - 资料：变量的观察结果，也称为变量值
@@ -274,8 +324,7 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
 
   - 总体平均数、标准差、变异系数
 
-## 第一章$~$概论$~$`第三节$~$常用统计学术语`
-四、因素与水平
+## 第三节$~$常用统计学术语$~$`四、因素与水平`
 
 - 因素：试验中所研究的影响试验指标的原因或原因组合
   - 抽象概念
@@ -285,8 +334,7 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
   
 - 可控因素（人为调控）/非控因素（随机产生）
 
-## 第一章$~$概论$~$`第三节$~$常用统计学术语`
-五、处理与重复
+## 第三节$~$常用统计学术语$~$`五、处理与重复`
 
 - 处理：对受试对象（试验单位）给予的某种外部干预
   - 单因素处理：试验中涉及的因素只有一个
@@ -297,15 +345,13 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
 - 重复：在试验中，将一个处理实施在两个或两个以上的试验单位上
   - 处理实施的试验单位数即为重复数
   
-## 第一章$~$概论$~$`第三节$~$常用统计学术语`
-六、效应与互作
+## 第三节$~$常用统计学术语$~$`六、效应与互作`
 
 - 效应/主效：试验因素相对独立的作用
 - 互作效应：两个或两个以上处理因素间相互作用所产生的效应（正效应/负效应）
   - 氮磷肥共施对作用产量产生交互作用
   
-## 第一章$~$概论$~$`第三节$~$常用统计学术语`
-七、准确性与精确性
+## 第三节$~$常用统计学术语$~$`七、准确性与精确性`
 
 - 准确性：调查或试验中某一试验指标或性状的观测值与真值接近的程度
   - 反映测定值与真值符合程度的大小
@@ -315,8 +361,7 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
   
 - 准确性不等于精确性
 
-## 第一章$~$概论$~$`第三节$~$常用统计学术语`
-八、误差和错误
+## 第三节$~$常用统计学术语$~$`八、误差和错误`
 
 - 误差：也称为试验误差，是指观测值偏离真值的差异，分为随机误差和系统误差。
   - 随机误差：由于试验中许多无法控制的偶然因素所造成的试验结果与真实值之间的差异，是**不可避免**的。
@@ -324,7 +369,7 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
 
 - 错误：在实验过程中，人为因素引起的差错。
 
-## 第一章$~$概论$~$`第四节$~$生物统计学的内容与作用`
+## 第四节$~$生物统计学的内容与作用
 
 基本内容
 
@@ -335,7 +380,7 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
   - 拉丁方设计
   - 正交设计
 
-## 第一章$~$概论$~$`第四节$~$生物统计学的内容与作用`
+## 第四节$~$生物统计学的内容与作用
 
 基本内容
 
@@ -347,13 +392,13 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
   - 回归和相关分析
   - 协方差分析
 
-## 第一章$~$概论$~$`第四节$~$生物统计学的内容与作用`
+## 第四节$~$生物统计学的内容与作用
 
 - 统计分析可以为试验设计提供合理的依据
 
 - 试验设计是统计分析方法的进一步应用
 
-## 第一章$~$概论$~$`第四节$~$生物统计学的内容与作用`
+## 第四节$~$生物统计学的内容与作用
 
 基本作用
 
