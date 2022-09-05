@@ -4,10 +4,14 @@ title: |
   | 第三章$~$概率和概率分布
 author: |
   | 王超
-  | 
+  |
   | 广东药科大学
+  |
   | Email: wangchao@gdpu.edu.cn
-date: "`r Sys.Date()`"
+date: |
+  | `r Sys.Date()`
+  |    
+  | ![](logo.png){width=1.5in} 
 fontsize: 10pt
 output: beamer_presentation
 ---
@@ -277,6 +281,8 @@ $$
 
 ## 第二节$~$几种常见的理论分布 $~$`一、二项分布`
 
+（一）二项分布的概率函数
+
 - 二项分布是一种离散型随机变量的分布。
 
   - 每次试验只有两个对立结果，$A$和$\bar{A}$，出现的概率分别记为$p$和$q$（$q=1-p$）。
@@ -287,140 +293,178 @@ $$
     
     - 独立性：任何一次试验中事件$A$的出现与其余各次试验中出现的任何结果无关。
 
+$P(x)$为随机变量$x$的二项分布，记为$B(n,p)$，概率分布函数为：
 $$
 P(x) = \mathrm{C}_{n}^{x}p^xq^{(n-x)}
 $$
+其中，$\mathrm{C}_{n}^{x}=\frac{n!}{x!(n-x)!}$，$q=1-p$。
 
-## 二、泊松分布
+重复实验$N$次，每次在$n$个试验中出现事件$A$为$x$的理论次数等于$N\cdot P(x)$
 
-## 三、正态分布
+## 第二节$~$几种常见的理论分布 $~$`一、二项分布`
 
-## 第三节$~$统计数的分布
+（二）二项分布的的性状和参数
 
-## 一、抽样试验与无偏估计
+- 二项分布的形状由n和p两个参数决定
 
-## 二、样本平均数的分布
+  - $n$值不同的情况下，$p$值较小的时候，分布是偏倚的。
+```{r, echo=FALSE, fig.height=5}
+x_1 <- seq(0,10,by = 1)
+y_1 <- dbinom(x_1, 10, 0.1)
+plot(x_1, y_1, type = "b", xlim = c(0,20), xlab = "x", ylab="Probability", main = expression("p=0.1, n=10 or 50 or 100"))
+x_2 <- seq(0,50,by = 1)
+y_2 <- dbinom(x_2, 50, 0.1)
+lines(x_2, y_2, type = "b")
+x_3 <- seq(0,100,by = 1)
+y_3 <- dbinom(x_3, 100, 0.1)
+lines(x_3, y_3, type = "b")
+```
+  - $p$值趋于0.5的时候，分布趋于对称（如何图形化？）
+  
+## 第二节$~$几种常见的理论分布 $~$`一、二项分布`
 
-## 三、样本平均数差数的分布
+（二）二项分布的的性状和参数
+  
+- 二项分布的参数
+  - 二项分布的平均数
+  $$
+    \mu = np
+  $$
+  - 二项分布的总体标准差
+  $$
+    \sigma = \sqrt{npq}
+  $$
+  
+## 第二节$~$几种常见的理论分布 $~$`二、泊松分布`
 
-## 四、$t$分布
-
-## 五、$\chi ^2$分布
-
-## 六、$F$分布
+- 很多事件的发生概率很小，但是样本容量很大，即$n$很大和$p$很小
+- 这是二项分布的特殊情况，即泊松分布
+- 泊松分布的概率函数由二项分布推导得到：
+$$
+P(x) = \mathrm{C}_{n}^{x}p^x(1-p)^{(n-x)}
+$$
+由于是二项分布，所以$P(x)=np=\mu$，即$p = \frac{\mu}{n}$:
+$$
+P(x) = \frac{n!}{(n-k)!\cdot k!}(\frac{\mu}{n})^x(1-\frac{\mu}{n})^{n-x}
+$$
+考虑到$n$无限大，$\mu$和$x$相对较小，可以近似后得到：
 
 $$
-F = \frac{s_1^2}{s_2^2}
+P(x) = \frac{e^{-\lambda} \lambda^x}{x!}
 $$
+其中$\lambda$是参数，$\lambda = np$；$e$为自然对数，$x$为正整数。
 
-## 三、概率的分布
+## 第二节$~$几种常见的理论分布 $~$`二、泊松分布`
 
+- 泊松分布的平均数、方差和标准差为
 
-## 一、资料的类型
-- 数量性状资料
-
-- 质量性状资料
-
-## 二、资料的搜集
-- 调查
-
-- 试验
-
-## 三、资料的整理
-- 原始资料的检查与核对
-
-- 频数分布表
-
-- 频数分布图
-
-## 频数分布表
-
-100只鸡每月产蛋数（用`rnorm`随机生成这样一组数据）
-
-```{r}
-set.seed(2022)
-egg <- round(rnorm(100, mean = 14, sd = 1.5))
-egg
-summary(egg)
-```
-利用`summary`可以大致了解数据的分布情况。
-
-## R demo
-```{r}
-fdt_eg <- table(egg) #次数统计
-addmargins(fdt_eg)
-prop.table(fdt_eg) #频率统计
-addmargins(prop.table(fdt_eg))
-```
-
-## 分组统计
-300个麦穗的每穗穗粒数
-```{r}
-set.seed(2022)
-wheat <- round(rnorm(300, mean = 40, sd = 7))
-wheat[1:100]
-summary(wheat)
-```
-## R demo
-```{r tidy=TRUE}
-fdt_wt <- table(cut(wheat, breaks = seq(15, 60, 5), include.lowest = TRUE))
-addmargins(fdt_wt)
-prop.table(fdt_wt) #频率统计
-addmargins(prop.table(fdt_wt))
-```
-## 计量资料的整理
-
-
-## 频数分布图
-
-```{r tidy=TRUE, fig.show='hold', fig.asp=1, crop=TRUE, out.width='30%'}
-plot(fdt_eg, type = "h", main = "月产蛋次数分布条形图")
-plot(fdt_eg, type = "p", main = "月产蛋次数分布散点图", pch=20)
-pie(prop.table(fdt_eg), main = "月产蛋次数分布饼图")
+  - $\mu = \lambda$
+  - $\sigma^2 = \lambda$
+  - $\sigma = \sqrt{\lambda}$
+  
+- 对于泊松分布来说，分布函数形状由$\lambda$决定。
+```{r, echo=FALSE, fig.height=5}
+x <- seq(0,10,by = 1)
+y_1 <- dpois(x, 0.5)
+plot(x, y_1, type = "b", xlim = c(0,10), xlab = "x", ylab="Probability", main = expression(paste(lambda, "=0.5 or 1.5 or 2.5")))
+y_2 <- dpois(x, 1.5)
+lines(x, y_2, type = "b")
+y_3 <- dpois(x, 2.5)
+lines(x, y_3, type = "b")
 ```
 
-## `plot`之外的方法
-```{r fig.show='hold', fig.asp=1, fig.align='center', crop=TRUE, out.width='50%'}
-barplot(fdt_eg, main = "月产蛋次数分布条形图", 
-        ylab = "次数", xlab = "月产蛋数/枚")
+## 第二节$~$几种常见的理论分布 $~$`三、正态分布`
+
+- 正态分布是一种连续型随机变量的概率分布
+
+- 多数变量都围绕在平均值左右，由平均值到分布的两侧，变量数逐渐减少
+
+- 在统计理论和应用上最重要的分布
+
+  - 试验误差的分布一般都服从于这种分布
+  - 许多生物现象的计量资料也服从于这种分布
+  - 正态分布还可作为离散型随机变量或其他变量的近似分布（中心极限定理）
+
+## 第二节$~$几种常见的理论分布 $~$`三、正态分布`
+
+（一）正态分布概率密度函数
+
+- 正态分布的概率密度函数根据二项分布的函数在$n\rightarrow \infty$时推导出
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
+$$
+其中$\mu$为总体平均数，$\pi$为圆周率，$e$为自然对数底
+- 正态分布记为$N(\mu, \sigma^2)$，表示平均数为$\mu$，方差为$\sigma^2$的正态分布
+```{r, echo=FALSE, crop=TRUE, fig.height=5}
+x <- pretty(c(-5, 5), 100)
+y <- dnorm(x)
+plot(x, y, type = 'l')
 ```
 
-## 直方图
+## 第二节$~$几种常见的理论分布 $~$`三、正态分布`
 
-```{r fig.align='center', fig.asp=1, crop=TRUE, out.width='50%'}
-hist(wheat, main="鲢鱼体长次数分布直方图", ylab="次数", xlab="体长/cm")
+（二）正态分布特征
+
+- 当$x=\mu$时，$f(x)$有最大值为$\frac{1}{\sigma\sqrt{2\pi}}$
+- 当$x-\mu$的绝对值相等，$f(x)$值也相等
+- $\frac{x-\mu}{\sigma}$的绝对值越大，$f(x)$的值越小，逼近但不等于0
+- 正态分布曲线完全由参数$\mu$和$\sigma$决定
+- 正态分布在$x = \mu \pm \sigma$处各有一个拐点
+- 正态分布曲线在$x\in(-\infty, \infty)$皆能取值（$x$取值的完全事件系）
+
+
+## 第二节$~$几种常见的理论分布 $~$`三、正态分布`
+
+（二）正态分布特征
+
+
+```{r, echo=FALSE, crop=TRUE, fig.height=3.5}
+x <- pretty(c(-5, 5), 100)
+y_1 <- dnorm(x, mean = 0, sd = 0.5)
+plot(x, y_1, type = 'l', main = expression(paste(sigma, "= 0.5 or 1 or 2")))
+y_2 <- dnorm(x, mean = 0, sd = 1)
+lines(x, y_2, type = 'l')
+y_3 <- dnorm(x, mean = 0, sd = 2)
+lines(x, y_3, type = 'l')
 ```
 
-## 第二节$~$资料特征数的计算
+```{r, echo=FALSE, crop=TRUE, fig.height=3.5}
+x <- pretty(c(-5, 5), 100)
+y_1 <- dnorm(x, mean = -1, sd = 1)
+plot(x, y_1, type = 'l', main = expression(paste(mu, "= -1 or 0 or 1")))
+y_2 <- dnorm(x, mean = 0, sd = 1)
+lines(x, y_2, type = 'l')
+y_3 <- dnorm(x, mean = 1, sd = 1)
+lines(x, y_3, type = 'l')
+```
 
-## 一、平均数
+## 第二节$~$几种常见的理论分布 $~$`三、正态分布`
 
-- 算数平均数：
-$$
-\mu = \frac{x_1+x_2+x_3+\cdots+x_N}{N} =\frac{1}{N} \sum_{i=1}^{N} x_i
-$$
-$$
-\bar{x} = \frac{x_1+x_2+x_3+...+x_N}{n} =\frac{1}{n} \sum_{i=1}^{n} x_i
-$$
-- 中位数：
-$$
-M_d=x_\frac{n+1}{2}
-$$
-或者 
-$$
-M_d=(x_\frac{n}{2} + x_{\frac{n}{2}+1})/2
-$$
+（三）标准正态分布
 
-- 众数：
-$M_o$
-- 几何平均数：
+- $\mu$确定了分布曲线的中心位置
+- $\sigma$确定了分布曲线的变异度
+- 对于$N(\mu, \sigma^2)$来说，是一条曲线系
+- 为了便于一般化应用，令$\mu = 0, \sigma=1$，则
+    
 $$
-G=\sqrt[n]{x_1\cdot x_2\cdot x_3\cdot \cdots \cdot x_n}=\sqrt[n]{\prod_{i=1}^{n}x_i}
+f(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}u^2}
 $$
 
-## 算数平均数计算方法
-1.直接及算法
-2.加减常数法
+```{r, echo=FALSE, crop=TRUE, fig.height=4}
+x <- pretty(c(-5, 5), 100)
+y <- dnorm(x, mean = 0, sd = 1)
+plot(x, y, type = 'l')
+```
 
+## 第二节$~$几种常见的理论分布 $~$`三、正态分布`
 
+（三）标准正态分布
 
+- 对于任何一个服从$N(\mu, \sigma^2)$的随机变量，都可以通过$u$进行标准化变换
+
+$$
+u = \frac{x-\mu}{\sigma}
+$$
+
+- $u$为标准正态离差，表示离开平均数$\mu$几个标准差$\sigma$
