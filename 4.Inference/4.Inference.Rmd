@@ -667,8 +667,8 @@ $P(\mu - 2.58 \sigma_{\bar{x}} \le \bar{x} \le \mu + 2.58 \sigma_{\bar{x}}) = 0.
 
 - 转换后可得
 
-$P(\bar{x} - 1.96 \sigma_{\bar{x}} \le \bar{x} \le \bar{x} + 1.96 \sigma_{\bar{x}}) = 0.95$
-$P(\bar{x} - 2.58 \sigma_{\bar{x}} \le \bar{x} \le \bar{x} + 2.58 \sigma_{\bar{x}}) = 0.99$
+$P(\bar{x} - 1.96 \sigma_{\bar{x}} \le \mu \le \bar{x} + 1.96 \sigma_{\bar{x}}) = 0.95$
+$P(\bar{x} - 2.58 \sigma_{\bar{x}} \le \mu \le \bar{x} + 2.58 \sigma_{\bar{x}}) = 0.99$
 
 - 置信区间
 
