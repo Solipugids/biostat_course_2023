@@ -171,10 +171,159 @@ pairs(~ mpg + disp + drat + wt, data=mtcars, main="mtcars数据集")
   - 解决曲线拟合问题最常用的方法
   - 基本思路是求$a,b$,令因变量的观测值与回归估计值的离均差平方和Q值最小
   $$
-  min(Q) = \sum{1}{n}(y-\hat{y})^2= \sum{1}{n}(y-a-bx)^2 
+  min(Q) = \sum_{1}^{n}(y-\hat{y})^2= \sum_{1}^{n}(y-a-bx)^2 
   $$
  
   - 天体运动论，1809，高斯
   - 计算谷神星轨道
   - 通过最小化误差的平方和寻找数据的最佳函数匹配
    
+   
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
+
+用五把不同颜色的尺子分别测量一线段的长度，得到的数值分别为：
+```{r echo=FALSE, fig.align='center', out.width="30%"}
+measured_length <- data.frame("红" = 10.2, "蓝"= 10.3, "橙"=9.8, "黄"= 9.9, "绿"=9.8)
+knitr::include_graphics("./ruler.jpg")
+knitr::kable(measured_length)
+```
+一般用平均值来作为线段长度：
+
+$$
+\bar{x}= \frac{10.2+10.3+9.8+9.9+9.8}{5}=10
+$$
+
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
+
+把测试得到的值画在坐标系中，分别记作$y_i$
+
+```{r echo=FALSE, fig.align='center', out.width="60%"}
+knitr::include_graphics("./lengths.png")
+```
+
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
+
+把要猜测的线段长度的真实值用平行于横轴的直线来表示，分别记作$y$
+
+```{r echo=FALSE, fig.align='center', out.width="60%"}
+knitr::include_graphics("./lengths_1.png")
+```
+
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
+
+每个点都向$y$做垂线，垂线的长度就是$y-y_i$，也可以理解为测量值和真实值之间的误差：
+
+```{r echo=FALSE, fig.align='center', out.width="60%"}
+knitr::include_graphics("./lengths_2.png")
+```
+
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
+
+- 因为误差是长度，还要取绝对值，计算起来麻烦，就干脆用平方来代表误差：
+$$
+|y - y_i| \Rightarrow (y - y_i)^2
+$$
+- 总的误差平方就是
+
+$$
+ \sigma = \sum(y - y_i)^2
+$$
+
+- 因为$y$是猜测的，所以可以上下不断变换
+- 方差不断变化
+
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
+
+- 勒让德（Adrien-Marie Legendre）提出让总的误差的平方最小的$y$ 就是真值，这是基于:
+  - 如果误差是随机的，应该围绕真值上下波动
+  - 无偏估计
+  
+$$
+ \sigma = min \sum(y - y_i)^2
+$$
+
+- 对二次函数求导：
+
+$$
+ \frac{d}{dy}\sigma = \frac{d}{dy}\sum(y - y_i)^2 = 2\sum(y - y_i) = 2((y - y_1)+(y - y_2)+\ldots+(y - y_5)) = 0
+$$
+$$
+5y = y_1 + y_2+\ldots+ y_5 \Rightarrow y = \frac{y_1 + y_2+\ldots+ y_5 }{5}
+$$
+
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
+
+- 求真值的最小二乘法
+
+$$
+ \sigma = min \sum(y - y_i)^2
+$$
+
+- 求自变量和因变量关系的最小二乘法
+ $$
+  min(Q) = \sum_{1}^{n}(y-\hat{y})^2= \sum_{1}^{n}(y-a-bx)^2 
+  $$
+  - 根据极值定理，对$a$和$b$分别求导：
+  $$
+  \frac{\partial Q}{\partial a} = -2\sum(y -a - bx) = 0, \frac{\partial Q}{\partial b} = -2\sum(y -a - bx)x = 0 
+  $$
+  - 整理得到：
+      $$
+      \begin{cases}
+      an +b \sum x  = \sum y\\
+      a\sum x + b \sum x^2 = \sum xy
+      \end{cases}
+      $$
+      
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`    
+    
+- 最后得到：
+$$
+      \begin{cases}
+       a = \bar{y} - b \bar{x}\\
+      b = \frac{\sum(x- \bar{x})(y - \bar{y})}{\sum(x- \bar{x})^2}
+      \end{cases}
+$$
+
+- $a>0$，回归直线在第一象限与y轴相交
+
+- $a<0$，回归直线在第一象限与x轴相交
+
+- $b>0$，$y$随$x$的增加而增加
+
+- $a<0$，$y$随$x$的增加而减小
+    
+```{r echo=FALSE, crop = TRUE, fig.align='center', fig.asp=0.5}
+x <- seq(0, 4)
+plot(x, -3+2*x, type = 'l', lwd = 2, xlim = c(0, 4), ylim = c(0, 4), xlab = "x", ylab = "y", col= "black")
+text(3.5, 3, expression(y==2%*%x -3))
+lines(x, 2+2*x, type = "l", lwd = 2, col= 'red')
+text(1, 3, expression(y==2%*%x +2), col = 'red')
+lines(x, 3-2*x, type = "l", lwd = 2, col= 'blue')
+text(1, 1, expression(y==-2%*%x +3), col = 'blue')
+lines(x, rep(2, length(x)), type = "l", lwd = 2, col= 'orange')
+text(2, 2.1, expression(y==2), col = 'orange')
+```
+
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立` 
+
+- 计算出$a$，$b$，将$x$代入$\hat{y} = a+ bx$，可以计算出$\hat{y}$
+
+- 研究$y$和$\hat{y}$可以得到如下回归方程的三个基本性质：
+
+  - 最小值$ minQ= \sum(y - \hat{y})^2 $
+  - $ \sum(y - \hat{y})^2 = 0 $
+  - 回归直线通过中心点$(\bar{x}, \bar{y})$
+  
+- 直线回归方程的另一种形式：
+
+$$
+\hat{y}= \bar{y}- b \bar{x} + bx  = \bar{y}+ b(x - \bar{x})
+$$
+
+
+## 第二节$~$直线回归分析$~$`一、直线回归的数学模型和基本假定`  
+
+
+    
+    
