@@ -25,22 +25,10 @@ showtext::showtext_auto()
 
 \LARGE 第七章$~$直线回归与相关分析
 
-## 
+## Check In App Release version_0.87
 
 ```{r echo=FALSE, crop=TRUE, fig.align='center'}
-par(xaxs = "i", yaxs = "i")
 p <- c(1, 2, 3)
-plot(expand.grid(p ,p), type = 'p', pch = 20, cex = 10, col="red", xlim = c(-1, 5), ylim = c(xlim = c(-1, 3.5)), axes = F, main= "Check In", xlab=NA, ylab=NA)
-text(1, 3, "1", col='white', family="sans")
-text(2, 3, "2", col='white', family="sans")
-text(3, 3, "3", col='white', family="sans")
-text(1, 2, "4", col='white', family="sans")
-text(2, 2, "5", col='white', family="sans")
-text(3, 2, "6", col='white', family="sans")
-text(1, 1, "7", col='white', family="sans")
-text(2, 1, "8", col='white', family="sans")
-text(3, 1, "9", col='white', family="sans")
-
 pp <- expand.grid(p ,p)
 pp$Var2 <- pp[9:1, 2]
 
@@ -69,10 +57,22 @@ random_generate <- function(x){
   return(random_out)
 }
 checkin <- random_generate(sample(1:9, 1))
+par(xaxs = "i", yaxs = "i")
+
+plot(expand.grid(p ,p), type = 'p', pch = 20, cex = 10, col="red", xlim = c(-1, 5), ylim = c(xlim = c(-1, 3.5)), axes = F, main=bquote("Check In Code: "*.(checkin[1])*.(checkin[2])*.(checkin[3])*.(checkin[4])) , xlab=NA, ylab=NA)
+text(1, 3, "1", col='white', family="sans")
+text(2, 3, "2", col='white', family="sans")
+text(3, 3, "3", col='white', family="sans")
+text(1, 2, "4", col='white', family="sans")
+text(2, 2, "5", col='white', family="sans")
+text(3, 2, "6", col='white', family="sans")
+text(1, 1, "7", col='white', family="sans")
+text(2, 1, "8", col='white', family="sans")
+text(3, 1, "9", col='white', family="sans")
 for (n in 1:3) {
   pos1 <- pp[checkin[n], ]
   pos2 <- pp[checkin[n+1], ]
-  arrows(x0 = pos1$Var1, y0 = pos1$Var2, x1 = pos2$Var1, y1 = pos2$Var2, angle = 20, length = 0.1, lwd = 2, col = "blue")
+  arrows(x0 = pos1$Var1, y0 = pos1$Var2, x1 = pos2$Var1, y1 = pos2$Var2, angle = 20, length = 0.1, lwd = 2, col = rgb(0, 0, 255, 80, maxColorValue=255))
 }
 ```
 
@@ -234,7 +234,7 @@ $$
 
 ## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
 
-- 勒让德（Adrien-Marie Legendre）提出让总的误差的平方最小的$y$ 就是真值，这是基于:
+- 勒让德（`Adrien-Marie Legendre`）提出让总的误差的平方最小的$y$ 就是真值，这是基于:
   - 如果误差是随机的，应该围绕真值上下波动
   - 无偏估计
   
@@ -293,16 +293,16 @@ $$
 
 - $a<0$，$y$随$x$的增加而减小
     
-```{r echo=FALSE, crop = TRUE, fig.align='center', fig.asp=0.5}
+```{r echo=FALSE, crop = TRUE, fig.align='center', fig.asp=1, out.height="45%"}
 x <- seq(0, 4)
-plot(x, -3+2*x, type = 'l', lwd = 2, xlim = c(0, 4), ylim = c(0, 4), xlab = "x", ylab = "y", col= "black")
-text(3.5, 3, expression(y==2%*%x -3))
+plot(x, -3+2*x, type = 'l', lwd = 2, xlim = c(0, 4), ylim = c(0, 4), xlab = "x", ylab = "y", col= "black", cex.axis = 2, cex.lab= 2)
+text(3.5, 3, expression(y==2%*%x -3), cex = 2)
 lines(x, 2+2*x, type = "l", lwd = 2, col= 'red')
-text(1, 3, expression(y==2%*%x +2), col = 'red')
+text(1, 3, expression(y==2%*%x +2), col = 'red', cex = 2)
 lines(x, 3-2*x, type = "l", lwd = 2, col= 'blue')
-text(1, 1, expression(y==-2%*%x +3), col = 'blue')
+text(1, 1, expression(y==-2%*%x +3), col = 'blue', cex = 2)
 lines(x, rep(2, length(x)), type = "l", lwd = 2, col= 'orange')
-text(2, 2.1, expression(y==2), col = 'orange')
+text(2, 2.1, expression(y==2), col = 'orange', cex = 2)
 ```
 
 ## 第二节$~$直线回归分析$~$`一、直线回归方程的建立` 
@@ -311,19 +311,286 @@ text(2, 2.1, expression(y==2), col = 'orange')
 
 - 研究$y$和$\hat{y}$可以得到如下回归方程的三个基本性质：
 
-  - 最小值$ minQ= \sum(y - \hat{y})^2 $
-  - $ \sum(y - \hat{y})^2 = 0 $
+  - 最小值 $minQ=\sum (y-\hat{y})^2$
+  - $\sum(y - \hat{y})^2 = 0$
   - 回归直线通过中心点$(\bar{x}, \bar{y})$
-  
+    
 - 直线回归方程的另一种形式：
+  
+  $$
+    \hat{y}= \bar{y}- b \bar{x} + bx  = \bar{y}+ b(x - \bar{x})
+  $$
+
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`  
+
+
+黏虫孵化历期平均温度与历期天数之间的关系：
+
+```{r echo=FALSE, fig.align='center', out.width="30%"}
+worms_period <- data.frame(tempreture = c(11.8, 14.7, 15.6, 16.8, 17.1, 18.8, 19.5, 20.4), days= c(30.1, 17.3, 16.7, 13.6, 11.9, 10.7, 8.3, 6.7))
+knitr::kable(worms_period, col.names = c("平均温度", "历期天数"))
+```
+如何建立直线回归方程?
+
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立` 
+
+- 方程：
+$$
+      \begin{cases}
+       a = \bar{y} - b \bar{x}\\
+      b = \frac{\sum(x- \bar{x})(y - \bar{y})}{\sum(x- \bar{x})^2}
+      \end{cases}
+$$
+- 计算回归分析的数据：
+
+$\bar{x} = \frac{\sum x}{n}, \bar{y} = \frac{\sum y}{n}$
+
+$a = \bar{y} - b \bar{x}, b = \frac{\sum xy - \frac{\sum x \sum y}{n}}{\sum x^2 - \frac{(\sum x)^2}{n}}$
+
+- 得到：
+
+ $a = 57.04, b = -2.53$
+ 
+- 直线回归方程：
+
+$\hat{y}= 57.04 - 2.53x$
+
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立` 
+
+```{r echo=FALSE, crop = TRUE, fig.align='center', fig.asp=0.55}
+par(mfrow= c(1,2))
+plot(worms_period, type= 'p', pch = 20, col = 'red')
+plot(worms_period, type= 'p', pch = 20, col = 'red')
+x <- seq(12, 20)
+lines(x, 57.04 - 2.53*x, type='l', lwd=2, col= 'blue')
+```
+- 并非所有的散点都会落在回归直线上， 而是靠近回归直线
+
+- 用$x$去估计$y$是存在随机误差的
+
+- 必须根据回归的数学模型对随机误差进行估计，对回归方程进行检验
+
+## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
+R DEMO
+
+```{r, prompt=TRUE}
+worms_period <- data.frame(
+tempreture = c(11.8, 14.7, 15.6, 16.8, 17.1, 18.8, 19.5, 20.4), 
+  days= c(30.1, 17.3, 16.7, 13.6, 11.9, 10.7, 8.3, 6.7)
+  )
+lm(days~tempreture, data = worms_period )
+```
+
+## 第二节$~$直线回归分析$~$`二、直线回归的数学模型和基本假定` 
+
+（一）直线回归的数学模型
+
+- $y$总体的每个观测值可以分解为：
+
+  - $y$的总体平均值$\mu_y$
+  - 因x引起的$y$的变异$\beta(x-\mu_x)$
+  - $y$的随机误差$\epsilon$
+  
+- 直线回归的数学模型为：
+  - $y = \mu_y + \beta(x-\mu_x) + \epsilon$，或$y = \alpha + \beta x + \epsilon$
+  - 总体回归截距$\alpha$，常量。是$y$的本底水平，$x$对$y$没有任何作用时$y$的值
+  - 总体回归系数$\beta$，$\beta x$表示$y$的取值改变中，由$x$与$y$的线性回归关系所引起变化的部分
+  - 回归估计误差$\epsilon$，也称为残差。表示因变量$y$的取值改变中未进入该模型或未知但可能与$y$有关的随机和非随机因素共同引起变化的部分。在回归方程中，第$i$个变量的残差$\epsilon_i$是实测值$y_i$与其估计值$\hat{y}_i$之差
+
+
+## 第二节$~$直线回归分析$~$`二、直线回归的数学模型和基本假定` 
+
+（二）直线回归的基本假定
+
+- $x$是没有误差的固定变量，$y$是随机变量
+
+- $x$的任一值都对应着一个$y$总体，且呈正态分布，平均值$\mu = a + \beta x$，方差不因$x$的变化而改变
+
+- 随机误差$\epsilon$是相互独立的，呈正态分布，服从$N(0, \sigma_\epsilon^2)$
+
+## 第二节$~$直线回归分析$~$`三、直线回归的假设检验` 
+
+（一）直线回归的变异来源
+
+- 因变量$y$是随机变量
+
+- $y$的变异$(y-\bar{y})$可以分为两部分
+
+  - 由$x$引起的变异$(\hat{y}-\bar{y})$
+  
+  - 误差所引起的变异$(y-\hat{y})$
+  
+- $y$的变异$\sum(y-\hat{y})^2 =\sum(\hat{y}-\bar{y})^2+\sum(y-\hat{y})^2$
+
+- $\sum(\hat{y}-\bar{y})^2$为由$x$变异引起$y$变异的平方和，也就是在y的变异中可以用$x$解释的部分。$\sum(\hat{y}-\bar{y})^2$说明回归效果越好
+
+- $\sum(y-\hat{y})^2$为误差因素引起的平方和，反映了除去$x$以外的其余因素使$y$发生变异的部分，也就是无法用$x$解释的部分。$\sum(y-\hat{y})^2$越小说明估计误差越小
+
+## 第二节$~$直线回归分析$~$`三、直线回归的假设检验` 
+
+（二）$F$检验
+
+- $F$检验：通过比较两组数据的方差，以确定他们的密度是否有显著性差异
+
+- 看两个变量是否存在直线关系，可以采用F检验进行
+
+  - $H_0:$两变量之间无线性关系
+
+  - $H_A:$两变量之间有线性关系
+  
+- 在$H_0$下，$\sum(\hat{y}-\bar{y})^2$和$\sum(y-\hat{y})^2$的比值服从$F$分布 
 
 $$
-\hat{y}= \bar{y}- b \bar{x} + bx  = \bar{y}+ b(x - \bar{x})
+F = \frac{\sum(\hat{y}-\bar{y})^2}{\sum(y-\hat{y})^2} \times (n - 2)
 $$
 
+## 第二节$~$直线回归分析$~$`三、直线回归的假设检验` 
 
-## 第二节$~$直线回归分析$~$`一、直线回归的数学模型和基本假定`  
+R DEMO
+\tiny
+```{r, prompt=TRUE}
+summary(lm(days~tempreture, data = worms_period ))
+```
 
+## 第二节$~$直线回归分析$~$`四、直线回归的应用及注意的问题`
+（一）应用
+- 描述两个变量的关系
 
-    
-    
+- 对$y$进行预测
+
+- 通过控制$x$来控制$y$
+
+（二）应注意的问题
+
+- 回归分析要有意义
+
+- 回归变量的确定：因，果
+
+- 观测值要尽量多
+
+- 回归方程应进行检验
+
+- 预测和外推要谨慎
+
+## 第三节$~$直线相关$~$`一、相关系数和决定系数` 
+
+- 如果两个变量间呈线性关系，但不需要从一个变量来估计另一个变量，只需了解变量间相关程度及相关性质，可以计算相关系数
+
+- 直线相关常用于分析双变量正态分布的资料
+
+- 通过离均差的乘积来计算双变量$x$与$y$的关系：
+
+$\sum(x - \mu_x)(y - \mu_y)$，$\mu_x, \mu_y$分别代表两组变量的均值
+
+## 第三节$~$直线相关$~$`一、相关系数和决定系数` 
+  
+- 将坐标原点位于点$\mu_x, \mu_y$上，原坐标转变为$(x - \mu_x, y - \mu_y)$
+  
+- 如果数据点多落在I和III象限，由于
+  
+  - 在第I象限$x - \mu_x>0, y - \mu_y>0$
+  - 在第III象限$x - \mu_x<0, y - \mu_y<0$
+  - 离均差乘积和$\sum(x - \mu_x)(y - \mu_y)>0$
+```{r echo=FALSE, crop = TRUE, fig.align='center', message=FALSE, fig.asp=1, out.height="50%"}
+library(car)
+dataEllipse(mtcars$wt, mtcars$disp, levels = c(0.5, 0.8, 0.9), xlim = c(0,6), ylim = c(-30, 500), xlab = "Weight", ylab = "Displacement", cex.lab = 1.5, cex.axis=1.5)
+abline(v = mean(mtcars$wt), col = "red", lwd = 2)
+abline(h = mean(mtcars$disp), col = "red", lwd = 2)
+text(6, 500, "I", col = "red", cex= 3)
+text(0, 500, "II", col = "red", cex= 3)
+text(0, 0, "III", col = "red", cex= 3)
+text(6, 0, "IV", col = "red", cex= 3)
+```
+  - 在I和III象限的数据点越多，离均差的乘积和越大
+  
+## 第三节$~$直线相关$~$`一、相关系数和决定系数` 
+  
+  
+- 如果数据点多落在II和IV象限，由于
+  
+  - 在第II象限$x - \mu_x<0, y - \mu_y>0$
+  - 在第IV象限$x - \mu_x>0, y - \mu_y<0$
+  - $\sum(x - \mu_x)(y - \mu_y)<0$
+```{r echo=FALSE, crop = TRUE, fig.align='center', message=FALSE, fig.asp=1, out.height="50%"}
+library(car)
+dataEllipse(mtcars$wt, mtcars$mpg, levels = c(0.5, 0.8, 0.9), xlim = c(0,6), ylim = c(0, 40), xlab = "Weight", ylab = "Miles per Gallon", cex.lab = 1.5, cex.axis=1.5)
+abline(v = mean(mtcars$wt), col = "red", lwd = 2)
+abline(h = mean(mtcars$mpg), col = "red", lwd = 2)
+text(6, 40, "I", col = "red", cex= 3)
+text(0, 40, "II", col = "red", cex= 3)
+text(0, 0, "III", col = "red", cex= 3)
+text(6, 0, "IV", col = "red", cex= 3)
+```
+  - 在II和IV象限的数据点越多，离均差乘积和的绝对值越大
+  
+## 第三节$~$直线相关$~$`一、相关系数和决定系数` 
+  
+- 散点均匀分布在四个象限中，正负相消
+
+  - $\sum(x-\mu_x)(y-\mu_y)\approx 0$
+  
+```{r echo=FALSE, crop = TRUE, fig.align='center', message=FALSE, fig.asp=1, out.height="50%"}
+library(car)
+dataEllipse(mtcars$wt, mtcars$qsec, levels = c(0.5, 0.8, 0.9), xlim = c(0,6), ylim = c(10, 25), xlab = "Weight", ylab = "1/4 mile time", cex.lab = 1.5, cex.axis=1.5)
+abline(v = mean(mtcars$wt), col = "red", lwd = 2)
+abline(h = mean(mtcars$qsec), col = "red", lwd = 2)
+text(6, 25, "I", col = "red", cex= 3)
+text(0, 25, "II", col = "red", cex= 3)
+text(0, 10, "III", col = "red", cex= 3)
+text(6, 10, "IV", col = "red", cex= 3)
+```
+
+## 第三节$~$直线相关$~$`一、相关系数和决定系数` 
+
+- 离均差的乘积和可用以表示直线相关的两个变量的相关程度和性质
+
+- 不同数据之间的乘积和无可比性, $x$和$y$的变异程度及其度量单位会影响乘积和
+  
+- 消除影响，可以转换离均差为各自的标准差，再除以N
+
+- 定义相关系数$\rho$为
+
+$$
+\rho = \frac{1}{N}\sum[(\frac{x - \mu_x}{\sigma_x})(\frac{x - \mu_y}{\sigma_y})]  = \frac{\sum(x-\mu_x)(y-\mu_y)}{\sqrt{\sum (x-\mu_x)^2 \times \sum (y-\mu_y)^2}}
+$$
+
+## 第三节$~$直线相关$~$`一、相关系数和决定系数` 
+
+- 相关系数$r \in [-1, 1]$
+
+- 如果$|r| = 1$，绝对相关
+
+- $|r|$越接近1，相关程度越高
+
+- $|r|$越接近0，相关程度越低
+
+- $r$的正负表示相关的性质，正相关即$x$增大时$y$也增大，负相关即$x$增大时$y$减少
+
+- 决定系数$r^2$，$r \in [0, 1]$
+
+## 第三节$~$直线相关$~$`二、相关系数的假设检验` 
+  
+- 判断$r$所代表的总体是否存在直线关系
+
+- 相关系数的标准误$s_r$和$t$值为：
+
+  - $s_r = \sqrt{\frac{1- r^2}{n - 2}}, t = \frac{r - \rho}{s_r}$
+
+## 第三节$~$直线相关$~$`二、相关系数的假设检验` 
+
+DEMO
+
+```{r prompt=TRUE}
+cor(worms_period$tempreture, worms_period$days)
+cor.test(worms_period$tempreture, worms_period$days,
+         alternative = "two.sided")
+```
+## 第三节$~$直线相关$~$`三、注意事项` 
+
+- 两个变量应该都服从正态分布
+
+- 相关系数应进行检验
+
+- 变量尽可能多
+
+- 理解相关系数的含义：相关不等于因果
