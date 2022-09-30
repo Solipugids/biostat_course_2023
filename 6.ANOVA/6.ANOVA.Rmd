@@ -27,77 +27,105 @@ showtext::showtext_auto()
 
 \LARGE 第六章$~$方差分析
 
+## Check In App Release version_0.87
+
+```{r echo=FALSE, crop=TRUE, fig.align='center'}
+p <- c(1, 2, 3)
+pp <- expand.grid(p ,p)
+pp$Var2 <- pp[9:1, 2]
+
+random_lib <- list(
+  a <-list(c(1,2), c(1, 4), c(1, 5)),
+  b <-list(c(2,1), c(2, 5), c(2, 3)),
+  c <-list(c(3,2), c(3, 5), c(3, 6)),
+  d <-list(c(4,1), c(4, 5), c(4, 7)),
+  e <-list(c(5,2), c(5, 4), c(5, 6), c(5, 8)),
+  f <-list(c(6,3), c(6, 5), c(6, 9)),
+  g <-list(c(7,4), c(7, 5), c(7, 8)),
+  h <-list(c(8,7), c(8, 5), c(8, 9)),
+  i <-list(c(9,6), c(9, 5), c(9, 8))
+)
+random_generate <- function(x){
+  repeat {
+    m <- x
+    n <- sample(random_lib[[m]], 1)[[1]][2]
+    o <- sample(random_lib[[n]], 1)[[1]][2]
+    p <- sample(random_lib[[o]], 1)[[1]][2]
+    random_out <- c(m, n, o, p)
+    if (sum(duplicated(random_out))==FALSE) {
+      break
+    }
+  }
+  return(random_out)
+}
+checkin <- random_generate(sample(1:9, 1))
+par(xaxs = "i", yaxs = "i")
+
+plot(expand.grid(p ,p), type = 'p', pch = 20, cex = 10, col="red", xlim = c(-1, 5), ylim = c(xlim = c(-1, 3.5)), axes = F, main=bquote("Check In Code: "*.(checkin[1])*.(checkin[2])*.(checkin[3])*.(checkin[4])) , xlab=NA, ylab=NA)
+text(1, 3, "1", col='white', family="sans")
+text(2, 3, "2", col='white', family="sans")
+text(3, 3, "3", col='white', family="sans")
+text(1, 2, "4", col='white', family="sans")
+text(2, 2, "5", col='white', family="sans")
+text(3, 2, "6", col='white', family="sans")
+text(1, 1, "7", col='white', family="sans")
+text(2, 1, "8", col='white', family="sans")
+text(3, 1, "9", col='white', family="sans")
+for (n in 1:3) {
+  pos1 <- pp[checkin[n], ]
+  pos2 <- pp[checkin[n+1], ]
+  arrows(x0 = pos1$Var1, y0 = pos1$Var2, x1 = pos2$Var1, y1 = pos2$Var2, angle = 20, length = 0.1, lwd = 2, col = rgb(0, 0, 255, 80, maxColorValue=255))
+}
+```
+
 ## 方差分析
 
--   样本平均数的假设检验适用于样本与总体或者两个样本之间的差异显著性检验
-
--   实际研究中，常需要3个及3个以上样本平均数进行比较
-
-    -   如果两两相互比较，随着样本平均数个数增加而剧增
-    -   $n$个样本平均数需要比较的次数为$C_n^2$
-
--   导致：
-
-    -   检验过程繁琐
-    -   无统一的试验误差，误差估计的精确性和检验的灵敏性低
-    -   推断的可靠性降低
+- 样本平均数的假设检验适用于样本与总体或者两个样本之间的差异显著性检验
+- 实际研究中，常需要3个及3个以上样本平均数进行比较
+  - 如果两两相互比较，随着样本平均数个数增加而剧增
+  - $n$个样本平均数需要比较的次数为$C_n^2$
+- 导致：
+  - 检验过程繁琐
+  - 无统一的试验误差，误差估计的精确性和检验的灵敏性低
+  - 推断的可靠性降低
 
 ## 方差分析
 
--   方差分析ANOVA
-
-    -   将所有处理的观测值作为一个整体，一次比较就对所有各组间样本平均数是否有差异做出判断
-
-    -   差异不显著，则认为他们是相同的
-
-    -   差异显著，进一步比较是哪一组数据与其他数据不同
-
--   方差分析的用途
-
-    -   \textcolor{red}{多个样本平均数的比较}
-
-    -   分析多个因素间的交互作用
-
-    -   回归方程的假设检验
-
-    -   方差的同质性检验
+- 方差分析ANOVA
+  - 将所有处理的观测值作为一个整体，一次比较就对所有各组间样本平均数是否有差异做出判断
+  - 差异不显著，则认为他们是相同的
+  - 差异显著，进一步比较是哪一组数据与其他数据不同
+- 方差分析的用途
+  - \textcolor{red}{多个样本平均数的比较}
+  - 分析多个因素间的交互作用
+  - 回归方程的假设检验
+  - 方差的同质性检验
 
 ## 第一节$~$方差分析的基本方法 $~$`一、方差分析的基本原理`
 
--   处理效应
-
-    -   处理因素的不同造成
-
--   误差效应
-
-    -   试验过程中偶然性因素的干扰
-
-    -   测量误差
-
--   方差分析的基本思想
-
-    -   将测量数据的总变异按照变异原因不同分解为处理效应和误差效应，并作出其数量估计
+- 处理效应
+  - 处理因素的不同造成
+- 误差效应
+  - 试验过程中偶然性因素的干扰
+  - 测量误差
+- 方差分析的基本思想
+  - 将测量数据的总变异按照变异原因不同分解为处理效应和误差效应，并作出其数量估计
 
 ## 第一节$~$方差分析的基本方法 $~$`一、方差分析的基本原理`
 
--   反应测量数据变异性指标
+- 反应测量数据变异性指标
+  - 方差，即均方
+$$
+s^2 = \frac{\sum(x - \bar{x})^2}{n - 1}
+$$
 
-    -   方差，即均方
-
-    $$
-    s^2 = \frac{\sum(x - \bar{x})^2}{n - 1}
-    $$
-
--   分别计算出处理效应的方差和误差效应的方差，在一定显著水平下进行比较
-
-    -   二者相差不大，说明试验处理对指标影响不大
-
-    -   二者相差较大，说明试验处理影响是很大的，不可忽视
+- 分别计算出处理效应的方差和误差效应的方差，在一定显著水平下进行比较
+  - 二者相差不大，说明试验处理对指标影响不大
+  - 二者相差较大，说明试验处理影响是很大的，不可忽视
 
 ## 第一节$~$方差分析的基本方法 $~$`二、数学模型`
 
 以单因素试验为例，假设试验考察的因素有$k$个水平，每个处理重复$n$次，共有$nk$个观测值
-
 $$
 \begin{bmatrix}
 A_1 & A_2 & \ldots & A_i & \ldots & A_k \\
@@ -108,20 +136,22 @@ x_{1,j} & x_{2,j} & \ldots & x_{i,j} & \ldots & x_{k,j}\\
 \vdots & \vdots &   & \vdots &   & \vdots\\
 x_{1,n} & x_{2,n} & \ldots & x_{i,n} & \ldots & x_{k,n}\\
 \end{bmatrix}
-$$ 处理的总和$T_{i,:}$， $$
+$$ 
+处理的总和$T_{i,:}$， 
+$$
 \begin{bmatrix}
 T_{1,:} & T_{2,:} & \ldots & T_{i,:} & \ldots & T_{k,:} \\
 \end{bmatrix}
 $$
 
-平均$\bar{x}_{i,:}$， $$
+平均$\bar{x}_{i,:}$， 
+$$
 \begin{bmatrix}
 \bar{x}_{1,:} & \bar{x}_{2,:} & \ldots & \bar{x}_{i,:} & \ldots & \bar{x}_{k,:} \\
 \end{bmatrix}
 $$
 
 ## 第一节$~$方差分析的基本方法 $~$`二、数学模型`
-
 $$
 x_{i,j} = \mu_i + \epsilon_{i, j}
 $$
@@ -273,6 +303,48 @@ $$
 
 ## 第一节$~$方差分析的基本方法 $~$`四、统计假设的显著性检验--`$F$`检验`
 
+$F$分布
+
+设从一正态总体$N(\mu, \sigma^2)$中随机抽样样本容量为$n_1$和$n_2$的两个独立样本，样本方差为$s_1^2$和$s_2^2$，定义$F$：
+$$
+F= \frac{s_1^2}{s_2^2}
+$$
+
+```{r echo=FALSE, crop = FALSE, fig.align='center', fig.asp=1, out.height="50%"}
+par(mgp = c(2, 1, 0))
+df1<-c(1,5,5,5,10)
+df2<-c(5,1,5,20,20)
+n<-length(df1)
+x <- seq(0, 5,length = 1000)
+f.x<-df(x, df1[1], df2[1])
+plot(x, f.x, type = "c", lty = 3, xlim = c(0,5), ylim=c(0,1), ylab="Probability", main=expression(italic(F)~"分布"), cex.lab = 2.5, cex.axis=1.5, cex.main = 2.5)
+color<-1
+for(i in 1:n){
+  f.x<-df(x, df1[i], df2[i])
+  lines(x,f.x,lty=1, lwd=2, col=color)
+  color<-color+1
+}
+legend(3,1,c("df1=1, df2=5", "df1=5, df2=1", "df1=5, df2=5", "df1=5, df2=20", "df1=10, df2=20"), col = c(1,2,3,4,5), text.col= "black", lty =1, lwd=2, merge = TRUE, bg='gray90', cex = 2)
+text(0.32, 0.9, expression(f["1,5"]), cex=2)
+text(-0.05, 0.5, expression(f["5,1"]), col=2, cex=2)
+text(0.68, 0.63, expression(f["5,5"]), col=3, cex=2)
+text(0.75, 0.73, expression(f["5,20"]), col=4, cex=2)
+text(1, 0.83, expression(f["10,20"]), col=5, cex=2)
+```
+
+## 第一节$~$方差分析的基本方法 $~$`四、统计假设的显著性检验--`$F$`检验`
+
+$F$分布
+
+- $F$值的取值区间是$[0, + \infty]$
+- $F$分布的平均数$\mu_F = 1$
+- $F$分布曲线的性状仅取决于$df_1$和$df_2$
+  - 当$df_1=1$或当$df_1=2$时$F$分布曲线呈严重倾斜的方向J形
+  - 当$df_1 \geqslant 3$时转为左偏曲线
+  - 根据$df_1$和$df_2$查F值分布表
+
+## 第一节$~$方差分析的基本方法 $~$`四、统计假设的显著性检验--`$F$`检验`
+
 - 在方差分析中进行$F$检验的目的在于推断处理间的差异是否存在
 - 计算$F$时，以处理间均方$s_t^2$作分子，以处理内均方$s_e^2$作分母
 - 无效假设是把各个处理的变量假设来自同一个总体，认为处理间方差与处理内方差相等
@@ -285,6 +357,158 @@ $$
 - 无效假设是否成立，主要取决于计算出来的$F$值在$F$分布中出现的概率
 
 
+方差分析不再对数据进行成对比较，而是将总体的变异进行分解，通过一次检验即完成多组处理之间的差异显著性检验
+
 ## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
 
+- $F$检验如果否定$H_0$，表明试验的变异主要来源于处理间变异，并不意味着每两个处理平均数间的差异都是显著的，也不能说明哪些平均数间有显著差异
 
+- 要比较不同处理下平均数两两间差异的显著性，每个处理的平均数都要与其他处理的平均数进行比较
+
+- 多重比较
+
+  - 多个平均数两两间的相互比较
+
+## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
+
+（一）最小显著差数法
+
+- 先计算出达到差异显著的最小差数$LSD$
+- 然后用两个处理平均数的差值与$LSD$比较
+
+  - $|\bar{x}_1 - \bar{x}_2|>LSD$ 在给定$\alpha$水平上差异显著
+  - $|\bar{x}_1 - \bar{x}_2| \leqslant LSD$ 差异不显著
+$$
+t = \frac{\bar{x}_1 - \bar{x}_2}{s_{\bar{x}_1 - \bar{x}_2}}
+$$
+$$
+\bar{x}_1 - \bar{x}_2 = t \times s_{\bar{x}_1 - \bar{x}_2}
+$$
+
+- 如果$t$值为$t_0.05$或$t_0.01$，则$\bar{x}_1 - \bar{x}_2$为两个样本平均数差异达到显著或极显著水平的最小值，记为$LSD$
+$$
+\begin{cases}
+    LSD_{0.05} = t_{0.05} \times s_{\bar{x}_1 - \bar{x}_2}\\
+    LSD_{0.01} = t_{0.01} \times s_{\bar{x}_1 - \bar{x}_2}
+\end{cases}
+$$
+
+## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
+
+（一）最小显著差数法(Least significant difference test)
+
+平均数差数标准误的计算
+$$
+s_{\bar{x}_1 - \bar{x}_2} = \sqrt{\frac{s_1^2}{n_1}+\frac{s_1^2}{n_1}} = \sqrt{s_e^2(\frac{1}{n_1}+\frac{1}{n_1})}
+$$
+如果
+$$
+\begin{cases}
+    |\bar{x}_1 - \bar{x}_2| > LSD_{0.05}, or\\
+    |\bar{x}_1 - \bar{x}_2| > LSD_{0.01} 
+\end{cases}
+$$
+
+认为两个样本平均数的差异达显著或极显著水平
+
+## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
+
+（一）最小显著差数法
+
+- 利用$LSD$法进行多重比较，可以分3步
+
+  - 计算最小显著差数$LSD_{0.05}$和$LSD_{0.01}$
+  
+  - 列出平均数的多重比较表
+  
+  - 将两两平均数的差数与$LSD_{0.05}$和$LSD_{0.01}$进行比较，作出统计推断
+
+## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
+
+（一）最小显著差数法
+
+DEMO
+```{r echo=TRUE, prompt=TRUE}
+library(agricolae)
+aloe_height <- data.frame(
+  treatment= rep(c("A1", "A2", "A3", "A4"), each = 5), 
+  height = c(18.1, 18.6, 18.7, 18.9, 18.3, 
+             17.4, 17.9, 17.1, 16.5, 17.5, 
+             17.3, 16.9, 18.5, 18.2, 16.2,
+             15.6, 15.8, 16.7, 15.3, 16.8))
+model <- aov(height ~ treatment, data = aloe_height) 
+print(LSD.test(model, "treatment", alpha = 0.01)$groups)
+```
+
+## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
+
+（二）最短显著极差法Duncan's new multiple range test (SSR)
+
+DEMO
+
+```{r echo=TRUE, prompt=TRUE}
+model <- aov(height ~ treatment, data = aloe_height)
+print(duncan.test(model, "treatment", alpha = 0.05)$duncan)
+```
+```{r echo=TRUE, prompt=TRUE}
+print(duncan.test(model, "treatment", alpha = 0.05)$groups)
+```
+
+## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
+
+（二）q检验Student-Newman-Keuls test
+
+DEMO
+
+```{r echo=TRUE, prompt=TRUE}
+model <- aov(height ~ treatment, data = aloe_height)
+print(SNK.test(model, "treatment", alpha = 0.05)$snk)
+```
+```{r echo=TRUE, prompt=TRUE}
+print(SNK.test(model, "treatment", alpha = 0.05)$groups)
+```
+
+## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
+
+- 3种检验方法检验的显著尺度关系为$LSD \le SSR \le SNK$
+
+  - 用$LSD$法检验显著的差数，用$SSR$或$SNK$法未必显著
+  - 用$SNK$法检验显著的差数，用$LSD$法必然显著
+  
+- 对精度要求高的试验应用$SNK$法，一般试验用$SSR$法，试验种各个处理皆与对照相比的试验资料可用$LSD$法
+
+- 方差分析的基本步骤：
+
+  - 将样本数据的总平方和与总自由度分解
+  - 列方差分析表进行$F$检验，分析各变异因素在总变异中的重要程度
+  - 若$F$检验显著，对各处理平均数进行多重比较
+  
+## 第二节$~$单因素方差分析 $~$`一、组内观测次数相等的方差分析`
+
+- $k$组资料，$n$个观测值
+- 方差分析表
+
+$$
+\begin{bmatrix}
+source & df & SS & s^2 & F  \\
+treatment& k-1 & SS_t=\frac{T_i^2}{n}-C & s_t^2 & \frac{s_t^2}{s_e^2} \\
+error & k(n-1) & SS_e = SS_T - SS_t & s_e^2 &  
+\end{bmatrix}
+$$
+
+## 第二节$~$单因素方差分析 $~$`二、组内观测次数不相等的方差分析`
+
+- 由于条件限制，不同处理的观测次数不同
+- 方差分析表
+
+$$
+\begin{bmatrix}
+source & df & SS & s^2 & F  \\
+treatment& k-1 & SS_t=\sum\frac{T_i^2}{n_i}-C & s_t^2 & \frac{s_t^2}{s_e^2} \\
+error & \sum n_i - k & SS_e = SS_T - SS_t & s_e^2 &  
+\end{bmatrix}
+$$
+
+## 第二节$~$单因素方差分析 $~$`二、组内观测次数不相等的方差分析`
+
+## 第五节$~$方差分析缺失数据的估计 $~$`一、缺失一个数据的估计方法`
