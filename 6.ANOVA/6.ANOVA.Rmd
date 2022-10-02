@@ -427,7 +427,7 @@ $$
 
 （一）最小显著差数法
 
-DEMO
+R DEMO
 ```{r echo=TRUE, prompt=TRUE}
 library(agricolae)
 aloe_height <- data.frame(
@@ -444,7 +444,7 @@ print(LSD.test(model, "treatment", alpha = 0.01)$groups)
 
 （二）最短显著极差法Duncan's new multiple range test (SSR)
 
-DEMO
+R DEMO
 
 ```{r echo=TRUE, prompt=TRUE}
 model <- aov(height ~ treatment, data = aloe_height)
@@ -458,7 +458,7 @@ print(duncan.test(model, "treatment", alpha = 0.05)$groups)
 
 （二）q检验Student-Newman-Keuls test
 
-DEMO
+R DEMO
 
 ```{r echo=TRUE, prompt=TRUE}
 model <- aov(height ~ treatment, data = aloe_height)
@@ -509,6 +509,233 @@ error & \sum n_i - k & SS_e = SS_T - SS_t & s_e^2 &
 \end{bmatrix}
 $$
 
-## 第二节$~$单因素方差分析 $~$`二、组内观测次数不相等的方差分析`
+## 第二节$~$单因素方差分析 
+
+R DEMO
+
+- 正态性检验
+```{r, prompt=TRUE, echo=FALSE, fig.asp=1, out.height="35%", fig.align='center', message=FALSE, warning=FALSE, crop = TRUE}
+library(car)
+guard_hair <- data.frame(region = rep(c("DB", "NMG", "HE", "AH", "GZ"), each = 4), 
+                         length = c(32.0, 32.8, 31.2, 30.4, 
+                                    29.2, 27.4, 26.3, 26.7, 
+                                    25.5, 26.1, 25.8, 26.7, 
+                                    23.3, 25.1, 25.1, 25.5, 
+                                    22.3, 22.5, 22.9, 23.7))
+qqPlot(lm(length~region, data = guard_hair), simulate=TRUE, main="Q-Q plot", ylab = "n", xlab = "n")
+```
+```{r, prompt=TRUE,echo=TRUE}
+shapiro.test(guard_hair$length)
+```
+
+## 第二节$~$单因素方差分析 
+
+R DEMO
+
+- 单因素方差检验
+```{r, prompt=TRUE,echo=TRUE}
+fit <- aov(length~region, data = guard_hair)
+summary(fit)
+```
+
+
+## 第二节$~$单因素方差分析 
+
+R DEMO
+
+- 方差齐性检验
+```{r, prompt=TRUE, echo=TRUE}
+bartlett.test(length~region, data = guard_hair)
+```
+
+## 第二节$~$单因素方差分析 
+
+R DEMO
+
+- 多重比较
+```{r, prompt=TRUE, echo=FALSE, fig.align='center', fig.asp=1, out.height="35%", crop = TRUE}
+fit.out <- LSD.test(fit, "region", alpha = 0.01)
+print(fit.out$groups)
+plot(fit.out)
+```
+
+## 第三节$~$双因素方差分析
+
+- 实验随机分配60只豚鼠，分别采用两种喂食方法（橙汁或维生素C）
+- 各喂食方法中抗坏血酸含量有三种水平（0.5mg、1mg或2mg）
+- 每种处理方式组合都被分配10只豚鼠
+- 观察豚鼠的牙齿长度
+
+```{r, prompt=TRUE, echo=FALSE}
+ToothGrowth$dose <- factor(ToothGrowth$dose)
+knitr::kable(head(ToothGrowth))
+```
+
+## 第三节$~$双因素方差分析
+
+- 双因素方差分析
+```{r, prompt=TRUE, echo=TRUE}
+fit <- aov(len ~ supp+dose+supp:dose, data = ToothGrowth)
+summary(fit)
+```
+
+
+## 第三节$~$双因素方差分析
+
+- 交互效应的可视化
+```{r, prompt=TRUE, echo=TRUE, crop= TRUE, fig.asp=1, out.height="60%",fig.align='center', cex.lab= 3, cex.axis= 2.5, cex.main= 3}
+interaction.plot(ToothGrowth$dose, ToothGrowth$supp, 
+  ToothGrowth$len, type = "b", col = c("red", "blue"), 
+  pch = c(2,19), xlab = "抗坏血酸含量", ylab = "牙齿长度",
+  main = "抗坏血酸含量和喂食方式的交互作用")
+```
+
+## 第五节$~$方差分析缺失数据的估计 
+
+- 数据资料体系一般都是按照试验要求事先设计好的，在试验过程中经常会因意外事件使一个或某几个数据丢失
+  - 数据的缺失使平方和的线性可加模型无效
+  - 无法直接进行方差分析
+  
+- 缺失的数据可用统计方法从理论上进行估计，然后进行方差分析
+  - 缺失数据估计不能恢复数据，只能是补足后不致干扰其余数据
+  
+- 弥补缺失数据的原则是，使补上缺失的数据后，误差平方和最小
 
 ## 第五节$~$方差分析缺失数据的估计 $~$`一、缺失一个数据的估计方法`
+```{r echo=FALSE, fig.align='center', out.width="30%"}
+missing_data <- data.frame(B1 = c(30, 37, 27, 30), 
+                           B2 = c(39, 46, 37, 42), 
+                           B3 = c(41, 'x', 36, 35), 
+                           B4 = c(42, 43, 24, 40), 
+                           B5 = c(42, 51, 37, 46), 
+                           B6 = c(39, 44, 41, 47), 
+                           B7 = c(38, 35, 33, 38), 
+                           B8 = c(38, 49, 43, 46))
+row.names(missing_data) <- c("A1", "A2", "A3", "A4")
+knitr::kable(missing_data, format = "pipe", align = "c", padding = 0, caption = "one missing data")
+```
+
+- 根据误差平方和：
+$$
+SS_e = SS_T - SS_A - SS_B
+$$
+
+- 令$SS_e$达到最小，另$\frac{\text{d}SS_e}{\text{d}x} = 0$
+
+- 解方程得到$x$
+
+## 第五节$~$方差分析缺失数据的估计 $~$`二、缺失两个数据的估计方法`
+```{r echo=FALSE, fig.align='center', out.width="30%"}
+missing_data <- data.frame(B1 = c(30, 37, 27, 30), 
+                           B2 = c(39, 46, 37, 42), 
+                           B3 = c(41, "x", 36, 35), 
+                           B4 = c(42, 43, 24, 40), 
+                           B5 = c(42, 51, 37, 46), 
+                           B6 = c(39, 44, 41, 47), 
+                           B7 = c(38, 35, "y", 38), 
+                           B8 = c(38, 49, 43, 46))
+row.names(missing_data) <- c("A1", "A2", "A3", "A4")
+knitr::kable(missing_data, format = "pipe", align = "c", padding = 0, caption = "one missing data")
+```
+
+- 缺失两个数据同样令$SS_e$达到最小
+- 需要满足：
+
+$$
+\begin{cases}
+  \frac{\partial SS_e}{\partial x} = 0\\
+  \frac{\partial SS_e}{\partial y} = 0
+\end{cases}
+$$
+
+- 通过求解二元一次方程求解得到$x,y$
+
+## 第六节$~$方差分析的基本假定和数据转换 $~$`一、方差分析的基本假定`
+
+方差分析的有效性建立在一些基本假定基础上
+
+- 正态性
+  - 试验误差应当是服从正态分布$N(0, \sigma^2)$的独立的随机变量
+  - 每一观测值$x_{ij}$应围绕相应的平均数呈正态分布
+  - 非正态分布的资料进行适当数据转换后，亦能进行方差分析
+
+- 可加性
+  - 处理效应与误差效应是可加的，并服从方差分析的数据模型
+  - 试验的总变异$x_{ij} = \mu + \alpha_i + \epsilon_{ij}$，这样才能分解为各种原因引起的变异
+  
+- 方差同质性
+  - 所有试验的误差方差应具备同质性，即不同处理不能影响随机误差的方差
+  - 如果发现误差异质，只要不属于研究对象本身的原因，在不影响分析正确性的条件下可将变异特别明显的数据剔除
+
+## 第六节$~$方差分析的基本假定和数据转换 $~$`一、方差分析的基本假定`
+
+方差同质性检验
+
+- 假设检验都是以方差的同质性为前提，也就是各个总体的方差是相同的
+- 同质性检验从各样本的方差来推断其总体方差是否相同
+
+- 一个样本方差的同质性检验：$\chi^2$检验
+  - $\chi^2 = \sum (\frac{x-\bar{x}}{\sigma})^2$
+  - 根据$s^2 = \frac{\sum (x-\bar{x})^2}{k-1}$，上式可以变换为$\chi^2 = \frac{(k-1)s^2}{\sigma^2}$
+  - $\chi^2<\chi^2_\alpha$时，接受$H_0:\sigma^2 = \sigma^2_\alpha$
+
+- 一个样本方差的同质性检验：$F$检验
+  
+  - 两个样本的容量、样本方差、总体方差分别为$n_1, s_1, \sigma^2_1$,$n_2, s_2, \sigma^2_2$
+  - 两个样本服从正态分布，且抽样是随机和独立的，其方差之比的$F$值服从$df_1=n_1 - 1$和$df_2=n_2 - 1$的$F$分布
+  - $F<F_0$时，接受$H_0:\sigma^2_1 = \sigma^2_2$
+
+## 第六节$~$方差分析的基本假定和数据转换 $~$`二、数据转换`
+
+（一）平方根转换
+
+- 一些生物学观测数据为泊松而非正态分布，样本平均数和方差存在某种比例关系$\sigma^2 = \lambda, \mu = \lambda$
+
+- 采用平方根转换可以对方差进行降缩，减少极端大的变量对方差的影响，从而获得同质方差
+
+- 一般直接转换成$\sqrt x$，数据较小时采用$\sqrt{x+1}$
+
+## 第六节$~$方差分析的基本假定和数据转换 $~$`二、数据转换`
+
+（二）对数转换
+
+- 如果已知资料中的效应为相乘性或非相加性，或者标准差与平均数成比例，可以使用对数转换
+
+- 一般是将原数据转换为对数$log(x), ln(x)$
+
+- 使方差变成比较一致而且使效应由相乘性变成相加性
+
+- 如果原始数据包括0， 可以采用$log(n+1)$的方法
+
+- 对数转换对于削弱大变数的作用要比平方根转换强
+
+## 第六节$~$方差分析的基本假定和数据转换 $~$`二、数据转换`
+
+（三）反正弦转换
+
+- 如果数据是比例数或以百分率表示，其分布趋向于二项分布
+
+- 二项分布的方差与平均数之间存在一定函数关系$\sigma^2 = npq, \mu = np$
+
+- 转换成角度以后，接近于0和1的数值变异度增大，使方差变大，有利于满足方差同质性要求
+
+- 方差分析时应作反正弦转换$\theta = \sin^{-1}\sqrt{P}$
+
+- 如果资料中的百分数为0.3~0.7，转换对分析结果影响不大
+
+```{r echo=FALSE, fig.asp=1, out.height="40%", fig.align='center'}
+x <- c(0:100)
+y <- asin(sqrt(x/100))
+plot(x, y)
+```
+## 第六节$~$方差分析的基本假定和数据转换
+
+- 对于非连续性的数据，最好在方差分析前先检查
+
+  - 各处理平均数与相应处理内均方是否存在相关性
+  
+  - 各处理内均方间的变异是否较大
+  
+  - 如果存在以上情况，考虑对数据做转换
+  
+- 哪种方法能使处理平均数与其均方的相关性最小，哪种方法就是最合适的转换方法
