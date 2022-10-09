@@ -590,6 +590,10 @@ interaction.plot(ToothGrowth$dose, ToothGrowth$supp,
   main = "抗坏血酸含量和喂食方式的交互作用")
 ```
 
+## 第三节$~$多因素方差分析
+
+https://www.bilibili.com/video/BV1Dv411N71N/?vd_source=f573d91dd1b1282938a7cae9fb95006c
+
 ## 第五节$~$方差分析缺失数据的估计 
 
 - 数据资料体系一般都是按照试验要求事先设计好的，在试验过程中经常会因意外事件使一个或某几个数据丢失
