@@ -237,15 +237,21 @@ $$
 
 - 每一个处理n个观测值离均差平方和累加，有
 $$
-\sum_{j=1}^{n}(x_{i,j} - x_{:,:})^2 = \sum_{j=1}^{n}(x_{i,j} - \bar{x}_{i,:})^2 + 2\sum_{j=1}^{n}(x_{i,j}-\bar{x}_{i,:})(\bar{x}_{i,:} - x_{:,:}) + \sum_{j=1}^{n}(\bar{x}_{i,:} - x_{:,:})^2
+\begin{split}
+\sum_{j=1}^{n}(x_{i,j} - x_{:,:})^2 = &\sum_{j=1}^{n}(x_{i,j} - \bar{x}_{i,:})^2 +\\ &2\sum_{j=1}^{n}(x_{i,j}-\bar{x}_{i,:})(\bar{x}_{i,:} - x_{:,:}) +\\
+&\sum_{j=1}^{n}(\bar{x}_{i,:} - x_{:,:})^2
+\end{split}
 $$
 
 ## 第一节$~$方差分析的基本方法 $~$`三、平方和与自由度的分解`
 
 （一）平方和分解
 
-- 因为 $\sum_{j=1}^{n}(x_{i,j}-\bar{x}_{i,:})(\bar{x}_{i,:} - x_{:,:}) = (\bar{x}_{i,:} - x_{:,:})\sum_{j=1}^{n}(x_{i,j} - \bar{x}_{i,:})=0$
-
+- 因为
+$$
+\sum_{j=1}^{n}(x_{i,j}-\bar{x}_{i,:})(\bar{x}_{i,:} - x_{:,:}) = (\bar{x}_{i,:} - x_{:,:})\sum_{j=1}^{n}(x_{i,j} - \bar{x}_{i,:})=0
+$$
+  所以
 $$
   \sum_{j=1}^{n}(x_{i,j} - x_{:,:})^2 = \sum_{j=1}^{n}(x_{i,j} - \bar{x}_{i,:})^2 + n(\bar{x}_{i,:} - x_{:,:})^2
 $$
@@ -262,16 +268,15 @@ $$
 
 总平方和 = 处理间平方和+处理内平方和
 
- $SS_T= SS_t + SS_e$
+$SS_T= SS_t + SS_e$
  
 $$
 \begin{cases}
-     \sum_{i=1}^{n}\sum_{j=1}^{n}(x_{i,j} - \bar{x}_{i,:})^2\\
-      n\sum_{i=1}^{n}(\bar{x}_{i,:} - x_{:,:})^2
+  n\sum_{i=1}^{n}(\bar{x}_{i,:} - x_{:,:})^2\\
+  \sum_{i=1}^{n}\sum_{j=1}^{n}(x_{i,j} - \bar{x}_{i,:})^2
 \end{cases}
- $$
- 
- $SS_T= SS_t + SS_e$
+$$
+
  
 ## 第一节$~$方差分析的基本方法 $~$`三、平方和与自由度的分解`
 
@@ -301,7 +306,7 @@ $$
 \end{cases}
 $$
 
-## 第一节$~$方差分析的基本方法 $~$`四、统计假设的显著性检验--`$F$`检验`
+## 第一节$~$方差分析的基本方法 $~$`四、统计假设的显著性检验：`$F$`检验`
 
 $F$分布
 
@@ -332,20 +337,20 @@ text(0.75, 0.73, expression(f["5,20"]), col=4, cex=2)
 text(1, 0.83, expression(f["10,20"]), col=5, cex=2)
 ```
 
-## 第一节$~$方差分析的基本方法 $~$`四、统计假设的显著性检验--`$F$`检验`
+## 第一节$~$方差分析的基本方法 $~$`四、统计假设的显著性检验：`$F$`检验`
 
 $F$分布
 
-- $F$值的取值区间是$[0, + \infty]$
+- $F$值的取值区间是$[0, + \infty)$
 - $F$分布的平均数$\mu_F = 1$
 - $F$分布曲线的性状仅取决于$df_1$和$df_2$
   - 当$df_1=1$或当$df_1=2$时$F$分布曲线呈严重倾斜的方向J形
   - 当$df_1 \geqslant 3$时转为左偏曲线
   - 根据$df_1$和$df_2$查F值分布表
 
-## 第一节$~$方差分析的基本方法 $~$`四、统计假设的显著性检验--`$F$`检验`
+## 第一节$~$方差分析的基本方法 $~$`四、统计假设的显著性检验：`$F$`检验`
 
-- 在方差分析中进行$F$检验的目的在于推断处理间的差异是否存在
+- 在方差分析中进行$F$检验的目的在于推断处理间是否存在差异
 - 计算$F$时，以处理间均方$s_t^2$作分子，以处理内均方$s_e^2$作分母
 - 无效假设是把各个处理的变量假设来自同一个总体，认为处理间方差与处理内方差相等
 $$
@@ -385,7 +390,7 @@ $$
 \bar{x}_1 - \bar{x}_2 = t \times s_{\bar{x}_1 - \bar{x}_2}
 $$
 
-- 如果$t$值为$t_0.05$或$t_0.01$，则$\bar{x}_1 - \bar{x}_2$为两个样本平均数差异达到显著或极显著水平的最小值，记为$LSD$
+- 如果$t$值为$t_{0.05}$或$t_{0.01}$，则$\bar{x}_1 - \bar{x}_2$为两个样本平均数差异达到显著或极显著水平的最小值，记为$LSD$
 $$
 \begin{cases}
     LSD_{0.05} = t_{0.05} \times s_{\bar{x}_1 - \bar{x}_2}\\
@@ -437,12 +442,12 @@ aloe_height <- data.frame(
              17.3, 16.9, 18.5, 18.2, 16.2,
              15.6, 15.8, 16.7, 15.3, 16.8))
 model <- aov(height ~ treatment, data = aloe_height) 
-print(LSD.test(model, "treatment", alpha = 0.01)$groups)
+print(LSD.test(model, "treatment", alpha = 0.05)$groups)
 ```
 
 ## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
 
-（二）最短显著极差法Duncan's new multiple range test (SSR)
+（二）最短显著极差法Duncan's new multiple range test（SSR）
 
 R DEMO
 
@@ -456,7 +461,7 @@ print(duncan.test(model, "treatment", alpha = 0.05)$groups)
 
 ## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
 
-（二）q检验Student-Newman-Keuls test
+（二）q检验Student-Newman-Keuls test（SNK）
 
 R DEMO
 
@@ -470,19 +475,24 @@ print(SNK.test(model, "treatment", alpha = 0.05)$groups)
 
 ## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
 
-- 3种检验方法检验的显著尺度关系为$LSD \le SSR \le SNK$
+- $k=2$时显著尺度$LSD = SSR = SNK$
+
+- $k \ge 3$时3种检验方法检验的显著尺度关系为$LSD \le SSR \le SNK$
 
   - 用$LSD$法检验显著的差数，用$SSR$或$SNK$法未必显著
   - 用$SNK$法检验显著的差数，用$LSD$法必然显著
   
-- 对精度要求高的试验应用$SNK$法，一般试验用$SSR$法，试验种各个处理皆与对照相比的试验资料可用$LSD$法
+- 对精度要求高的试验应用$SNK$法，一般试验可用$SSR$法，试验中各个处理皆与对照相比的试验资料可用$LSD$法
+
+## 第一节$~$方差分析的基本方法 $~$`五、多重比较`
 
 - 方差分析的基本步骤：
 
   - 将样本数据的总平方和与总自由度分解
   - 列方差分析表进行$F$检验，分析各变异因素在总变异中的重要程度
   - 若$F$检验显著，对各处理平均数进行多重比较
-  
+
+
 ## 第二节$~$单因素方差分析 $~$`一、组内观测次数相等的方差分析`
 
 - $k$组资料，$n$个观测值
@@ -532,20 +542,19 @@ shapiro.test(guard_hair$length)
 
 R DEMO
 
-- 单因素方差检验
-```{r, prompt=TRUE,echo=TRUE}
-fit <- aov(length~region, data = guard_hair)
-summary(fit)
+- 方差齐性检验
+```{r, prompt=TRUE, echo=TRUE}
+bartlett.test(length~region, data = guard_hair)
 ```
-
 
 ## 第二节$~$单因素方差分析 
 
 R DEMO
 
-- 方差齐性检验
-```{r, prompt=TRUE, echo=TRUE}
-bartlett.test(length~region, data = guard_hair)
+- 单因素方差检验
+```{r, prompt=TRUE,echo=TRUE}
+fit <- aov(length~region, data = guard_hair)
+summary(fit)
 ```
 
 ## 第二节$~$单因素方差分析 
@@ -579,25 +588,19 @@ fit <- aov(len ~ supp+dose+supp:dose, data = ToothGrowth)
 summary(fit)
 ```
 
-
 ## 第三节$~$双因素方差分析
 
 - 交互效应的可视化
-```{r, prompt=TRUE, echo=TRUE, crop= TRUE, fig.asp=1, out.height="60%",fig.align='center', cex.lab= 3, cex.axis= 2.5, cex.main= 3}
+```{r, prompt=TRUE, echo=FALSE, crop= TRUE, fig.asp=1, out.height="60%",fig.align='center', cex.lab= 3, cex.axis= 2.5, cex.main= 3}
 interaction.plot(ToothGrowth$dose, ToothGrowth$supp, 
   ToothGrowth$len, type = "b", col = c("red", "blue"), 
   pch = c(2,19), xlab = "抗坏血酸含量", ylab = "牙齿长度",
   main = "抗坏血酸含量和喂食方式的交互作用")
 ```
 
-## 第三节$~$多因素方差分析
+## 第五节$~$方差分析缺失数据的估计
 
-https://www.bilibili.com/video/BV1Dv411N71N/?vd_source=f573d91dd1b1282938a7cae9fb95006c
-
-## 第五节$~$方差分析缺失数据的估计 
-
-- 数据资料体系一般都是按照试验要求事先设计好的，在试验过程中经常会因意外事件使一个或某几个数据丢失
-  - 数据的缺失使平方和的线性可加模型无效
+- 数据的缺失使平方和的线性可加模型无效
   - 无法直接进行方差分析
   
 - 缺失的数据可用统计方法从理论上进行估计，然后进行方差分析
@@ -670,24 +673,6 @@ $$
 - 方差同质性
   - 所有试验的误差方差应具备同质性，即不同处理不能影响随机误差的方差
   - 如果发现误差异质，只要不属于研究对象本身的原因，在不影响分析正确性的条件下可将变异特别明显的数据剔除
-
-## 第六节$~$方差分析的基本假定和数据转换 $~$`一、方差分析的基本假定`
-
-方差同质性检验
-
-- 假设检验都是以方差的同质性为前提，也就是各个总体的方差是相同的
-- 同质性检验从各样本的方差来推断其总体方差是否相同
-
-- 一个样本方差的同质性检验：$\chi^2$检验
-  - $\chi^2 = \sum (\frac{x-\bar{x}}{\sigma})^2$
-  - 根据$s^2 = \frac{\sum (x-\bar{x})^2}{k-1}$，上式可以变换为$\chi^2 = \frac{(k-1)s^2}{\sigma^2}$
-  - $\chi^2<\chi^2_\alpha$时，接受$H_0:\sigma^2 = \sigma^2_\alpha$
-
-- 一个样本方差的同质性检验：$F$检验
-  
-  - 两个样本的容量、样本方差、总体方差分别为$n_1, s_1, \sigma^2_1$,$n_2, s_2, \sigma^2_2$
-  - 两个样本服从正态分布，且抽样是随机和独立的，其方差之比的$F$值服从$df_1=n_1 - 1$和$df_2=n_2 - 1$的$F$分布
-  - $F<F_0$时，接受$H_0:\sigma^2_1 = \sigma^2_2$
 
 ## 第六节$~$方差分析的基本假定和数据转换 $~$`二、数据转换`
 

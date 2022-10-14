@@ -312,7 +312,7 @@ text(2, 2.1, expression(y==2), col = 'orange', cex = 2)
 - 研究$y$和$\hat{y}$可以得到如下回归方程的三个基本性质：
 
   - 最小值 $minQ=\sum (y-\hat{y})^2$
-  - $\sum(y - \hat{y})^2 = 0$
+  - $(y - \hat{y}) = 0$
   - 回归直线通过中心点$(\bar{x}, \bar{y})$
     
 - 直线回归方程的另一种形式：
