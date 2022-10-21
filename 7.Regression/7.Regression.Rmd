@@ -260,29 +260,29 @@ $$
 $$
 
 - 求自变量和因变量关系的最小二乘法
- $$
-  min(Q) = \sum_{1}^{n}(y-\hat{y})^2= \sum_{1}^{n}(y-a-bx)^2 
-  $$
+$$
+min(Q) = \sum_{1}^{n}(y-\hat{y})^2= \sum_{1}^{n}(y-a-bx)^2 
+$$
   - 根据极值定理，对$a$和$b$分别求导：
-  $$
-  \frac{\partial Q}{\partial a} = -2\sum(y -a - bx) = 0, \frac{\partial Q}{\partial b} = -2\sum(y -a - bx)x = 0 
-  $$
+$$
+\frac{\partial Q}{\partial a} = -2\sum(y -a - bx) = 0, \frac{\partial Q}{\partial b} = -2\sum(y -a - bx)x = 0 
+$$
   - 整理得到：
-      $$
-      \begin{cases}
-      an +b \sum x  = \sum y\\
-      a\sum x + b \sum x^2 = \sum xy
-      \end{cases}
-      $$
+$$
+\begin{cases}
+an +b \sum x  = \sum y\\
+a\sum x + b \sum x^2 = \sum xy
+\end{cases}
+$$
       
 ## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`    
     
 - 最后得到：
 $$
-      \begin{cases}
-       a = \bar{y} - b \bar{x}\\
-      b = \frac{\sum(x- \bar{x})(y - \bar{y})}{\sum(x- \bar{x})^2}
-      \end{cases}
+\begin{cases}
+a = \bar{y} - b \bar{x}\\
+b = \frac{\sum(x- \bar{x})(y - \bar{y})}{\sum(x- \bar{x})^2}
+\end{cases}
 $$
 
 - $a>0$，回归直线在第一象限与y轴相交
