@@ -1,0 +1,201 @@
+---
+title: 统计图形
+author: 
+  - "王超"
+date: "`r Sys.Date()`"
+institute: 
+  - "中医药研究院"
+  - "广药"
+keywords:
+  - R Programming
+  - Courses
+  - Causal inference
+  - Pensity Score Matching
+  - Randomized Controlled Trial
+output: 
+  bookdown::pdf_book: 
+    number_sections: yes
+    toc: no
+    base_format: rmarkdown::beamer_presentation
+    latex_engine: xelatex
+    citation_package: natbib
+    keep_tex: no
+    template: null
+    theme: Verona
+header-includes:
+  - \usepackage{pifont}
+  - \usepackage{iitem}
+  - \setbeamertemplate{itemize item}{\ding{47}}
+  - \setbeamertemplate{itemize subitem}{\ding{46}}
+themeoptions: 
+  - colorblocks
+  - showheader
+  - blue
+biblio-style: apalike
+natbiboptions: "authoryear,round"
+bibliography: 
+  - psmR.bib
+classoption: "fontset=fandol"
+link-citations: yes
+section-titles: false
+biblio-title: Ref.
+colorlinks: yes
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(tidy = TRUE, prompt = TRUE, comment = "#")
+```
+
+## What is propensity score?
+
+Propensity scores(PSs)
+
+- defined by Rosenbaum and Rubin at 2014[@Steiner2010]\cite{the1983rosebaum}
+- the probability of receiving certain treatments, conditional on observed baseline covariates
+- estimated by using modeling to predict treatment allocation with covariates
+- two patients with similar PSs have covariates which come from similar distributions
+
+https://doi.org/10.1093/biomet/70.1.41
+https://sejdemyr.github.io/r-tutorials/statistics/tutorial8.html
+https://github.com/sejdemyr/ecls
+Propensity score matching with R: conventional methods and new features
+Propensity Scores: A Practical Introduction Using R
+https://www.kdnuggets.com/2018/01/propensity-score-matching-r.html
+https://datascienceplus.com/how-to-use-r-for-matching-samples-propensity-score/
+
+## What is propensity score analysis?
+
+ <!-- ![The framework of propensity score matching.](./61857-PB5-7762-R1.png) -->
+A poor balance indicates that the model estimating PS needs 
+to be respecified.
+
+## What are the advantages of PSA?
+
+- dimension reduction
+  - multiple covariates are replaced by one score to describe a patient
+- design separation
+  - separate covariate balancing and effect estimating
+
+## Why choose PSM in R?
+
+
+## R packages
+
+| R Package    | Version   |Description |
+|--------------|-----------|------------|
+| Hmisc | 1.99      | *7*        |
+| MatchIt | **1.89**  | 5234       |
+
+## How to generate the dataset?
+
+- Constructed a dataset with known true PS values.
+
+- Simulates the relationship between smoking and cardiovascular disease (CVD).
+
+  - CVD is the outcome variable (CVD = 0 or 1)
+  - Smoking is a binary variable (whether the patient smoking or not)
+  - Gender (female = 0, male = 1)
+  - Age
+
+- **Real data is not as simple as the simulated data.**
+
+## Codes
+
+```{r, eval=TRUE, echo=TRUE}
+set.seed(2022)
+x.Gender <- rep(0:1, c(400,600)) # 400 females and 600 males
+x.Age <- round(abs(rnorm(1000, mean=45, sd=15))) 
+z <- (x.Age - 45) / 15 - (x.Age-45) ^ 2 / 100 + 2 * x.Gender
+tps <- exp(z) / (1+exp(z)) # The true PS
+Smoke <- as.numeric(runif(1000) < tps)
+z.y <- x.Gender + 0.3*x.Age + 5*Smoke - 20
+y <- exp(z.y) / (1+exp(z.y))
+CVD <- as.numeric(runif(1000) < y)
+x.Age.mask <- rbinom(1000, 1, 0.2) # Missing completely at random
+x.Age <- ifelse(x.Age.mask==1, NA, x.Age)
+data <- data.frame(x.Age, x.Gender, Smoke, CVD)
+```
+*tps* is the true PS which can balance data and needs 
+to be estimated
+
+## Data
+```{r, eval=TRUE, echo=FALSE}
+head(data, n=10)
+```
+
+## Summary
+- summarize the distribution of baseline variates in each group
+- test whether significant differences exist between different groups
+
+\tiny
+```{r, eval=TRUE, echo=TRUE, warning=FALSE, size='tiny'}
+library(tableone)
+table2 <- CreateTableOne(vars = c('x.Age', 'x.Gender', 'CVD'), data = data, factorVars = c('x.Gender', 'CVD'), strata = 'Smoke', smd=TRUE)
+table2 <- print(table2, smd=TRUE, showAllLevels = TRUE, noSpaces = TRUE, printToggle = FALSE)
+write.csv(table2, file = "./Table2_before_matching.csv")
+```
+\normalsize
+
+## Table
+\tiny
+```{r, eval=TRUE, echo=FALSE}
+table2
+```
+\small
+For continuous variable x, SMD of
+$$
+ x = \frac{\bar{x_1}-\bar{x_2}}{\sqrt{(Var_1+Var_2)/2}}
+$$
+\footnotesize
+$\bar{x_1}$ and $\bar{x_2}$ are the sample means for the treated and controlled groups, respectively.
+
+\small
+For dichotomous variable x, SMD of
+$$
+ x = \frac{\hat{p_1}-\hat{P_2}}{\sqrt{\left [ \hat{p_1}(1-\hat{p_1})+ \hat{p_2}(1-\hat{p_2}) \right ]/2}}
+$$
+\footnotesize
+$\hat{p_1}$ and $\hat{p_2}$ are the prevalence of dichotomous variables in the treated and control groups, respectively.
+\normalsize
+
+## Second example
+
+The data come from the [**Early Childhood Longitudinal Study (ECLS)**](https://www.childandfamilydataarchive.org/cfda/archives/cfda/studies/4075) and cannot be made available directly due to ECLS's Terms of Use. 
+
+Once you have accepted the **Terms of Use**, you'll be able to quickly create an easy-to-analyze dataset.
+(which will end up in 'data-processed/ecls.csv').
+
+## 介绍
+
+::: {.quotation data-latex="[John Gruber]"}
+A Markdown-formatted document should be publishable as-is, as plain text, 
+without looking like it’s been marked up with tags or formatting instructions.  
+:::
+
+Markdown 提供一种简洁的格式语法，用来编辑 HTML、PDF 和 MS Word 文档，数学公式还是用 LaTeX 排版的好， 
+$\boldsymbol{\Sigma}$ 是希腊字母 $\Sigma$ 的加粗形式，
+$\mathcal{A}$ 是普通字母 $A$ 的花体形式。
+
+## 自定义 block
+
+::: {.exampleblock data-latex="{提示}"}
+记得安装一些 LaTeX 宏包，如果不记得也没关系，大多数情况下 tinytex [@tinytex] 会找齐依赖安装好，只是初次运行会有点慢！
+
+```{r, eval=FALSE}
+# 安装 LaTeX 宏包
+tinytex::tlmgr_install(c("psnfss", "iitem", "beamer-verona"))
+```
+:::
+
+## bib
+
+# ```{r bib, eval=FALSE, include=FALSE, cache=FALSE}
+# bib <- knitr::write_bib(
+#   x = c(
+#     .packages(), "tinytex"
+#   ), file = NULL, prefix = ""
+# )
+# bib <- unlist(bib)
+# bib <- gsub("(\\\n)", " ", bib)
+# xfun::write_utf8(bib, "psmR.bib")
+# ```

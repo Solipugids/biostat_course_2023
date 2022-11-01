@@ -25,6 +25,57 @@ showtext::showtext_auto()
 
 \LARGE 第十一章$~$多元线性回归与多元相关分析
 
+## Check In App Release version_0.87
+
+```{r echo=FALSE, crop=TRUE, fig.align='center'}
+p <- c(1, 2, 3)
+pp <- expand.grid(p ,p)
+pp$Var2 <- pp[9:1, 2]
+
+random_lib <- list(
+  a <-list(c(1,2), c(1, 4), c(1, 5)),
+  b <-list(c(2,1), c(2, 5), c(2, 3)),
+  c <-list(c(3,2), c(3, 5), c(3, 6)),
+  d <-list(c(4,1), c(4, 5), c(4, 7)),
+  e <-list(c(5,2), c(5, 4), c(5, 6), c(5, 8)),
+  f <-list(c(6,3), c(6, 5), c(6, 9)),
+  g <-list(c(7,4), c(7, 5), c(7, 8)),
+  h <-list(c(8,7), c(8, 5), c(8, 9)),
+  i <-list(c(9,6), c(9, 5), c(9, 8))
+)
+random_generate <- function(x){
+  repeat {
+    m <- x
+    n <- sample(random_lib[[m]], 1)[[1]][2]
+    o <- sample(random_lib[[n]], 1)[[1]][2]
+    p <- sample(random_lib[[o]], 1)[[1]][2]
+    random_out <- c(m, n, o, p)
+    if (sum(duplicated(random_out))==FALSE) {
+      break
+    }
+  }
+  return(random_out)
+}
+checkin <- random_generate(sample(1:9, 1))
+par(xaxs = "i", yaxs = "i")
+
+plot(expand.grid(p ,p), type = 'p', pch = 20, cex = 10, col="red", xlim = c(-1, 5), ylim = c(xlim = c(-1, 3.5)), axes = F, main=bquote("Check In Code: "*.(checkin[1])*.(checkin[2])*.(checkin[3])*.(checkin[4])) , xlab=NA, ylab=NA)
+text(1, 3, "1", col='white', family="sans")
+text(2, 3, "2", col='white', family="sans")
+text(3, 3, "3", col='white', family="sans")
+text(1, 2, "4", col='white', family="sans")
+text(2, 2, "5", col='white', family="sans")
+text(3, 2, "6", col='white', family="sans")
+text(1, 1, "7", col='white', family="sans")
+text(2, 1, "8", col='white', family="sans")
+text(3, 1, "9", col='white', family="sans")
+for (n in 1:3) {
+  pos1 <- pp[checkin[n], ]
+  pos2 <- pp[checkin[n+1], ]
+  arrows(x0 = pos1$Var1, y0 = pos1$Var2, x1 = pos2$Var1, y1 = pos2$Var2, angle = 20, length = 0.1, lwd = 2, col = rgb(0, 0, 255, 200, maxColorValue=255))
+}
+```
+
 ## 一元与多元回归
 
 - 因变量$y$在一个自变量$x$上的回归或相关，统称为一元回归或一元相关
@@ -226,7 +277,13 @@ $$
     - 把矩阵的某一行（列）的$k$倍加到另一行（列）
 
 $$
-A = 
+A =
+\begin{bmatrix} 
+3 & 0 & 2 \\ 
+2 & 0 & -2 \\
+0 & 1 & 1 \\
+\end{bmatrix}
+\sim
 \begin{bmatrix} 
 3 & 0 & 2 & 1 & 0 & 0 \\ 
 2 & 0 & -2 & 0 & 1 & 0\\
@@ -264,15 +321,15 @@ A &=
 \end{bmatrix}\\
 &\sim
 \begin{bmatrix} 
-10 & 0 & 40 & 10 & -10 & 0 \\
-0 & 10 & 10 & 0 & 0 & 10 \\
-0 & 0 & -10 & -2 & 3 & 0\\
-\end{bmatrix}
-\sim
-\begin{bmatrix} 
 10 & 0 & 0 & 2 & 2 & 0 \\
 0 & 10 & 0 & -2 & 3 & 10 \\
 0 & 0 & 10 & 2 & -3 & 0\\
+\end{bmatrix}
+\sim
+\begin{bmatrix} 
+1 & 0 & 0 & 0.2 & 0.2 & 0 \\
+0 & 1 & 0 & -0.2 & 0.3 & 1 \\
+0 & 0 & 1 & 0.2 & -0.3 & 0\\
 \end{bmatrix}
 \end{split}
 $$
@@ -281,8 +338,16 @@ $$
 
 - 伴随矩阵法
 
-  - 余子式矩阵：为矩阵的每个元素
-
+  - 伴随矩阵
+  
+    - 将矩阵$A$的元素$a_{ij}$所在第$i$行，第$j$列元素划去后，剩余各元素按原来的排列顺序组成的$n-1$阶矩阵所确定的行列式称为元素$a_{ij}$的余子式，记为$M_{ij}$
+    
+    - 元素$a_{ij}$的代数余子式$A_{ij}$为$A_{ij} = (-1)^{i+j}M_{ij}$
+    
+    - 矩阵$A$各元素的代数余子式$A_{ij}$所构成的新矩阵转置后称为伴随矩阵
+    
+  - 余子式矩阵
+  
     - 不使用在本行与本列的元素
     - 计算剩下来的值的行列式
     - 把行列式的结果放进一个新的矩阵——余子式矩阵
@@ -299,7 +364,8 @@ $$
 ## 第一节$~$多元线性回归分析 $~$`二、多元线性回归方程的建立`
 - 伴随矩阵法
 $$
-\begin{bmatrix}
+\begin{split}
+&\begin{bmatrix}
 \mathbf{\color{red}{3}} & \color{red}{0} & \color{red}{2}\\
 \color{red}{2} & 0 & -2\\
 \color{red}{0} & 1 & 1
@@ -310,11 +376,8 @@ $$
 1 & 1
 \end{vmatrix}
 \sim
-0\times 1 - (-2)\times 1 = 2
-$$
-
-$$
-\begin{bmatrix}
+0\times 1 - (-2)\times 1 = 2\\
+&\begin{bmatrix}
 \color{red}{3} & \mathbf{\color{red}{0}} & \color{red}{2}\\
 2 & \color{red}{0} & -2\\
 0 & \color{red}{1} & 1
@@ -325,11 +388,8 @@ $$
 0 & 1
 \end{vmatrix}
 \sim
-2 \times 1 - (-2)\times 0 = 2
-$$
-
-$$
-\begin{bmatrix} 
+2 \times 1 - (-2)\times 0 = 2\\
+&\begin{bmatrix} 
 3 & \color{red}{0} & 2\\
 2 & \color{red}{0} & -2\\
 \color{red}{0} & \mathbf{\color{red}{1}} & \color{red}{1}
@@ -341,10 +401,12 @@ $$
 \end{vmatrix}
 \sim
 3 \times (-2) - 2 \times 2 = -10
+\end{split}
 $$
 
-## 第一节$~$多元线性回归分析 $~$`二、多元线性回归方程的建立``
+## 第一节$~$多元线性回归分析 $~$`二、多元线性回归方程的建立`
 - 伴随矩阵法
+
 行列式的计算
 
 $$
@@ -360,6 +422,8 @@ a_{11} a_{22} a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{
 $$
 
 ## 第一节$~$多元线性回归分析 $~$`二、多元线性回归方程的建立`
+
+- 伴随矩阵法
 
 余子式矩阵
 
@@ -404,7 +468,7 @@ $$
 
 ## 第一节$~$多元线性回归分析 $~$`二、多元线性回归方程的建立`
 - 伴随矩阵法
-  - 伴随矩阵乘以1/原始矩阵行列式得到逆矩阵
+  - 伴随矩阵除以原始矩阵行列式，得到逆矩阵
 $$
 \begin{vmatrix} 
 3 & 0 & 2 \\ 
