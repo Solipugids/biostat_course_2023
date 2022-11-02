@@ -151,7 +151,7 @@ fc <- data.frame(
   x4 = c(113, 106, 111, 109, 110, 103, 100, 114, 104, 110, 104, 109, 114, 113, 105),
   y = c(15.7, 14.5, 17.5, 22.5, 15.5, 16.9, 8.6, 17.0, 13.7, 13.4, 20.3, 10.2, 7.4, 11.6, 12.3)
 )
-lbw_model <- train(y ~., data = fc, method = "leapBackward", tuneGrid = data.frame(nvmax = 1:4))
+lbw_model <- train(y ~., data = fc, method = "leapBackward")
 lbw_model$results
 ```
 
@@ -177,6 +177,10 @@ r_{y1}^{(0)} & r_{y2}^{(0)} & \dots & r_{ym}^{(0)} & r_{yy}^{(0)}
 \end{bmatrix} 
 $$
 - 简记为$R^{(0)} = (r_{ij}^{(0)}), (i,j = 1,2,3,\dots, m, y)$
+```{r echo=FALSE, warning=FALSE, message=FALSE, out.height="30%", fig.align='center'}
+library(corrplot)
+corrplot::corrplot(cor(fc), method = "number", type = "full", order = "original", addshade = "all", tl.cex = 3, cl.cex = 3, pch.cex = 5)
+```
 
 
 ## 第一节$~$逐步回归分析 $~$`二、逐个选入显著自变量的回归方法`
@@ -258,7 +262,7 @@ $$
 R DEMO
 \tiny
 ```{r echo=TRUE, message=FALSE, highlight=TRUE, prompt=TRUE, warning=FALSE}
-lfw_model <- train(y ~., data = fc, method = "leapForward", tuneGrid = data.frame(nvmax = 1:4))
+lfw_model <- train(y ~., data = fc, method = "leapForward")
 lfw_model$results
 lfw_model$bestTune
 ```
@@ -292,20 +296,6 @@ coef(lbw_model$finalModel, 3)
 
 - 通径分析是分析相关变量间因果关系的一种统计方法
 
-
-## 第二节$~$通径分析$~$`一、通径与通径系数的概念`
-
-假设变量$y$与自变量$x_1, x_2, x_3, \dots, x_m$之间存在线性关系，且$x_1, x_2, x_3, \dots, x_m$彼此相关，则有
-
-$$
-\hat{y} = a+ b_1 x_1 + b_2 x_2 + \dots + b_m x_m
-$$
-或
-$$
-y = a+ b_1 x_1 + b_2 x_2 + \dots + b_m x_m + e
-$$
-$e$为$y$和$\hat{y}$之间的误差
-
 ## 第二节$~$通径分析$~$`一、通径与通径系数的概念`
 
 - 通径图
@@ -325,6 +315,20 @@ knitr::include_graphics("path.png")
   
 - 将$X_i$对$y$直接作用的统计量称为通径系数，用$P_{iy}$表示，从数量关系上表示通径的相对重要程度与性质
   
+
+## 第二节$~$通径分析$~$`一、通径与通径系数的概念`
+
+假设变量$y$与自变量$x_1, x_2, x_3, \dots, x_m$之间存在线性关系，且$x_1, x_2, x_3, \dots, x_m$彼此相关，则有
+
+$$
+\hat{y} = a+ b_1 x_1 + b_2 x_2 + \dots + b_m x_m
+$$
+或
+$$
+y = a+ b_1 x_1 + b_2 x_2 + \dots + b_m x_m + e
+$$
+$e$为$y$和$\hat{y}$之间的误差
+
 ## 第二节$~$通径分析$~$`二、通径系数的求解方法`
 
 - 已知
@@ -439,45 +443,43 @@ $$
 
 - 根据以上，可以进行原因对结果的直接或间接作用的分析
 
+## 第二节$~$通径分析
+
+R DEMO
+```{r echo=FALSE, fig.align='center', out.width="80%"}
+corrplot::corrplot(cor(fc), method = "number", type = "full", order = "original", addshade = "all", tl.cex = 3, cl.cex = 1, pch.cex = 2)
+```
+
+## 第二节$~$通径分析
+
+R DEMO
+\tiny
+```{r echo=TRUE, message=FALSE, highlight=TRUE, prompt=TRUE, warning=FALSE}
+library(lavaan)
+model = 'y ~ x1 + x2 + x3'
+fit <- cfa(model, data = fc[, -4])
+summary(fit, fit.measures = TRUE, standardized = TRUE)$pe
+```
+
+## 第二节$~$通径分析$~$
+
+R DEMO
+\tiny
+```{r  echo=TRUE, prompt=TRUE, warning=FALSE, fig.align='center', out.width="60%"}
+library(semPlot)
+semPaths(fit, layout = "tree", whatLabels = 'std')
+```
 ## 第二节$~$通径分析$~$
 
 R DEMO
 \tiny
 ```{r echo=TRUE, message=FALSE, highlight=TRUE, prompt=TRUE, warning=FALSE}
-library(sem) # 结构方程模型structural equation modeling
-fc_sem <- fc[, -4]
-cor_fc <- cor(fc_sem) # 计算相关矩阵
-model <- specifyModel(
-  text = '
-  x1 -> y, x1_y, NA
-  x2 -> y, x2_y, NA
-  x3 -> y, x3_y, NA
-  x1 <-> x1, x1, NA
-  x2 <-> x2, x2, NA
-  x3 <-> x3, x3, NA
-  x1 -> x2, x1_x2, NA
-  x2 -> x3, x2_x3, NA
-  x1 -> x3, x1_x3, NA
-  '
-)
-out_sem <- sem(model, cor_fc, nrow(fc_sem))
-out_sem$coeff
-```
-## 第二节$~$通径分析$~$
-
-R DEMO
-\tiny
-```{r echo=TRUE, message=FALSE, highlight=TRUE, prompt=TRUE, warning=FALSE}
-summary(out_sem)
-```
-## 第二节$~$通径分析$~$
-
-R DEMO
-```{r echo=FALSE, fig.align='center', out.width="100%"}
-knitr::include_graphics("pathDiagram.png")
-```
-
-```{r echo=FALSE}
-library(DiagrammeR)
-pathDiagram(out_sem, edge.labels = "values")
+library(agricolae)
+y <- fc[, 5] # 调出因变量
+x <- fc[, -5] # 调出自变量
+cor.y<- correlation(y, x)$correlation # 计算自变量和因变量之间的相关系数
+cor.y
+cor.x <- correlation(x)$correlation # 计算自变量之间的相关系数
+cor.x
+path.analysis(cor.x, cor.y)
 ```
