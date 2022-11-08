@@ -404,7 +404,7 @@ $$
 
 平均数差数标准误的计算
 $$
-s_{\bar{x}_1 - \bar{x}_2} = \sqrt{\frac{s_1^2}{n_1}+\frac{s_1^2}{n_1}} = \sqrt{s_e^2(\frac{1}{n_1}+\frac{1}{n_1})}
+s_{\bar{x}_1 - \bar{x}_2} = \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}} = \sqrt{s_e^2(\frac{1}{n_1}+\frac{1}{n_2})}
 $$
 如果
 $$
