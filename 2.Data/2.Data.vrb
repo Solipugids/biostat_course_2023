@@ -1,0 +1,9 @@
+\frametitle{直方图}
+\protect\hypertarget{ux76f4ux65b9ux56fe}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(wheat, }\AttributeTok{main=}\StringTok{"鲢鱼体长次数分布直方图"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"次数"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"体长/cm"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.5\linewidth]{2.Data_files/figure-beamer/unnamed-chunk-9-1} \end{center}

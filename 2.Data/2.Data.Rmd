@@ -244,7 +244,86 @@ $$
 1.直接及算法
 2.加减常数法
 
+## 第二节$~$资料特征数的技术 $~$`二、变异数`
 
+## 第二节$~$资料特征数的技术 $~$`二、变异数`
+（二）方差
 
+- 对$n$个观测值$x_1, x_2, x_3, \cdots, x_4$的样本，可以用各观测值的离均差来表示
+  - 离均差 $\sum (x- \bar{x})$
+  - $\sum (x- \bar{x})=0$
+- 先平方在求和
+  - 离均差平方和 $\sum (x- \bar{x})^2$
+  - 跟样本容量大小有关
+- 用样本容量$n$来除以离均差平方和$\sum (x- \bar{x})^2$
+  - 方差/均方：$s^2 = \frac {\sum (x- \bar{x})^2}{n-1}$
+  - $n -1$为自由度
 
+## 第二节$~$资料特征数的技术 $~$`二、变异数` 
+（三）标准差
 
+- 由于离均差取平方，与原始数据的数值和单位不适应，需要开方还原
+- 方差的平方根值就是标准差$s = \sqrt{\frac {\sum (x- \bar{x})^2}{n-1}}$
+- 标准差的计算：
+
+因为$\bar{x} = \frac{\sum x}{n}$
+$$
+\begin{split}
+\sum { (x - \bar{x})^2} &= \sum (x^2 - 2x \bar{x} + \bar{x}^2)\\
+& = \sum x^2  - 2\bar{x} \sum x + n \bar{x}^2\\
+& = \sum x^2  - \frac{(\sum x)^2}{n}
+\end{split}
+$$
+所以
+$$
+s = \sqrt{\frac{\sum x^2  - \frac{(\sum x)^2}{n}}{n -1}}
+$$
+
+## 第二节$~$资料特征数的技术 $~$`二、变异数` 
+（三）标准差
+
+- 标准差的特性
+
+  - 标准差的大小受到多个观测值的影响
+  
+  - 如果将各个观测值加上或者减去一个常数$\alpha$，标准差不变；如果将各个观测值乘以或者除以一个常数$\alpha$，标准差扩大或缩小$\alpha$倍；
+  
+  - 在正态分布下，样本变量的分布可以做出正态估计
+  
+- 标准差的作用
+
+  - 表示变量分布的离散程度
+  
+  - 利用标准差可以估计各类观测值在总体中所占的比例
+  
+  - 估计平均数的标准误
+  
+  - 进行平均数的区间估计和变异系数计算
+  
+## 第二节$~$资料特征数的技术 $~$`二、变异数` 
+
+标准差（SD，Standard Deviation）*vs.* 标准误（SEM，Standard Error of the Mean）
+
+- 标准差代表样本的单个观测值与均值之间的变化度或者离散度
+
+- 标准误衡量样本的平均值可能与真实的总体平均值有多少的差距，标准误总是比标准差小
+  - 标准误的含义包括基于抽样分布的统计推断
+  - 标准误是样本平均值的抽样分布的标准差
+  
+- 计算方法
+  - 标准差$\sigma = \sqrt{\frac {\sum (x- \bar{x})^2}{n-1}}$
+  - 标准误$\sigma_{\bar{x} = \frac{\sigma}{\sqrt n}}$
+
+## 第二节$~$资料特征数的技术 $~$`二、变异数` 
+
+“Mean ± SEM” or “Mean (SD)”?
+
+_Jaykaran_
+
+\tiny
+
+> Use of descriptive statistics is very common in articles published in various medical journals. For the ratio and interval data following the normal distribution, the most common descriptive statistics is mean and standard deviation (SD) and for data not following the normal distribution, it is median and range. It is, however, observed in various medical journals that mean and standard error of mean (SEM) are used to describe the variability within the sample.[1] We, therefore, need to understand the difference between SEM and SD.
+
+> The SEM is a measure of precision for an estimated population mean. SD is a measure of data variability around mean of a sample of population. Unlike SD, SEM is not a descriptive statistics and should not be used as such. However, many authors incorrectly use the SEM as a descriptive statistics to summarize the variability in their data because it is less than the SD, implying incorrectly that their measurements are more precise. The SEM is correctly used only to indicate the precision of estimated mean of population. Even then however, a 95% confidence interval should be preferred.[1,2] Further, while reporting mean and SD, instead of writing “mean ± SD” the better way of representation would be “mean (SD)” as it will decrease the chance of confusion with confidence interval.[2]
+
+**Indian J Pharmacol. 2010 Oct;42(5):329. doi: 10.4103/0253-7613.70402.**
