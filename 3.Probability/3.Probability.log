@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.5)  5 SEP 2023 17:36
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.9.5)  12 SEP 2023 18:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1259,27 +1259,30 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 ] [13
 
-] [14
+]
+File: ./covid19.jpg Graphic file (type bmp)
+<./covid19.jpg>
+[14
 
 ] [15
 
 ] [16
 
+] [17
+
 ]
 File: 3.Probability_files/figure-beamer/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use 3.Probability_files/figure-beamer/unnamed-chunk-5-1.pdf>
-[17
+[18
 
 ]
 File: 3.Probability_files/figure-beamer/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use 3.Probability_files/figure-beamer/unnamed-chunk-6-1.pdf>
 
-Overfull \vbox (18.41602pt too high) detected at line 538
+Overfull \vbox (18.41602pt too high) detected at line 553
  []
 
-[18
-
-] [19
+[19
 
 ] [20
 
@@ -1289,28 +1292,30 @@ Overfull \vbox (18.41602pt too high) detected at line 538
 
 ] [23
 
+] [24
+
 ]
 File: 3.Probability_files/figure-beamer/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use 3.Probability_files/figure-beamer/unnamed-chunk-7-1.pdf>
-[24
-
-] [25
+[25
 
 ] [26
+
+] [27
 
 ]
 File: 3.Probability_files/figure-beamer/unnamed-chunk-8-1.pdf Graphic file (type pdf)
 <use 3.Probability_files/figure-beamer/unnamed-chunk-8-1.pdf>
-[27
+[28
 
-] [28
+] [29
 
 ]
 File: 3.Probability_files/figure-beamer/unnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use 3.Probability_files/figure-beamer/unnamed-chunk-9-1.pdf>
-[29
+[30
 
-] [30
+] [31
 
 ]
 File: 3.Probability_files/figure-beamer/unnamed-chunk-10-1.pdf Graphic file (type pdf)
@@ -1318,54 +1323,58 @@ File: 3.Probability_files/figure-beamer/unnamed-chunk-10-1.pdf Graphic file (typ
 File: 3.Probability_files/figure-beamer/unnamed-chunk-11-1.pdf Graphic file (type pdf)
 <use 3.Probability_files/figure-beamer/unnamed-chunk-11-1.pdf>
 
-Overfull \vbox (1.10585pt too high) detected at line 804
+Overfull \vbox (1.10585pt too high) detected at line 819
  []
 
-[31
+[32
 
 ]
 File: 3.Probability_files/figure-beamer/unnamed-chunk-12-1.pdf Graphic file (type pdf)
 <use 3.Probability_files/figure-beamer/unnamed-chunk-12-1.pdf>
-[32
-
-] [33
+[33
 
 ] [34
 
 ] [35
 
-]
-\openout4 = `3.Probability.vrb'.
-
-(./3.Probability.vrb) [36
+] [36
 
 ] [37
 
-] [38
+]
+\openout4 = `3.Probability.vrb'.
+
+(./3.Probability.vrb) [38
+
+] [39
+
+] [40
 
 ]
 File: 3.Probability_files/figure-beamer/unnamed-chunk-18-1.pdf Graphic file (type pdf)
 <use 3.Probability_files/figure-beamer/unnamed-chunk-18-1.pdf>
 
-Overfull \vbox (20.93848pt too high) detected at line 1014
+Overfull \vbox (20.93848pt too high) detected at line 1043
  []
 
-[39
-
-] [40
-
-] [41
+[41
 
 ] [42
 
 ] [43
 
+] [44
+
+] [45
+
 ]
 File: 3.Probability_files/figure-beamer/unnamed-chunk-19-1.pdf Graphic file (type pdf)
 <use 3.Probability_files/figure-beamer/unnamed-chunk-19-1.pdf>
-[44
+[46
 
-] [45
+] [47
+
+] [48
 
 ]
 \tf@nav=\write7
@@ -1386,12 +1395,12 @@ Package rerunfilecheck Info: File `3.Probability.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 33208 strings out of 477590
- 712401 string characters out of 5816944
+ 33245 strings out of 477590
+ 714140 string characters out of 5816944
  1932432 words of memory out of 5000000
- 53789 multiletter control sequences out of 15000+600000
+ 53824 multiletter control sequences out of 15000+600000
  595597 words of font info for 117 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  101i,18n,136p,443b,815s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 3.Probability.pdf (45 pages).
+Output written on 3.Probability.pdf (48 pages).
