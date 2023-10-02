@@ -26,57 +26,6 @@ showtext::showtext_auto()
 
 \LARGE 第七章$~$直线回归与相关分析
 
-## Check In App Release version_0.87
-
-```{r echo=FALSE, crop=TRUE, fig.align='center'}
-p <- c(1, 2, 3)
-pp <- expand.grid(p ,p)
-pp$Var2 <- pp[9:1, 2]
-
-random_lib <- list(
-  a <-list(c(1,2), c(1, 4), c(1, 5)),
-  b <-list(c(2,1), c(2, 5), c(2, 3)),
-  c <-list(c(3,2), c(3, 5), c(3, 6)),
-  d <-list(c(4,1), c(4, 5), c(4, 7)),
-  e <-list(c(5,2), c(5, 4), c(5, 6), c(5, 8)),
-  f <-list(c(6,3), c(6, 5), c(6, 9)),
-  g <-list(c(7,4), c(7, 5), c(7, 8)),
-  h <-list(c(8,7), c(8, 5), c(8, 9)),
-  i <-list(c(9,6), c(9, 5), c(9, 8))
-)
-random_generate <- function(x){
-  repeat {
-    m <- x
-    n <- sample(random_lib[[m]], 1)[[1]][2]
-    o <- sample(random_lib[[n]], 1)[[1]][2]
-    p <- sample(random_lib[[o]], 1)[[1]][2]
-    random_out <- c(m, n, o, p)
-    if (sum(duplicated(random_out))==FALSE) {
-      break
-    }
-  }
-  return(random_out)
-}
-checkin <- random_generate(sample(1:9, 1))
-par(xaxs = "i", yaxs = "i")
-
-plot(expand.grid(p ,p), type = 'p', pch = 20, cex = 10, col="red", xlim = c(-1, 5), ylim = c(xlim = c(-1, 3.5)), axes = F, main=bquote("Check In Code: "*.(checkin[1])*.(checkin[2])*.(checkin[3])*.(checkin[4])) , xlab=NA, ylab=NA)
-text(1, 3, "1", col='white', family="sans")
-text(2, 3, "2", col='white', family="sans")
-text(3, 3, "3", col='white', family="sans")
-text(1, 2, "4", col='white', family="sans")
-text(2, 2, "5", col='white', family="sans")
-text(3, 2, "6", col='white', family="sans")
-text(1, 1, "7", col='white', family="sans")
-text(2, 1, "8", col='white', family="sans")
-text(3, 1, "9", col='white', family="sans")
-for (n in 1:3) {
-  pos1 <- pp[checkin[n], ]
-  pos2 <- pp[checkin[n+1], ]
-  arrows(x0 = pos1$Var1, y0 = pos1$Var2, x1 = pos2$Var1, y1 = pos2$Var2, angle = 20, length = 0.1, lwd = 2, col = rgb(0, 0, 255, 80, maxColorValue=255))
-}
-```
-
 ## 第一节$~$回归和相关的概念 
 
 - 变量间的相互关系：
@@ -159,7 +108,7 @@ pairs(~ mpg + disp + drat + wt, data=mtcars, main="mtcars数据集")
 
 如果两个变量间的关系属于平行关系,一般用相关分析来进行研究。
 
-相关分析是研究___ 
+相关分析是研究____（单选题）
 
 A、 变量之间的变动关系 
 
@@ -168,6 +117,19 @@ B、 变量之间的相互关系的密切程度
 C、 变量之间的数量关系 
 
 D、 变量之间的因果关系 
+
+## 第一节$~$回归和相关的概念$~$`思考题`
+
+相关分析是研究变量间的相关关系的统计学方法,适用于研究变量间的____（思考题）
+
+A、 平行关系 
+
+B、 因果关系 
+
+C、 随机关系 
+
+D、 以上都不对 
+
 
 ## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
 
@@ -398,6 +360,19 @@ tempreture = c(11.8, 14.7, 15.6, 16.8, 17.1, 18.8, 19.5, 20.4),
 lm(days~tempreture, data = worms_period )
 ```
 
+## 第二节$~$直线回归分析 $~$`思考题`
+
+建立回归方程的通用方法是____（思考题）
+
+A、 散点图法
+
+B、 最小二乘法
+
+C、 F检验法
+
+D、 t检验法 
+
+
 ## 第二节$~$直线回归分析$~$`二、直线回归的数学模型和基本假定` 
 
 （一）直线回归的数学模型
@@ -424,6 +399,19 @@ lm(days~tempreture, data = worms_period )
 - $x$的任一值都对应着一个$y$总体，且呈正态分布，平均值$\mu = a + \beta x$，方差不因$x$的变化而改变
 
 - 随机误差$\epsilon$是相互独立的，呈正态分布，服从$N(0, \sigma_\epsilon^2)$
+
+## 第二节$~$直线回归分析 $~$`思考题`
+
+观测值与预测值之差叫做____（单选题）
+
+A、极差 
+
+B、离均差 
+
+C、残差 
+
+D、方差 
+
 
 ## 第二节$~$直线回归分析$~$`三、直线回归的假设检验` 
 
@@ -607,26 +595,3 @@ cor.test(worms_period$tempreture, worms_period$days,
 
 - 理解相关系数的含义：相关不等于因果
 
-## 思考题
-
-相关分析是研究变量间的相关关系的统计学方法,适用于研究变量间的___
-
-\textcolor{red}{A、 平行关系}
-
-B、 因果关系 
-
-C、 随机关系 
-
-D、 以上都不对 
-
-如果两个变量间的关系属于平行关系,一般用相关分析来进行研究。
-
-相关分析是研究___ 
-
-A、 变量之间的变动关系 
-
-\textcolor{red}{B、 变量之间的相互关系的密切程度}
-
-C、 变量之间的数量关系 
-
-D、 变量之间的因果关系 

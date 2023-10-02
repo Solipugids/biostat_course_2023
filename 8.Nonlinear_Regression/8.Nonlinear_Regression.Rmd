@@ -25,57 +25,6 @@ showtext::showtext_auto()
 
 \LARGE 第八章$~$可直线化的非线性回归分析
 
-## Check In App Release version_0.87
-
-```{r echo=FALSE, crop=TRUE, fig.align='center'}
-p <- c(1, 2, 3)
-pp <- expand.grid(p ,p)
-pp$Var2 <- pp[9:1, 2]
-
-random_lib <- list(
-  a <-list(c(1,2), c(1, 4), c(1, 5)),
-  b <-list(c(2,1), c(2, 5), c(2, 3)),
-  c <-list(c(3,2), c(3, 5), c(3, 6)),
-  d <-list(c(4,1), c(4, 5), c(4, 7)),
-  e <-list(c(5,2), c(5, 4), c(5, 6), c(5, 8)),
-  f <-list(c(6,3), c(6, 5), c(6, 9)),
-  g <-list(c(7,4), c(7, 5), c(7, 8)),
-  h <-list(c(8,7), c(8, 5), c(8, 9)),
-  i <-list(c(9,6), c(9, 5), c(9, 8))
-)
-random_generate <- function(x){
-  repeat {
-    m <- x
-    n <- sample(random_lib[[m]], 1)[[1]][2]
-    o <- sample(random_lib[[n]], 1)[[1]][2]
-    p <- sample(random_lib[[o]], 1)[[1]][2]
-    random_out <- c(m, n, o, p)
-    if (sum(duplicated(random_out))==FALSE) {
-      break
-    }
-  }
-  return(random_out)
-}
-checkin <- random_generate(sample(1:9, 1))
-par(xaxs = "i", yaxs = "i")
-
-plot(expand.grid(p ,p), type = 'p', pch = 20, cex = 10, col="red", xlim = c(-1, 5), ylim = c(xlim = c(-1, 3.5)), axes = F, main=bquote("Check In Code: "*.(checkin[1])*.(checkin[2])*.(checkin[3])*.(checkin[4])) , xlab=NA, ylab=NA)
-text(1, 3, "1", col='white', family="sans")
-text(2, 3, "2", col='white', family="sans")
-text(3, 3, "3", col='white', family="sans")
-text(1, 2, "4", col='white', family="sans")
-text(2, 2, "5", col='white', family="sans")
-text(3, 2, "6", col='white', family="sans")
-text(1, 1, "7", col='white', family="sans")
-text(2, 1, "8", col='white', family="sans")
-text(3, 1, "9", col='white', family="sans")
-for (n in 1:3) {
-  pos1 <- pp[checkin[n], ]
-  pos2 <- pp[checkin[n+1], ]
-  arrows(x0 = pos1$Var1, y0 = pos1$Var2, x1 = pos2$Var1, y1 = pos2$Var2, angle = 20, length = 0.1, lwd = 2, col = rgb(0, 0, 255, 80, maxColorValue=255))
-}
-```
-
 ## 非线性关系
 
 - 线性关系
@@ -636,5 +585,16 @@ $$
 K = \frac{y_2^2(y_1+y_3)-2y_1y_2y_3}{y_2^2-y_1y_3}
 $$
 
+## 第六节$~$Logistic生长曲线$~$`思考题`
+
+下列能用变量代换进行线性化的方程是____（思考题）
+
+A、所有曲线回归方程
+
+B、Logistic生长曲线方程
+
+C、多项式回归方程
+
+D、没有 
 
   

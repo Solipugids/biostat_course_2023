@@ -18,6 +18,23 @@ output:
     number_sections: yes
     toc: yes
 ---
+## biostat cheatsheet 
+
+方差（variance，mean square，$var$）：$\sigma^2 = \frac{\sum(x-\mu)^2}{N}$ [Sec.1]
+
+标准差（standard deviation，$sd$）：$\sigma = \sqrt{\frac{\sum(x-\mu)^2}{N}}$ [Sec.1]
+
+标准正态分布（normal distribution）的概率密度方程（probability density function，$PDF$）：$f(u) = \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}u^2}$
+
+标准正态离差(standard deviate)：$u = \frac{x-\mu}{\sigma}$
+
+SS
+
+Q
+
+
+
+离均差
 
 # 概率与概率分布
 
