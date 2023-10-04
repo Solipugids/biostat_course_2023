@@ -1,6 +1,6 @@
 ---
 title: |
-  | 《生物实验设计》
+  | 《生物试验设计》
   | 第九章$~$试验设计及其统计分析
 author: |
   | 王超
@@ -18,7 +18,7 @@ output:
     keep_tex: true
     includes:
       in_header: columns.tex
-header-includes: \setcounter{MaxMatrixCols}{20}
+
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(dev = 'pdf')
@@ -36,6 +36,9 @@ showtext::showtext_auto()
 
 - [Experimental design is the process of carrying out research in an objective and controlled fashion so that precision is maximized and specific conclusions can be drawn regarding a hypothesis statement.](https://doi.org/10.1016/B978-008044910-4.00431-4) 
 
+- 注意区分广义和狭义的试验设计
+  - 广义：整个研究课题的设计
+  - 狭义：试验单位的选择、分组与排列方法 $\blacklozenge$
 - 试验设计由英国科学家罗纳德·费舍尔（*Ronald Aylmer Fisher*, 1890 – 1962）为满足科学试验的需要而提出的。
 
 ## Ronald Aylmer Fisher
@@ -109,7 +112,7 @@ showtext::showtext_auto()
 
 - 试验设计包括3个基本组成部分
 
-  - 处理因素
+  - 处理因素$\clubsuit$
     
     - 单因素处理：试验只有一个处理因素
     
@@ -119,13 +122,13 @@ showtext::showtext_auto()
     
     - 非处理因素：与处理因素可能同时使受试对象产生效应的非研究因素，是引起试验误差的主要来源，尽量加以有效控制
 
-  - 受试对象
+  - 受试对象$\clubsuit$
   
     - 根据研究目的而确定的观测总体
     
     - 必须对受试对象所要求的具体条件作出严格规定，以保证其同质性
 
-  - 处理效应
+  - 处理效应$\clubsuit$
   
     - 处理因素作用于受试对象的反映，是研究结果的最终体现
   
@@ -143,7 +146,7 @@ showtext::showtext_auto()
   
   - 处理效应：血压值下降
   
-## 第一节$~$假设检验的原理与方法 $~$`四、试验误差及其控制途径`
+## 第一节$~$试验设计的基本原理 $~$`四、试验误差及其控制途径`
 
 （一）试验误差的概念
 
@@ -155,7 +158,7 @@ showtext::showtext_auto()
 
 - 统计上所说的误差通常是指随机误差，不是系统误差
 
-## 第一节$~$假设检验的原理与方法 $~$`四、试验误差及其控制途径`
+## 第一节$~$试验设计的基本原理 $~$`四、试验误差及其控制途径`
 
 （二）试验误差的来源
 
@@ -170,7 +173,7 @@ showtext::showtext_auto()
   - 偶然性因素的影响：试验因素以外的人工无法控制的环境差异和遗传差异引起的误差
 
 
-## 第一节$~$假设检验的原理与方法 $~$`四、试验误差及其控制途径`
+## 第一节$~$试验设计的基本原理 $~$`四、试验误差及其控制途径`
 
 （三）控制试验误差的途径
 
@@ -182,7 +185,7 @@ showtext::showtext_auto()
 
 - 采用合理的试验设计
 
-## 第一节$~$假设检验的原理与方法 $~$`五、试验设计的基本原则`
+## 第一节$~$试验设计的基本原理 $~$`五、试验设计的基本原则`
 
 - 进行试验设计的目的在于\textcolor{red}{减少试验误差}
 
@@ -200,7 +203,7 @@ showtext::showtext_auto()
 
   - Replication，Randomization，Local control
 
-## 第一节$~$假设检验的原理与方法 $~$`五、试验设计的基本原则`
+## 第一节$~$试验设计的基本原理 $~$`五、试验设计的基本原则`
 
 （一）重复
 
@@ -213,7 +216,7 @@ showtext::showtext_auto()
     - 重复越多，误差越小
     - 如果供试样本个体差异小或非处理因素较均匀时，重复数可以少一些
   
-## 第一节$~$假设检验的原理与方法 $~$`五、试验设计的基本原则`
+## 第一节$~$试验设计的基本原理 $~$`五、试验设计的基本原则`
 
 （二）随机
 
@@ -224,7 +227,7 @@ showtext::showtext_auto()
   - 用随机方法来确定每个试验单位接受哪种处理
   - 如果一个试验中试验条件的安排，试验指标测定的顺序可能影响到试验结果时，应采用随机化方法
 
-## 第一节$~$假设检验的原理与方法 $~$`五、试验设计的基本原则`
+## 第一节$~$试验设计的基本原理 $~$`五、试验设计的基本原则`
 
 （三）局部控制
 
@@ -238,7 +241,7 @@ showtext::showtext_auto()
 
 - 小环境间的变异可以通过方差分析剔除，所以局部控制可以最大限度减低试验误差
 
-## 第一节$~$假设检验的原理与方法 $~$`五、试验设计的基本原则`
+## 第一节$~$试验设计的基本原理 $~$`五、试验设计的基本原则`
 
 - 典型案例：坏血症的治疗
   
@@ -267,7 +270,7 @@ showtext::showtext_auto()
     
     - 定性观察所需要的试验样本量通常远远多余定量观察
     
-## 第一节$~$假设检验的原理与方法 $~$`五、试验设计的基本原则`
+## 第一节$~$试验设计的基本原理 $~$`五、试验设计的基本原则`
 
 \underline{一个良好的试验设计，}
 \underline{必须遵循重复、随机、局部控制三项原则周密安排试验，} 
@@ -278,7 +281,7 @@ showtext::showtext_auto()
 knitr::include_graphics("rrl.png")
 ```
 
-## 第一节$~$假设检验的原理与方法 $~$`思考题`
+## 第一节$~$试验设计的基本原理 $~$`思考题`
 
 由4个薄荷新品系与1个对照品种组成3次重复的品质比较试验,属于____（单选题）
 
@@ -291,7 +294,7 @@ C、 三因素试验
 D、 四因素试验 
 
 
-## 第二节$~$对比设计及其统计分析
+## 第二节$~$对比设计及其统计分析$~$ `一、对比设计`
 
 - 对比设计是一种最简单的试验设计方法
 
@@ -313,15 +316,48 @@ D、 四因素试验
 - 邻比法排列的特点是每一个处理均直接排列于对照旁边，使每个小区都能与相邻的对照进行比较，能充分反映出处理的效应
 
 - 邻比法排列示意图
-$$
-\begin{split}
-\begin{matrix}
-Replication[I]: & 1 & C & 2 & 3 & C & 4 & 5 & C & 6\\
-Replication[II]: & 3 & C & 4 & 5 & C & 6 & 1 & C & 2\\
-Replication[III]: & 5 & C & 6 & 1 & C & 2 & 3 & C & 4
-\end{matrix}
-\end{split}
-$$
+
+\begin{table}[]
+\begin{tabular}{rlllllllll}
+\cline{2-10}
+\multicolumn{1}{r|}{I} &
+  \multicolumn{1}{l|}{1} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{2} &
+  \multicolumn{1}{l|}{3} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{4} &
+  \multicolumn{1}{l|}{5} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{6} \\ \cline{2-10} 
+    &    &    &    &    &    &   &  &  &  \\ \cline{2-10} 
+\multicolumn{1}{r|}{II} &
+  \multicolumn{1}{l|}{3} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{4} &
+  \multicolumn{1}{l|}{5} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{6} &
+  \multicolumn{1}{l|}{1} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{2} \\ \cline{2-10} 
+    &    &    &    &    &    &   &  &  &  \\ \cline{2-10} 
+\multicolumn{1}{r|}{III} &
+  \multicolumn{1}{l|}{5} &
+  \multicolumn{1}{c|}{CK} &
+  \multicolumn{1}{c|}{6} &
+  \multicolumn{1}{l|}{1} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{2} &
+  \multicolumn{1}{l|}{3} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{4} \\ \cline{2-10} 
+\multicolumn{10}{l}{}                     \\
+\multicolumn{10}{l}{CK：对照}              \\
+\multicolumn{10}{l}{I，II，III：重复}        \\
+\multicolumn{10}{l}{$1,2, \dots, 6$：处理}
+\end{tabular}
+\end{table}
 
 ## 第二节$~$对比设计及其统计分析$~$`一、对比设计`
 
@@ -334,14 +370,59 @@ $$
   - 一般设置重复2~4个，每个重复可拍成一排或多排，当排成多排时则多采用逆向式排列
   
 - 间比法排列示意图
-$$
-\begin{split}
-\begin{matrix}
-Replication[I]: & C & 1 & 2 & 3 & 4 & C & 5 & 6 & 7 & 8 \\
-Replication[II]:& C & 8 & 7 & 6 & 5 & C & 4 & 3 & 2 & 1
-\end{matrix}
-\end{split}
-$$
+
+\begin{table}[]
+\begin{tabular}{llllllllllll}
+\cline{2-12}
+\multicolumn{1}{r|}{I} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{1} &
+  \multicolumn{1}{l|}{2} &
+  \multicolumn{1}{l|}{3} &
+  \multicolumn{1}{l|}{4} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{5} &
+  \multicolumn{1}{l|}{6} &
+  \multicolumn{1}{l|}{7} &
+  \multicolumn{1}{l|}{8} &
+  \multicolumn{1}{l|}{CK} \\ \cline{2-12} 
+\multicolumn{1}{r}{} &  &  &  &  &  &  &  &  &  &  &  \\ \cline{2-12} 
+\multicolumn{1}{r|}{II} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{8} &
+  \multicolumn{1}{l|}{7} &
+  \multicolumn{1}{l|}{6} &
+  \multicolumn{1}{l|}{5} &
+  \multicolumn{1}{l|}{CK} &
+  \multicolumn{1}{l|}{4} &
+  \multicolumn{1}{l|}{3} &
+  \multicolumn{1}{l|}{2} &
+  \multicolumn{1}{l|}{1} &
+  \multicolumn{1}{l|}{CK} \\ \cline{2-12} 
+\multicolumn{10}{l}{}                           &  &  \\
+\multicolumn{10}{l}{CK：对照}                    &  &  \\
+\multicolumn{10}{l}{I，II：重复}              &  &  \\
+\multicolumn{10}{l}{$1,2, \dots, 8$：处理}       &  & 
+\end{tabular}
+\end{table}
+
+## 第二节$~$对比设计及其统计分析$~$`一、对比设计`
+
+- 配对试验设计$\clubsuit$
+  
+  - 特殊的对比设计
+
+  - 把窝别、性别相同及年龄、体重相近的两个动物配对，然后用随机法将每对的两头动物分别安排到两组处理中，这种试验设计叫做配对试验设计
+  
+    - 同一对动物之间的差别尽量小，不同对动物之间允许有差别
+  
+- 自身前后配对设计
+
+  - 同一只动物在处理前后或者前后两次进行不同处理的结果进行比较
+  
+- 优点：条件接近，控制试验误差，提高了试验精确性
+
+- 缺点：仅适用于两个处理的试验，具有局限性
 
 ## 第二节$~$对比设计及其统计分析$~$`思考题`
 
@@ -377,15 +458,52 @@ D、对照小区占试验面积少
   - 每个区组均包括全部的处理
 - 区组内各处理随机排列，各区组独立随机排列
 - 随机法排列示意图（9处理3重复）
-$$
-\begin{split}
-\begin{matrix}
-Replication[I]: & 3 & 8 & 4 & 6 & 2 & 5 & 9 & 1 & 7 \\
-Replication[II]:& 5 & 6 & 2 & 3 & 7 & 9 & 1 & 8 & 4 \\
-Replication[III]:& 2 & 4 & 7 & 8 & 6 & 3 & 9 & 5 & 1
-\end{matrix}
-\end{split}
-$$
+
+
+\begin{table}[]
+\begin{tabular}{lllllllllll}
+\cline{2-10}
+\multicolumn{1}{r|}{I} &
+  \multicolumn{1}{l|}{3} &
+  \multicolumn{1}{l|}{8} &
+  \multicolumn{1}{l|}{4} &
+  \multicolumn{1}{l|}{6} &
+  \multicolumn{1}{l|}{2} &
+  \multicolumn{1}{l|}{5} &
+  \multicolumn{1}{l|}{9} &
+  \multicolumn{1}{l|}{1} &
+  \multicolumn{1}{l|}{7} &
+  高 \\ \cline{2-10}
+\multicolumn{1}{r}{} &  &  &  &  &  &  &  &  &  &  \\ \cline{2-10}
+\multicolumn{1}{r|}{II} &
+  \multicolumn{1}{l|}{5} &
+  \multicolumn{1}{l|}{6} &
+  \multicolumn{1}{l|}{2} &
+  \multicolumn{1}{l|}{3} &
+  \multicolumn{1}{l|}{7} &
+  \multicolumn{1}{l|}{9} &
+  \multicolumn{1}{l|}{1} &
+  \multicolumn{1}{l|}{8} &
+  \multicolumn{1}{l|}{4} &
+  $\Downarrow$ \\ \cline{2-10}
+                     &  &  &  &  &  &  &  &  &  &  \\ \cline{2-10}
+\multicolumn{1}{l|}{III} &
+  \multicolumn{1}{l|}{2} &
+  \multicolumn{1}{l|}{4} &
+  \multicolumn{1}{l|}{7} &
+  \multicolumn{1}{l|}{8} &
+  \multicolumn{1}{l|}{6} &
+  \multicolumn{1}{l|}{3} &
+  \multicolumn{1}{l|}{9} &
+  \multicolumn{1}{l|}{5} &
+  \multicolumn{1}{l|}{1} &
+  低 \\ \cline{2-10}
+                     &  &  &  &  &  &  &  &  &  &  \\
+\multicolumn{11}{l}{CK：对照}                       \\
+\multicolumn{11}{l}{I，II，III：重复}                 \\
+\multicolumn{11}{l}{$1,2, \dots, 9$：处理}         
+\end{tabular}
+\end{table}
 
 ## 第三节$~$随机区组设计及其统计分析$~$`一、随机区组设计`
 

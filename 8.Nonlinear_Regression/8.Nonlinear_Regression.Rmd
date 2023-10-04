@@ -1,6 +1,6 @@
 ---
 title: |
-  | 《生物实验设计》
+  | 《生物试验设计》
   | 第八章$~$可直线化的非线性回归分析
 author: |
   | 王超
@@ -82,6 +82,8 @@ showtext::showtext_auto()
 - 从专业理论中得到解释，并使这些解释严密化和数量化
 
 ## 第一节$~$非线性回归的直线化 $~$`一、曲线类型的确定`
+
+曲线类型$\clubsuit$
 
 - \textcolor{red}{确定曲线类型}是非线性回归分析的关键
 
@@ -169,7 +171,7 @@ $$
 $$
 
 - 对应的图形：
- ```{r echo=FALSE, fig.align='center', crop=TRUE, fig.asp=0.33}
+```{r echo=FALSE, fig.align='center', crop=TRUE, fig.asp=0.33}
   par(xaxs = "i", yaxs = "i", mfrow= c(1,3))
   x <- seq(0.1, 10, 0.1)
   a <- 2
@@ -243,7 +245,7 @@ maize <- data.frame(
 ```
 
 - 绘制散点图，与$\hat{y} = \frac{a+bx}{x}$中$a<0, b>0$的曲线相似
- ```{r echo=FALSE, fig.align='center', crop=TRUE, fig.asp=0.33, out.height = "40%"}
+```{r echo=FALSE, fig.align='center', crop=TRUE, fig.asp=0.33, out.height = "40%"}
   par(xaxs = "i", yaxs = "i", mfrow= c(1,3))
   plot(maize$x, maize$y, type = 'p', xlim = c(50, 450), ylim = c(0.2, 0.5), pch = 20, xlab = "玉米株重", ylab = "经济系数")
   
@@ -597,4 +599,7 @@ C、多项式回归方程
 
 D、没有 
 
-  
+## 课后思考题
+
+在非线性回归分析中，请综合论述如何量化判断曲线拟合的质量？
+

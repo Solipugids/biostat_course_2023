@@ -1,6 +1,6 @@
 ---
 title: |
-  | 《生物实验设计》
+  | 《生物试验设计》
   | 第十章$~$协方差分析
 author: |
   | 王超
@@ -25,76 +25,29 @@ showtext::showtext_auto()
 
 \LARGE 第十章$~$协方差分析
 
-## Check In App Release version_0.87
-
-```{r echo=FALSE, crop=TRUE, fig.align='center'}
-p <- c(1, 2, 3)
-pp <- expand.grid(p,p)
-pp$Var2 <- pp[9:1, 2]
-
-random_lib <- list(
-  a <-list(c(1,2), c(1, 4), c(1, 5)),
-  b <-list(c(2,1), c(2, 5), c(2, 3)),
-  c <-list(c(3,2), c(3, 5), c(3, 6)),
-  d <-list(c(4,1), c(4, 5), c(4, 7)),
-  e <-list(c(5,2), c(5, 4), c(5, 6), c(5, 8)),
-  f <-list(c(6,3), c(6, 5), c(6, 9)),
-  g <-list(c(7,4), c(7, 5), c(7, 8)),
-  h <-list(c(8,7), c(8, 5), c(8, 9)),
-  i <-list(c(9,6), c(9, 5), c(9, 8))
-)
-random_generate <- function(x){
-  repeat {
-    m <- x
-    n <- sample(random_lib[[m]], 1)[[1]][2]
-    o <- sample(random_lib[[n]], 1)[[1]][2]
-    p <- sample(random_lib[[o]], 1)[[1]][2]
-    random_out <- c(m, n, o, p)
-    if (sum(duplicated(random_out))==FALSE) {
-      break
-    }
-  }
-  return(random_out)
-}
-checkin <- random_generate(sample(1:9, 1))
-par(xaxs = "i", yaxs = "i")
-
-plot(expand.grid(p,p), type = 'p', pch = 20, cex = 10, col="red", xlim = c(-1, 5), ylim = c(xlim = c(-1, 3.5)), axes = F, main=bquote("Check In Code: "*.(checkin[1])*.(checkin[2])*.(checkin[3])*.(checkin[4])) , xlab=NA, ylab=NA)
-text(1, 3, "1", col='white', family="sans")
-text(2, 3, "2", col='white', family="sans")
-text(3, 3, "3", col='white', family="sans")
-text(1, 2, "4", col='white', family="sans")
-text(2, 2, "5", col='white', family="sans")
-text(3, 2, "6", col='white', family="sans")
-text(1, 1, "7", col='white', family="sans")
-text(2, 1, "8", col='white', family="sans")
-text(3, 1, "9", col='white', family="sans")
-for (n in 1:3) {
-  pos1 <- pp[checkin[n], ]
-  pos2 <- pp[checkin[n+1], ]
-  arrows(x0 = pos1$Var1, y0 = pos1$Var2, x1 = pos2$Var1, y1 = pos2$Var2, angle = 20, length = 0.1, lwd = 2, col = rgb(0, 0, 255, 80, maxColorValue=255))
-}
-```
-
 ## 方差与协方差分析
 
 - 在方差分析中，一些分析变量本身是一个受到另一个或多个自变量影响的因变量
 
 - 对这些自变量难以进行有效控制，但又要消除其对因变量的影响，以提高试验结果的可靠程度
 
-- 不同饲料对动物增重的影响
+- 例如：不同饲料对动物增重的影响
 
   - 试验动物的初始体重不同
   
   - 可能会增大处理间差异，也可能会增大处理内差异
-  
-- 协方差分析：把回归分析与方差分析结合起来的分析方法
+
+## 协方差分析
+
+- 协方差分析$\clubsuit$
 
   - 初始体重对增重的影响可以通过回归分析来度量
   
   - 矫正初始体重的影响后再进行方差分析
   
   - 在协方差分析中，$y$为因变量，$x$为协变量
+  
+- 把回归分析与方差分析结合起来的分析方法。将离均差的乘积和与平方和同时按照变异来源进行分解，利用协变量来降低试验误差，矫正处理平均数，实现统计控制，分析不同变异来源的相关关系，及对缺失数据进行估计
   
 - 协方差分析也是用于分析多组均数之间的差异有无显著意义，只是多考虑了一个协变量因素
   
@@ -123,6 +76,7 @@ for (n in 1:3) {
 $$
 COV_{xy}  = \frac{\sum{(x-\mu_x)(y - \mu_y)}}{N}
 $$
+
 - 总体相关系数可以用总体方差和协方差表示
 
 $$

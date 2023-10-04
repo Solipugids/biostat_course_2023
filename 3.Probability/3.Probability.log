@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.1)  2 OCT 2023 11:37
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.10.1)  4 OCT 2023 21:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -753,7 +753,7 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@lastruleclass=\count373
 \@thisrulewidth=\dimen339
 ) (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2023/07/31 v3.6n Customizing captions (AR)
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 (c:/Users/WANGCHAO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@tempdima=\dimen340
@@ -1374,6 +1374,8 @@ File: 3.Probability_files/figure-beamer/unnamed-chunk-19-1.pdf Graphic file (typ
 
 ] [47
 
+] [48
+
 ]
 \tf@nav=\write7
 \openout7 = `3.Probability.nav'.
@@ -1393,12 +1395,12 @@ Package rerunfilecheck Info: File `3.Probability.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 33243 strings out of 477590
- 714122 string characters out of 5816943
+ 33224 strings out of 477590
+ 712618 string characters out of 5816943
  1932416 words of memory out of 5000000
- 53822 multiletter control sequences out of 15000+600000
+ 53803 multiletter control sequences out of 15000+600000
  595597 words of font info for 117 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  101i,18n,136p,443b,815s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 3.Probability.pdf (47 pages).
+Output written on 3.Probability.pdf (48 pages).

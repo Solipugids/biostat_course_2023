@@ -1,5 +1,5 @@
 ---
-title: "《生物统计学》课程讲义"
+title: "《生物试验设计》课程讲义"
 author:
   - 王超
 documentclass: ctexart
@@ -18,23 +18,39 @@ output:
     number_sections: yes
     toc: yes
 ---
-## biostat cheatsheet 
+# 速查表Cheatsheet
 
-方差（variance，mean square，$var$）：$\sigma^2 = \frac{\sum(x-\mu)^2}{N}$ [Sec.1]
+离均差（mean deviation）：$\sum_{i=1}^n{(x_i - \bar{x})} = 0$ [Sec.1]
 
-标准差（standard deviation，$sd$）：$\sigma = \sqrt{\frac{\sum(x-\mu)^2}{N}}$ [Sec.1]
+离均差平方和（sum of squares, $SS$）：$\sum_{i=1}^n{(x_i - \bar{x})}^2$ [Sec.1]
 
-标准正态分布（normal distribution）的概率密度方程（probability density function，$PDF$）：$f(u) = \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}u^2}$
+方差，均方（variance，mean square，$var$）：$\sigma^2=\frac{\sum(x-\mu)^2}{N}$ [Sec.1]
 
-标准正态离差(standard deviate)：$u = \frac{x-\mu}{\sigma}$
+标准差（standard deviation，$sd$）：$\sigma=\sqrt{\frac{\sum(x-\mu)^2}{N}}$ [Sec.1]
 
-SS
+（样本均值的）标准误（standard error of mean，$se$）: $\sigma_{\bar{x}}=\frac{\sigma}{\sqrt{n}}$ [Sec.3]
 
-Q
+标准正态分布（normal distribution）的概率密度方程（probability density function，$PDF$）：$f(u)=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}u^2}$ [Sec.3]
 
+标准正态离差(standard deviate)：$u=\frac{x-\mu}{\sigma}$ [Sec.3]
 
+$F$分布中的$F$值：$F=\frac{s^2_1}{s^2_2}$ [Sec.3]
 
-离均差
+$t$分布中的$t$值：$t=\frac{\bar{x}-\mu}{s_{\bar{x}}}=\frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}}$ [Sec.3]
+
+回归分析：[Sec.7]
+
+离均差乘积和（sum of product, SP）：$SP=\sum(x-\bar{x})(y-\bar{y})$
+  
+回归平方和：$U=\sum_1^n(\hat{y}-\bar{y})^2$
+    
+残差平方和，离回归平方和：$Q=\sum_1^n (y-\hat{y})^2$ 
+      
+残差，回归估计误差（residual）：$\epsilon_i=y_i-\hat{y_i}$
+        
+离回归方差：$s_{y/x}^2=\frac{Q}{df}$，直线回归中$df=n-2$
+          
+离回归标准差，直线回归估计标准误：$s_{y/x}=\sqrt{\frac{Q}{n-2}}$
 
 # 概率与概率分布
 
