@@ -127,7 +127,7 @@ $$
 
 $$
 \begin{split}
-&r = \frac{\sum(x-\mu_x)(y-\mu_y)}{\sqrt{\sum (x-\mu_x)^2 \times \sum (y-\mu_y)^2}}\\
+&r = \frac{\sum(x-\bar{x})(y-\bar{y})}{\sqrt{\sum (x-\bar{x})^2 \times \sum (y-\bar{y})^2}}\\
 &R^2 = 1 - \frac{\sum(y - \hat{y})^2}{\sum(y - \bar{y})^2}
 \end{split}
 $$
@@ -603,3 +603,8 @@ D、没有
 
 在非线性回归分析中，请综合论述如何量化判断曲线拟合的质量？
 
+作业提交：https://chaow.shinyapps.io/biostat/
+
+```{r echo=FALSE, fig.align='center', out.height="30%"}
+knitr::include_graphics("assignments_submission.png")
+```

@@ -8,6 +8,7 @@ author: |
   | 广东药科大学
   |
   | Email: wangchao@gdpu.edu.cn
+
 date: |
   | `r Sys.Date()`
   |    
@@ -290,9 +291,9 @@ text(2, 2.1, expression(y==2), col = 'orange', cex = 2)
 
 - 研究$y$和$\hat{y}$可以得到如下回归方程的三个基本性质：
 
-  - 最小值 $minQ=\sum (y-\hat{y})^2$
-  - $(y - \hat{y}) = 0$
-  - 回归直线通过中心点$(\bar{x}, \bar{y})$
+  1. 最小值 $minQ=\sum (y-\hat{y})^2$
+  2. $\sum(y - \hat{y}) = 0$
+  3. 回归直线通过中心点$(\bar{x}, \bar{y})$
     
 - 直线回归方程的另一种形式：
   
@@ -336,7 +337,7 @@ $\hat{y}= 57.04 - 2.53x$
 
 ## 第二节$~$直线回归分析$~$`一、直线回归方程的建立` 
 
-```{r echo=FALSE, crop = TRUE, fig.align='center', fig.asp=0.55}
+```{r echo=FALSE, crop = TRUE, fig.align='center', fig.asp=0.5}
 par(mfrow= c(1,2))
 plot(worms_period, type= 'p', pch = 20, col = 'red')
 plot(worms_period, type= 'p', pch = 20, col = 'red')
@@ -362,7 +363,7 @@ lm(days~tempreture, data = worms_period )
 
 ## 第二节$~$直线回归分析 $~$`思考题`
 
-建立回归方程的通用方法是____（思考题）
+建立回归方程的通用方法是____（单选题）
 
 A、 散点图法
 
@@ -435,7 +436,7 @@ D、方差
 
 （二）$F$检验
 
-- $F$检验：通过比较两组数据的方差，以确定他们的密度是否有显著性差异
+- $F$检验：通过F分布比较回归平方和与残差平方和，以确定他们之间是否存在线性关系
 
 - 看两个变量是否存在直线关系，可以采用F检验进行
 
