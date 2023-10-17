@@ -27,7 +27,60 @@ showtext::showtext_auto()
 
 ## 矩阵和矩阵计算
 
+加法
 
+$$
+\begin{bmatrix} 
+a_{11} & a_{12}  & \dots  & a_{1n} \\ 
+a_{21} & a_{22} & \dots & a_{2m}\\
+\vdots\\
+a_{m1} & a_{m2} & \dots & a_{mn}
+\end{bmatrix}
+\pm
+\begin{bmatrix}
+b_{11} & b_{12}  & \dots  & b_{1n} \\ 
+b_{21} & b_{22} & \dots & b_{2m}\\
+\vdots\\
+b_{m1} & b_{m2} & \dots & b_{mn}
+\end{bmatrix}
+=
+$$
+
+$$
+\begin{bmatrix}
+a_{11} \pm b_{11} & a_{12} \pm b_{12} & \dots  & a_{1n} \pm b_{1n} \\ 
+a_{21} \pm b_{21} & a_{22} \pm b_{22} & \dots & a_{2m} \pm b_{2m}\\
+\vdots\\
+a_{m1} \pm b_{m1} & a_{m2} \pm b_{m2} & \dots & a_{mn} \pm b_{mn}
+\end{bmatrix}
+$$
+
+## 矩阵和矩阵计算
+
+- 矩阵与数的乘法
+  - 数$\beta$ 乘矩阵$A$，就是将数$\beta$乘矩阵$A$中的每一个元素，记为$A\beta$或$\beta A$
+  
+- 矩阵与矩阵的乘法
+  - 假设$A = a_{m\times s}, B = b_{s\times n}$，则$A$与$B$的乘积$C=AB$是这样的矩阵
+    1. 行数与左矩阵$A$相同，列数与右矩阵$B$相同，即$C = c_{m\times n}$
+    2. $C$矩阵第i行第j列的元素$c_{ij}$由$A$的第i行元素与$B$的第j列元素对应相乘，再取乘积之和
+    
+$$
+\begin{bmatrix} 
+1 & 2 \\ 
+1 & -1 \\
+\end{bmatrix} 
+\times
+\begin{bmatrix} 
+1 & 2  & -3\\ 
+-1 & 1 & 2
+\end{bmatrix} 
+=
+\begin{bmatrix} 
+-1 & 4 & 1 \\ 
+2 & 1 & -5\\
+\end{bmatrix} 
+$$
 
 ## 一元与多元回归
 

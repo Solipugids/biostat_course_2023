@@ -222,7 +222,7 @@ $$
 
 - 经过数据还原可得倒数函数方程
 
-## 第三节$~$指数函数曲线
+## 第二节$~$倒数函数曲线
   
 - 应用$\hat{y} = \frac{a+bx}{x}$的条件：
 
@@ -234,7 +234,7 @@ $$
 
   - $y'$和$x$的相关系数显著
 
-## 第三节$~$指数函数曲线
+## 第二节$~$倒数函数曲线
 
 - ‘苏品1号’玉米在不同密度下的平均株重和经济系数的关系
 
@@ -258,7 +258,7 @@ maize <- data.frame(
   plot(maize$x, maize$x*maize$y, type = 'p', xlim = c(50, 450), ylim = c(0, 200), pch = 20, xlab = "x", ylab = expression(paste(y, "'", "=xy")))
 ```
 
-## 第三节$~$指数函数曲线
+## 第二节$~$倒数函数曲线
 
 - 直线化回归方程的显著性检验
 
@@ -271,7 +271,7 @@ cor.test(maize$x, maize$x*maize$y,
          alternative = "two.sided",conf.level = 0.99)
 ```
 
-## 第三节$~$指数函数曲线
+## 第二节$~$倒数函数曲线
 - 配合倒数函数方程，进行直线回归分析，得到$a$和$b$值
 $$
   \begin{cases}
@@ -289,7 +289,7 @@ $$
 \hat{y}= \frac{-14.5363 + 0.4206\times x}{x}
 $$
 
-## 第三节$~$指数函数曲线
+## 第二节$~$倒数函数曲线
 
 ```{r echo=FALSE, fig.align='center', crop=TRUE, fig.asp=1, out.height="30%"}
   plot(maize$x, maize$y, type = 'p', xlim = c(50, 450), ylim = c(0.2, 0.5), pch = 20, xlab = "玉米株重", ylab = "经济系数", cex.lab = 2)
