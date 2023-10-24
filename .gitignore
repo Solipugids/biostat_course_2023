@@ -12,5 +12,4 @@ biostatistics_course_2022.Rproj
 *.doc
 *.docx
 2.Data/*
-biostat/*
 .httr-oauth

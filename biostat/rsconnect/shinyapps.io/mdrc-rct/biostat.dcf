@@ -1,0 +1,10 @@
+name: biostat
+title:
+username: mdrc-rct
+account: mdrc-rct
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10094570
+bundleId: 7813421
+url: https://chaow.shinyapps.io/biostat/
+version: 1
