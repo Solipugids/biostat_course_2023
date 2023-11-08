@@ -958,7 +958,7 @@ Replication III
 
 - 其任一观测值$x_{ijk}$的线性模型
 $$
-x_{ijk} = \mu + \gamma_k + \alpha_i + \delta_{ik} + \beta_j + \epsilon_{ijk}
+x_{ijk} = \mu + \gamma_k + \alpha_i + \delta_{ik} + \beta_j + (\alpha\beta)_ij + \epsilon_{ijk}
 $$
   - $\mu$为总体平均数
   - $\gamma_k$为区组效应， $\alpha_i$为主处理效应， $\beta_j$为副处理效应，$(\alpha\beta)_{ij}$为$A\times B$互作效应
