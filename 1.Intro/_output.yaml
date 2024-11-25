@@ -1,6 +1,0 @@
-beamer_presentation: 
-  latex_engine: xelatex
-  template: beamer_default.tex
-  theme: Warsaw
-  fonttheme: professionalfonts
-  highlight: pygments
