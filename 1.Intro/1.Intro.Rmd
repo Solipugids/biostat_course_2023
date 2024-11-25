@@ -1,7 +1,7 @@
 
 ---
 title: |
-  | 生物试验设计
+  | 医学统计学专论
   | 第一章$~$概论
 author: |
   | 王超
@@ -32,21 +32,59 @@ showtext::showtext_auto()
 -   电子邮箱：[wangchao\@gdpu.edu.cn](mailto:wangchao@gdpu.edu.cn){.email}
 -   学术主页：wangchao.netlify.com
 -   办公室地址：广东药科大学科技楼五楼
--   研究方向：系统生物学，计算生物学，中西医结合临床医学
-
-## 注册学习通
-
-账号：本人学号
-
-初始密码：s654321s
-
-```{r echo=FALSE, fig.align='center', out.width="75%"}
-knitr::include_graphics("./chaoxing.png")
-```
+-   研究方向：药物靶向设计，系统/计算生物学，中西医结合临床医学
 
 ## 
 
 \LARGE 课程介绍
+
+## 课程安排
+
+-   2024年第一学期\textcolor{red}{11周至19周}，周三/每周
+-   晚间\textcolor{red}{18：30至21：30}
+-   9次课程
+    -   概论 Intro
+    -   概率 Probability
+    -   统计推断 Inference
+    -   方差分析 ANOVA
+    -   回归分析 Regression
+    -   非线性回归 Nonlinear regression
+    -   多元线性回归 Mutiple linear regression
+    -   协方差 Coviriance
+    -   逐步回归和多项式回归 Stepwise & Polynomial Regression
+  
+## 课程考核
+
+-   成绩评定
+    -   平时成绩
+        -   课堂考核
+        -   日常作业
+
+    -   考试成绩
+        -   平时成绩 30%, 考试成绩 70%
+        -   闭卷考试
+    
+-   作业要求
+    -   独立思考
+    -   演算正确
+    -   作图清楚
+    -   书写整齐
+
+## 学习重点
+
+-   重点讲解统计方法在生物医学研究中的应用
+-   不强调\textcolor{red}{公式的推导和证明}，但是要大概了解过程
+-   及时完成作业，按时提交和反馈
+
+## Q&A
+
+-   发送邮件$\star$
+    -   [wangchao\@gdpu.edu.cn](mailto:wangchao@gdpu.edu.cn){.email}
+-   Github Issues
+
+```{r echo=FALSE, fig.align='center', out.width="60%"}
+knitr::include_graphics("./issues.png")
+```
 
 ## 课程资源
 
@@ -78,8 +116,8 @@ knitr::include_graphics("./github.png")
 -   RStudio Desktop
     -   ![RStudio](./rstudio_logo.png){width="10%"} RStudio <https://www.rstudio.com/>
 -   RStudio Server
-    -   中研院 e032-120-85-130-202.ngrok.io，校内网访问地址 10.91.10.250:8787（通过邮件申请使用权限）
-    -   官方 <https://rstudio.cloud/> (自行注册账号使用)
+    -   校内网访问地址 10.91.10.83:8787（通过发送邮件申请使用权限）
+    -   官方 <https://posit.cloud/> (自行注册账号使用)
 
 ```{r echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("./rstudio.png")
@@ -103,55 +141,27 @@ ggplot(diamonds, aes(carat, price,colour=cut)) +
   geom_point(alpha = 1/3) + stat_smooth()
 ```
 
-## 课程考核
-
--   成绩评定
-    -   平时成绩
-
-        -   课堂考勤
-        -   日常作业
-
-    -   考试成绩
-
-    -   平时成绩 30%, 考试成绩 70%
--   作业要求
-    -   独立思考
-    -   演算正确
-    -   作图清楚
-    -   书写整齐
-
-## 学习重点
-
--   重点讲解统计方法在生物学中的应用；
--   不强调\textcolor{red}{公式的推导和证明}，但是要大概了解过程；
--   及时完成作业，按时提交和反馈。
-
-## Q&A
-
--   QQ群
-    -   海洋药学22：862588942
-    -   生物工程类22(1)，生物工程类22(2)：741120411
--   发送邮件$\star$
-    -   [wangchao\@gdpu.edu.cn](mailto:wangchao@gdpu.edu.cn){.email}
--   Github Issues
-
-```{r echo=FALSE, fig.align='center', out.width="60%"}
-knitr::include_graphics("./issues.png")
-```
-
 ## 
 
 \LARGE 第一章$~$概论
 
 ## 第一节$~$生物统计学的概念
 
-- 生物统计学是数理统计在生物学研究中的应用
+- 统计学主要研究随机现象的数量规律，是用数理统计的原理和方法来分析和解释生物界各种现象和试验调查资料的科学
 
-- 用数理统计的原理和方法来分析和解释生物界各种现象和试验调查资料的科学
+- 医学统计学是数理统计在生物医学研究中的应用
 
 - 属于生物数学的范畴
 
-    - 涉及到数列、排列、组合、矩阵、微积分等知识
+    - 涉及到概率和微积分等知识
+      - 概率论：集合（子集，并集，交集……），排列组合
+      - 线性代数：函数，导数，微积分
+      - 矩阵
+
+Tm：随温度升高，双链DNA的双螺旋结构发生降解，全部双螺旋结构降解一半的温度称为双链DNA的溶解温度Tm
+```{r echo=FALSE, fig.align='center', out.width="70%"}
+knitr::include_graphics("./melting_curve.jpg")
+```
 
 ## 第一节$~$生物统计学的概念
 
@@ -179,6 +189,17 @@ knitr::include_graphics("./noise.jpeg")
 
 ## 第一节$~$生物统计学的概念
 
+证券市场
+
+```{r echo=FALSE, fig.align='center', out.width="80%"}
+knitr::include_graphics("./SH.png")
+```
+
+-   证券市场的大盘指数在一段时间里，会在一定的价格区间内上下波动，偶尔会短时间超出这个区间（震荡）
+-   黑色星期四
+
+## 第一节$~$生物统计学的概念
+
 为什么要学习统计学？
 
 -   为我们提供数据整理分析的方法
@@ -189,7 +210,7 @@ knitr::include_graphics("./noise.jpeg")
 
 -   帮助我们分析现象之间的关系
 
--   对试验设计有指导作用
+-   对提前进行试验设计有指导作用
 
 ## 第二节$~$统计学发展概况
 
@@ -226,7 +247,7 @@ knitr::include_graphics("./noise.jpeg")
 
 ## 第二节$~$统计学发展概况$~$`一、古典记录统计学`
 
-大数定律
+大数定律（law of large numbers）
 
 -   通过大量重复实验用事件发生的\textcolor{red}{频率}去估计\textcolor{red}{概率}
 
@@ -277,6 +298,16 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
 
 - 保险产业应用
 
+## 第二节$~$统计学发展概况$~$`一、古典记录统计学`
+
+中心极限定律（central limit theorem）
+
+```{r echo=FALSE, fig.align='center', out.width="40%"}
+knitr::include_graphics("./galton_board.png")
+```
+高尔顿板（Galton Board）
+
+
 ## 第二节$~$统计学发展概况$~$`二、近代描述统计学`
 
 -   19世纪中叶-20世纪上半叶
@@ -284,6 +315,10 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
 -   统计学应用于生物学研究的开始
 
 -   分析父母和子女的变异，探寻遗传规律，应用统计方法研究人种特性和遗传
+    
+    -   孟德尔遗传定律，约5,000株豌豆植株
+    
+    -   罗纳德·费舍尔：自然选择的遗传理论 The Genetical Theory of Natural Selection，1930年
 
     -   中位数、百分位数、四分位数、分布：Galton
 
@@ -309,6 +344,8 @@ legend("topright", c("庄家", "玩家"), lty = c(1,1), col = c("red", "blue"))
 ```{r echo=FALSE, fig.align='center', out.width="45%"}
 knitr::include_graphics("./sijuanan.jpg")
 ```
+显微镜下的大明，马伯庸
+
 - 万历会计录
 ```{r echo=FALSE, fig.align='center', out.width="50%"}
 knitr::include_graphics("./KJL.png")
@@ -330,7 +367,24 @@ knitr::include_graphics("./KJL.png")
 - 变成了一门独立建设的一级学科
 
   - 计算机逐渐引入国内
+  - SAS，SPSS，Excel
 
+## 第二节$~$统计学发展概况$~$`生物医学统计的特殊性`
+
+- 小样本（抽样偏倚）
+  
+  - 实验医学（成本）
+  - 临床医学（伦理）
+
+- 数据分布难以通过正态性检验
+
+  - 正态性不被明确的研究结果推翻的情形下，尽量采用正态性方法，以保证检验功效和结果的可解释性
+  - 正态检验
+  
+- 数值变量的连续性
+
+  - 除了无序的分类变量外，本质可以认为大部分数据理论上是连续的
+  - 对变量的表述不必过于强调其连续与否，可以笼统为数值变量
 
 ## 第三节$~$常用统计学术语$~$`一、总体与样本`
 
@@ -365,6 +419,7 @@ knitr::include_graphics("./KJL.png")
   - 变量的类型根据研究目的确定，各类变量可以相互转化
 
 - 常量：代表事物特征和性质的数值，通常由变量计算而来，一定过程中一般是不变的
+  - 自然对数$e$，圆周率$\pi$
   - 总体平均数、标准差、变异系数
 
 ## 第三节$~$常用统计学术语$~$`四、因素与水平`
@@ -492,7 +547,7 @@ C、 扩大$a$倍
 D、 缩小$a$倍 
 
   
-## 第五节$~$生物统计学的内容与作用
+## 第五节$~$医学统计学的内容与作用
 
 基本内容
 
@@ -503,7 +558,7 @@ D、 缩小$a$倍
     -   拉丁方设计
     -   正交设计
 
-## 第五节$~$生物统计学的内容与作用
+## 第五节$~$医学统计学的内容与作用
 
 基本内容
 
@@ -515,13 +570,13 @@ D、 缩小$a$倍
     -   回归和相关分析
     -   协方差分析
 
-## 第五节$~$生物统计学的内容与作用
+## 第五节$~$医学统计学的内容与作用
 
 - 统计分析可以为试验设计提供合理的依据
 
 - 试验设计是统计分析方法的进一步应用
 
-## 第五节$~$生物统计学的内容与作用
+## 第五节$~$医学统计学的内容与作用
 
 基本作用
 
@@ -533,7 +588,7 @@ D、 缩小$a$倍
 
 - 提供试验设计的一些重要原则
 
-## 第五节$~$生物统计学的内容与作用`思考题`
+## 第五节$~$医学统计学的内容与作用`思考题`
 
 生物统计学是数理统计在生物学研究中的应用,它是用数理统计的原理和方法来分析和解释生物界各种现象和试验调查资料的科学,它的主要内容包括____（单选题）
 
