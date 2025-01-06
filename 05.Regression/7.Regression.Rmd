@@ -1,7 +1,7 @@
 ---
 title: |
-  | 《生物试验设计》
-  | 第七章$~$直线回归与相关分析
+  | 医学统计学专论
+  | 第五章$~$直线回归与相关分析
 author: |
   | 王超
   |
@@ -25,7 +25,7 @@ showtext::showtext_auto()
 ```
 ## 
 
-\LARGE 第七章$~$直线回归与相关分析
+\LARGE 第五章$~$直线回归与相关分析
 
 ## 第一节$~$回归和相关的概念 
 
@@ -162,8 +162,9 @@ D、 以上都不对
 ## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
 
 用五把不同颜色的尺子分别测量一线段的长度，得到的数值分别为：
-```{r echo=FALSE, fig.align='center', out.width="30%"}
+```{r echo=FALSE, fig.align='center', out.width="20%"}
 measured_length <- data.frame("红" = 10.2, "蓝"= 10.3, "橙"=9.8, "黄"= 9.9, "绿"=9.8)
+knitr::include_graphics("./eraser.jpg")
 knitr::include_graphics("./ruler.jpg")
 knitr::kable(measured_length)
 ```
@@ -230,6 +231,7 @@ $$
 $$
 5y = y_1 + y_2+\ldots+ y_5 \Rightarrow y = \frac{y_1 + y_2+\ldots+ y_5 }{5}
 $$
+
 ## 第二节$~$直线回归分析$~$`一、直线回归方程的建立`
 
 - 极值定理：如果函数$f(x)$是在区间$[a,b]$上连续的函数，必然存在最大值和最小值，并且取到最大值$max$和最小值$min$至少一次
@@ -557,7 +559,7 @@ text(6, 10, "IV", col = "red", cex= 3)
 - 定义相关系数$\rho$为
 
 $$
-\rho = \frac{1}{N}\sum[(\frac{x - \mu_x}{\sigma_x})(\frac{x - \mu_y}{\sigma_y})]  = \frac{\sum(x-\mu_x)(y-\mu_y)}{\sqrt{\sum (x-\mu_x)^2 \times \sum (y-\mu_y)^2}}
+\rho = \frac{1}{N}\sum[(\frac{x - \mu_x}{\sigma_x})(\frac{y - \mu_y}{\sigma_y})]  = \frac{\sum(x-\mu_x)(y-\mu_y)}{\sqrt{\sum (x-\mu_x)^2 \times \sum (y-\mu_y)^2}}
 $$
 
 ## 第三节$~$直线相关$~$`一、相关系数和决定系数` 

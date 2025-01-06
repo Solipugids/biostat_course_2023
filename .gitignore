@@ -15,3 +15,4 @@ biostatistics_course_2022.Rproj
 .httr-oauth
 biostat/*
 .gitignore
+exam/*

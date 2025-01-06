@@ -1,7 +1,7 @@
 ---
 title: |
-  | 《生物试验设计》
-  | 第八章$~$可直线化的非线性回归分析
+  | 医学统计学专论
+  | 第六章$~$可直线化的非线性回归分析
 author: |
   | 王超
   |
@@ -25,11 +25,23 @@ showtext::showtext_auto()
 
 \LARGE 第八章$~$可直线化的非线性回归分析
 
-## 非线性关系
+## 测验二
+
+在简单直线回归中，我们的回归模型
+$$
+y = \alpha + \beta x + \epsilon
+$$
+对观测值$y$分解为三部分$\alpha$，$\beta x$, $\epsilon$
+
+1. 这分别代表什么？
+2. 如何进行方差分解，以及判断回归模型的显著性？
+3. 回归分析和相关分析之间的差别是什么？
+
+## 线性关系(Linear)
 
 - 线性关系
 
-  - 直线关系是两个变量间最简单的关系
+  - 直线关系是两组变量间最简单的关系
   
   - 在较小取值范围内，任意非线性关系都可以用线性关系来表示。
   
@@ -38,6 +50,16 @@ showtext::showtext_auto()
     - 不能对变量间关系有一个整体上的把握
     
     - 在不同取值范围内还要换用不同的方程
+    
+```{r echo=FALSE, crop=FALSE, fig.align='center', fig.asp=0.33}
+par(mfrow= c(1,3))
+plot(mtcars$wt, mtcars$mpg, pch =20, col= 'red', pty = 2, xlab = "车重", ylab = "油耗(miles per gallon gas)", main = "负向直线关系")
+plot(mtcars$wt, mtcars$disp, pch =20, col= 'red', pty = 2, xlab = "车重", ylab = "排量", main = "正向直线关系")
+library(ggplot2)
+plot(diamonds$carat, diamonds$price, pch =20, col= 'red', pty = 2, xlab = "价格", ylab = "克拉", main = "曲线关系")
+```
+
+## 非线性关系(Nonlinear)
 
 - 非线性关系
 
@@ -56,12 +78,26 @@ showtext::showtext_auto()
     - 如果已知曲线类型，回归效果会有保证
     
     - 在多数情况下我们对所研究的对象都有一定的了解，可以根据理论和经验得出可能的曲线类型
-  
-  - 未知曲线（公式）类型
+    
+    米氏方程
+```{r echo=FALSE, fig.align='center', out.height="50%"}
+knitr::include_graphics("The-Michaelis-Menten-Equation-in-biochemistry.png")
+```
+Michaelis-Menten Equation: $v_0 = \frac{V_{max}[S]}{K_m + [S]}$
+
+
+## 非线性回归
+
+  - 未知曲线（非公式）类型
   
     - 如果曲线类型未知，可以利用多项式回归
     
     - 通过逐渐增加多项式的高次项来拟合，从而确定最优回归方程
+    
+    多项式回归模型:
+    $$
+    y = \beta_0 + \beta_1 x + \beta_2 x^2 + \dots + \beta_n x^n + \epsilon
+    $$
   
 ## 第一节$~$非线性回归的直线化 $~$`一、曲线类型的确定`
 
@@ -135,6 +171,36 @@ $$
 - 相关系数$r$用来描述两个变量线性相关程度$[-1, 1]$，$r$对变量的平移和缩放不敏感
 
 - 决定系数$R^2$一般用在回归模型用于评估预测值和实际值的符合程度，$R^2$越接近1表示回归分析中自变量对因变量的解释越好
+
+- 简单线性回归而言，决定系数为样本相关系数的平方
+
+
+## 第一节$~$非线性回归的直线化 $~$`一、曲线类型的确定`
+
+决定系数$R^2$
+
+Poor $R^2$
+```{r echo=FALSE, fig.align='center', out.height="30%"}
+knitr::include_graphics("./poorr2.png")
+```
+Good $R^2$
+```{r echo=FALSE, fig.align='center', out.height="30%"}
+knitr::include_graphics("./goodr2.png")
+```
+
+## 第一节$~$非线性回归的直线化 $~$`一、曲线类型的确定`
+
+均方根误差 Root Mean Square Error $RMSE = \sqrt\frac{\sum(\hat{y} – y)²}{N}$ 
+
+
+Low
+```{r echo=FALSE, fig.align='center', out.height="30%"}
+knitr::include_graphics("./rmse_high.png")
+```
+High
+```{r echo=FALSE, fig.align='center', out.height="30%"}
+knitr::include_graphics("./rmse_low.png")
+```
 
 ## 第一节$~$非线性回归的直线化 $~$`一、曲线类型的确定`
 
@@ -458,6 +524,28 @@ cor(log(leaf$y), leaf$x)#指数函数
 cor(leaf$y, leaf$x)#直线函数
 ```
 
+## 米氏方程
+
+```{r echo=FALSE, fig.align='center', out.height="50%"}
+knitr::include_graphics("The-Michaelis-Menten-Equation-in-biochemistry.png")
+```
+Michaelis-Menten Equation: $v_0 = \frac{V_{max}[S]}{K_m + [S]}$
+
+对以上取倒数，得到双倒数图：
+$$
+\frac{1}{v_0} = \frac{K_m + [S]}{V_{max}[S]} = \frac{K_m}{V_{max}[S]} + \frac{1}{V_{max}}
+$$
+
+## 伯克方程
+
+Lineweaver-Burk Equation
+
+```{r echo=FALSE, fig.align='center', out.height="40%"}
+knitr::include_graphics("./Lineweaver-Burke_plot.png")
+```
+
+Drawing a straight line is usually more accurate than drawing a curve line.
+
 ## 第六节$~$Logistic生长曲线$~$`一、Logistic生长曲线的由来和基本特征`
 
 - 当生物种群拥有足够的食物和生存空间，没有外界威胁的情况下，倾向于以一定比例生长
@@ -492,6 +580,15 @@ $$
 ```{r echo=FALSE, fig.align='center', out.height="30%"}
 knitr::include_graphics("fig104848.png")
 ```
+
+## 第六节$~$Logistic生长曲线$~$`一、Logistic生长曲线的由来和基本特征`
+
+细胞生长曲线
+
+```{r echo=FALSE, fig.align='center', out.height="50%"}
+knitr::include_graphics("./population.png")
+```
+
 
 ## 第六节$~$Logistic生长曲线$~$`一、Logistic生长曲线的由来和基本特征`
 
@@ -535,7 +632,7 @@ knitr::include_graphics("fig308481.png")
 ```{r echo=FALSE, fig.align='center', out.width="30%"}
 knitr::include_graphics("fig409674.png")
 ```
-  - 该模型失去了预测能力，有可能反映了哪些美国历史上的重大事件，如内战、大萧条、两次世界大战？
+  - 之后该模型失去了预测能力，有可能反映了哪些美国历史上的重大事件，如内战、大萧条、两次世界大战？
   
 ## 第六节$~$Logistic生长曲线$~$`一、Logistic生长曲线的由来和基本特征`
 - Logistic增长模型的线性方程形式是：
