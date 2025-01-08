@@ -20,11 +20,11 @@ output:
 ---
 # 速查表Cheatsheet
 
-离均差（mean deviation）：$\sum_{i=1}^n{(x_i - \bar{x})} = 0$ [Sec.1]
+离均差（mean deviation）：$\sum_{i=1}^n{(x_i - \bar{x})} = 0$ [Sec.1] \label{eq:1}
 
 离均差平方和（sum of squares, $SS$）：$\sum_{i=1}^n{(x_i - \bar{x})}^2$ [Sec.1]
 
-方差，均方（variance，mean square，$var$）：$\sigma^2=\frac{\sum(x-\mu)^2}{N}$ [Sec.1]
+方差，均方（variance，mean square，$var$）：$\sigma^2=\frac{\sum(x-\bar{x})^2}{N}$ [Sec.1]
 
 标准差（standard deviation，$sd$）：$\sigma=\sqrt{\frac{\sum(x-\mu)^2}{N}}$ [Sec.1]
 
@@ -51,6 +51,31 @@ $t$分布中的$t$值：$t=\frac{\bar{x}-\mu}{s_{\bar{x}}}=\frac{\bar{x}-\mu}{\f
 离回归方差：$s_{y/x}^2=\frac{Q}{df}$，直线回归中$df=n-2$
           
 离回归标准差，直线回归估计标准误：$s_{y/x}=\sqrt{\frac{Q}{n-2}}$
+
+# 方差的性质
+
+试想一下，一个分布如果只用一个参数就可以全部概括的话，那么这个分布对应的公式及其结构就失去了意义。所以，衡量总体的水平，不能只看总体的均值，还要看总体的方差或者标准差。方差，用来描述数据的离散程度，另外还有一个是标准差。
+
+$$
+Var(x_i) \geq 0\\
+Var(C\times x) = C^2\times x\\
+Var(C + x) = Var(x)\\
+Var(x + y) = Var(x) + Var(y)
+$$
+
+
+对于所有随机变量，方差永远大于等于零。
+
+等于零的情况只有一种，变量为一个常数。这个从方差的计算公式\ref{eq:1}就可以理解，变量和均值相减等于0，所以最后方差也等于0。
+
+对于其他情况，只要随机变量是有限的，那方差必然存在且大于0。
+
+
+
+## 性质2
+
+
+
 
 # 概率与概率分布
 
@@ -165,6 +190,13 @@ $$
 
 ## 显著性水平$\alpha$
 
+# 方差分析
+
+## 为什么方差分析等参数检验要进行方差齐性检验
+
+方差分析或者其他例如$t$检验方法是用来比较样本均值之间差异的方法，但是脱离方差去对比样本均值是没有直接可比性的，比较的结果也没有什么说服力。只有当两个样本满足方差齐的时候，再去比较均值才有意义。
+
+
 
 # 回归分析
 
@@ -172,8 +204,100 @@ $$
 
 回归的最早形式是最小二乘法，由1805年的勒让德（Legendre）@legendreNouvellesMethodesPour1805 和1809年的高斯（Gauss） @gaussTheoriaMotusCorporum1981  出版。勒让德和高斯都将该方法应用于从天文观测中确定关于太阳的物体的轨道（主要是彗星，但后来是新发现的小行星）的问题。 高斯在1821年发表了最小二乘理论的进一步发展[3]，包括高斯－马尔可夫定理的一个版本。
 
-## 最小二乘法
+## 利用最小二乘法求解回归方程中参数的推导
 
+根据极值定理，得到方程组：
+
+$$
+\begin{cases}
+an +b \sum x  = \sum y\\
+a\sum x + b \sum x^2 = \sum xy
+\end{cases}
+$$
+
+对于方程组中第一个方程：
+
+$$
+\begin{split}
+an +b \sum x  &= \sum y\\
+an &= \sum y - b\sum x\\
+a &= \frac{\sum y}{n} - b\frac{\sum x}{n}\\
+a &= \bar y - b \bar x
+\end{split}
+$$
+
+对于方程组中第二个方程组，首先是两个关键变形的推导：
+$$
+\begin{split}
+\sum (x_i - \bar{x})^2 = \sum x^2_i - n\bar{x}^2 = \sum x^2_i - \frac{(\sum{x_i})^2}{n} \\
+\sum (x_i - \bar{x}) (y_i - \bar{y})  = \sum x_i y_i- n\bar{x}\bar{y} = \sum x_iy_i - \frac{\sum x_i \sum y_i}{n} 
+\end{split}
+$$
+第一个方程变形的推导
+$$
+\begin{split}
+\sum (x_i - \bar{x})^2 &= (x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + \dots + (x_n - \bar{x})^2\\
+&= (x_1^2 - 2x_i\bar{x} + \bar{x}^2) + (x_2^2 - 2x_2\bar{x} + \bar{x}^2) + \dots + (x_n^2 - 2x_n\bar{x} + \bar{x}^2)\\
+&= (x_1^2 + x_2^2+\dots + x_n^2) - 2\bar{x}(x_1 + x_2 + \dots + x_n) + n \bar{x}^2\\
+&= \sum x_i^2 - 2n\bar{x}^2 + n\bar{x}^2\\
+&= \sum x_i^2 - n \bar{x}^2
+\end{split}
+$$
+第二个方程变形的推导
+$$
+\begin{split}
+\sum (x_i - \bar{x}) (y_i - \bar{y})  &= (x_1 - \bar{x})(y_1 - \bar{y}) + (x_1 - \bar{x})(y_2 - \bar{y}) + \dots + (x_n - \bar{x}) (y_n - \bar{y})\\
+&= (x_1y_1 - x_1\bar{y} - \bar{x}y_1 + \bar{x}\bar{y})+(x_2y_2 - x_2\bar{y} - \bar{x}y_2 + \bar{x}\bar{y})+\dots \\
+&= (x_1y_1 + x_2y_2 + \dots) - \bar{y} (x_1 + x_2 + \dots) - \bar{x}(y_1 + y_2 + \dots) + n  \bar{x}\bar{y}\\
+&= \sum x_i y_i -\bar{y}n\bar{x} - \bar{x} n \bar{y} + n \bar{x} \bar{y}\\
+&= \sum x_i y_i - n\bar{x}\bar{y}
+\end{split}
+$$
+回到最初的方程组
+
+$$
+\begin{split}
+a\sum x_i + b \sum x_i^2 &= \sum x_iy_i\\
+\frac{\sum y_i - b\sum x_i}{n} \sum x_i + b \sum x_i^2 &= \sum x_i y_i\\
+(\sum y_i -b \sum x_i)\sum x_i + nb\sum x_i^2 &= n\sum x_i y_i\\
+b &= \frac{\sum x_i y_i - \sum x_i \sum y_i /n}{\sum x_i^2 - (\sum x_i)^2 / n}\\
+b &= \frac{\sum (x_i - \bar{x}) (y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
+ \end{split}
+$$
+
+## 直线回归中总变异的分解
+
+直线回归中，因变量$y$是随机变量，$y$的总体变异$y - \bar y$ 可以分解为两部分。分解过程如下：
+
+$$
+\begin{split}
+\sum (y-\bar{y})^2 &= \sum (y-\hat{y}+\hat{y}-\bar{y})^2\\
+&=\sum (y-\hat{y})^2 + 2 \sum (y-\hat{y})(\hat{y}-\bar{y}) + \sum(\hat{y}-\bar{y})^2\\
+\end{split}
+$$
+其中, 因为$\hat y = \bar y + b(x - \bar x)$，所以中间部分
+$$
+\begin{split}
+2\sum (y-\hat{y})(\hat{y}-\bar{y}) &= 2\sum b(x - \bar x) (y - (\bar y + b(x - \bar x)))\\
+&= 2\sum b(x - \bar x) ( (y - \bar y) - b(x - \bar x))\\
+&= 2\sum b(x - \bar x)(y - \bar y) - b^2(x - \bar x)^2\\
+\end{split}
+$$
+
+根据直线回归方程组的求解我们知道$b = \frac{\sum (x_i - \bar{x}) (y_i - \bar{y})}{\sum (x_i - \bar{x})^2}$，所以以上方程
+
+$$
+2\sum (y-\hat{y})(\hat{y}-\bar{y}) = 0
+$$
+
+因此中间项消掉
+$$
+\sum (y-\bar{y})^2 = \sum(\hat{y}-\bar{y})^2+\sum(y-\hat{y})^2\\
+$$
+
+
+其中，$y$是观测值，$\bar y$是$y$的平均值，$\hat y$是直线回归中的预测值，$b$是回归方程系数。
+ 
 高斯如何计算谷神星运行轨道并作出预测呢？其实就是使用最小二乘法拟合了轨迹（天体运动论，1809）。假定下图是皮亚齐观测到的从0时到10时的谷神星观测记录，每个点上的横坐标表示观测时间，纵坐标表示谷神星的位置，我们有一条曲线非常接近地经过上图的一系列观测点，主要找到这条曲线的方程$f(x)$
 
 ## 回归

@@ -1,6 +1,6 @@
 ---
 title: |
-  | 《生物试验设计》
+  | 医学统计学专论
   | 第十一章$~$多元线性回归与多元相关分析
 author: |
   | 王超
@@ -651,6 +651,15 @@ $$
   F = \frac{U_i}{\frac{Q_y}{n-m-1}}
   $$
   可知$b_i$抽自$\beta_i=0$的总体的概率
+  
+## 第一节$~$多元线性回归分析 $~$`三、多元线性回归的假设检验和置信区间`
+
+```{r echo=TRUE}
+data("marketing", package = "datarium")
+model <- lm(sales ~ youtube + facebook + newspaper, 
+            data = marketing)
+summary(model)$coefficient
+```
 
 ## 第一节$~$多元线性回归分析 $~$`三、多元线性回归的假设检验和置信区间`
 
@@ -668,6 +677,57 @@ $$
     - 在$m$元线性回归中，如果各自变量间没有相关，即$r_{ij} = 0$，则$U_y = \sum_{i=1}^{m}U_i$
   
     - 如果各自变量间存在不同程度的相关，即$r_{ij} \neq 0$，则$U_y \neq \sum_{i=1}^{m}U_i$
+    
+## 从提丢斯数列谈起
+
+- 太阳系
+```{r echo=FALSE, fig.align='center', out.height="50%"}
+knitr::include_graphics("./planets.png")
+```
+
+- 以日地距离为基准单位1
+
+- 那么，六个行星距离太阳的距离分别为0.39，0.72，1.0，1.52，(2.8)，5.20，9.54，(19.18)，(30.06)，(39.44)
+
+- 提丢斯数列（Titus's Law）$x_i = 0, 3, 6, 12, 24, 48$，$y = (x_i+4)/10$
+
+## 谷神星的发现
+
+- 1801年，皮亚齐在2.8的位置发现了一颗小行星
+
+- 高斯根据皮亚齐的观测计算出了小行星轨道
+
+- 奥伯斯根据高斯的计算，发现了谷神星(Ceres Ferdinandea)
+
+## 谷神星轨道
+
+假定一个谷神星的轨道观测数据
+
+```{r echo=FALSE, fig.align='center', crop=TRUE, fig.asp=0.33}
+  x = c(-0.3, -0.5, -0.2, -0.3, 0, 0.4, 0.2, -0.3, 0.2, 0.5, 0.4)
+  plot(x, type='b', col = 'red')
+```
+
+如果有一条曲线经过上图的观测点，我们需要建立关于这条曲线的方程
+
+$f(x) = b_0 + b_1 x + b_2 x_2 + b_3 x_3 + \dots + \b_m x_m$
+
+其中$x$是观测时间点，$y$是观测位置序列
+
+## 轨道的拟合
+
+利用R的`ploy`函数来进行曲线拟合
+```{r echo=TRUE, fig.align='center', crop=TRUE, fig.asp=0.33}
+  y = c(-0.3, -0.5, -0.2, -0.3, 0, 0.4, 0.2, -0.3, 0.2, 0.5, 0.4)
+  x = 1:length(y)
+  y_3 = lm(y~poly(x, 3))
+  y_6 = lm(y~poly(x, 6))
+  y_9 = lm(y~poly(x, 9))
+  plot(y~x, type='b', col = 'red')
+  lines(x, fitted(y_3), col = 'green')
+  lines(x, fitted(y_6), col = 'blue')
+  lines(x, fitted(y_9), col = 'orange')
+```
     
 ## 第一节$~$多元线性回归分析 $~$`思考题`
 
