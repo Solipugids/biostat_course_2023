@@ -410,7 +410,6 @@ $$
 $$
 - 对应的图形:
 ```{r echo=FALSE, fig.align='center', crop=TRUE, fig.asp=0.5, out.height="60%"}
-  par(xaxs = "i", yaxs = "i", mfrow= c(1,2))
   x <- seq(0.1, 10, 0.1)
   a <- 2
   b <- 3

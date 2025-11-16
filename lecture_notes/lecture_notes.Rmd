@@ -1,5 +1,5 @@
 ---
-title: "《生物试验设计》课程讲义"
+title: "《医学统计学八讲》课程讲义"
 author:
   - 王超
 documentclass: ctexart
@@ -122,6 +122,124 @@ $t$分布中的$t$值：$t=\frac{\bar{x}-\mu}{s_{\bar{x}}}=\frac{\bar{x}-\mu}{\f
 “回归”一词最早由法兰西斯·高尔顿（Francis Galton）所使用[4][5]。他曾对亲子间的身高做研究，发现父母的身高虽然会遗传给子女，但子女的身高却有逐渐“回归到中等（即人的平均值）”的现象。不过当时的回归和现在的回归在意义上已不尽相同。
 
 ## 回归分析的方法
+
+协方差
+```{r scatter, fig.cap='两组变量X和Y的波动趋势相同'}
+# 构造数据：时间点t1-t7（对应图中t11-t17，这里简化为t1-t7）、X和Y的数值
+data <- data.frame(
+  time = 1:7,  # 时间点t1-t7
+  X = c(3, 5, 4, 4.5, 6, 5.5, 5),  # X的波动数值（红色点趋势）
+  Y = c(2, 1.5, 2.5, 1, 3, 2.5, 2)  # Y的波动数值（绿色点趋势）
+)
+
+# 计算X和Y的均值（对应图中的μ_X、μ_Y）
+mean_X <- mean(data$X)
+mean_Y <- mean(data$Y)
+# 1. 绘制画布，设置纵轴范围以容纳所有数据和均值线
+plot(
+  x = data$time, 
+  y = data$X, 
+  type = "n",  # 先不画点，仅设置坐标轴范围
+  xlim = c(0.5, 7.5),  # 时间点左右留空
+  ylim = c(min(data$Y)-0.5, max(data$X)+0.5),  # 纵轴覆盖X和Y的范围
+  main = "变量X和Y的波动趋势与均值",
+  xlab = "时间",
+  ylab = "数值",
+  xaxt = "n"   # 先隐藏x轴刻度，后续自定义
+)
+
+# 2. 绘制X的曲线和数据点（红色）
+lines(data$time, data$X, col = "red", lwd = 2)
+points(data$time, data$X, col = "red", pch = 16, cex = 1.5)
+
+# 3. 绘制Y的曲线和数据点（绿色）
+lines(data$time, data$Y, col = "green", lwd = 2)
+points(data$time, data$Y, col = "green", pch = 16, cex = 1.5)
+
+# 4. 绘制均值水平线（虚线）
+abline(h = mean_X, col = "red", lty = 2, lwd = 1.5)
+abline(h = mean_Y, col = "green", lty = 2, lwd = 1.5)
+
+# 5. 自定义x轴刻度（对应t1-t7）
+axis(1, at = 1:7, labels = paste0("t", 1:7))
+
+# 6. 添加时间点的垂直虚线（浅灰色）
+for (t in 1:7) {
+  abline(v = t, col = "gray80", lty = 3)
+}
+
+# 7. 添加图例和均值标签
+legend("topright", 
+       legend = c("变量X", "变量Y", "X均值", "Y均值"),
+       col = c("red", "green", "red", "green"),
+       lty = c(1, 1, 2, 2),
+       pch = c(16, 16, NA, NA),
+       bty = "n")
+
+text(x = 7.2, y = mean_X, labels = expression(mu[X]), col = "red", cex = 1.2)
+text(x = 7.2, y = mean_Y, labels = expression(mu[Y]), col = "green", cex = 1.2)
+```
+
+```{r scatter, fig.cap='两组变量X和Y的波动趋势相同'}
+# 1. 精准匹配的模拟数据（t11-t17，数据点与原图分布一致）
+data <- data.frame(
+  time = 11:17,  # 时间点：t11-t17（与原图完全对应）
+  X = c(5.2, 6.1, 4.7, 5.3, 6.8, 6.4, 5.9),  # X波动数据（贴近原图趋势）
+  Y = c(3.1, 3.4, 2.6,  2.2, 3.9, 3.6, 3.2)   # Y波动数据（贴近原图趋势）
+)
+
+# 计算X和Y的均值（均值线位置与数据点匹配）
+mean_X <- mean(data$X)  # 约5.77
+mean_Y <- mean(data$Y)  # 约3.14
+
+# 2. 绘制与原图一致的图形
+plot(
+  x = data$time, 
+  y = data$X, 
+  type = "n",  # 先初始化画布，不绘制数据
+  xlim = c(10.5, 17.5),  # 时间轴左右留空，避免拥挤
+  ylim = c(min(data$Y) - 0.4, max(data$X) + 0.4),  # 纵轴适配数据，无多余空间
+  main = "",  # 无标题（与原图一致）
+  xlab = "",  # 无X轴标签
+  ylab = "",  # 无Y轴标签
+  xaxt = "n", # 隐藏默认X轴，后续自定义
+  yaxt = "n", # 隐藏默认Y轴，后续自定义
+  bty = "n"   # 去除画布边框（极简风格，与原图一致）
+)
+
+# 绘制X的曲线（黑色实线，线宽2）和数据点（黑色实心圆，放大1.5倍）
+lines(data$time, data$X, col = "black", lwd = 2)
+points(data$time, data$X, col = "black", pch = 16, cex = 1.5)
+
+# 绘制Y的曲线（黑色实线，线宽2）和数据点（黑色实心圆，放大1.5倍）
+lines(data$time, data$Y, col = "black", lwd = 2)
+points(data$time, data$Y, col = "black", pch = 16, cex = 1.5)
+
+# 绘制均值水平线（黑色虚线，线宽1.5）
+abline(h = mean_X, col = "black", lty = 2, lwd = 1.5)
+abline(h = mean_Y, col = "black", lty = 2, lwd = 1.5)
+
+# 自定义X轴刻度（仅显示t11-t17，无多余刻度）
+axis(
+  side = 1, 
+  at = 11:17, 
+  labels = paste0("t", 11:17), 
+  tick = TRUE,  # 显示刻度线
+  lwd = 1,      # 刻度线宽度
+  cex.axis = 1.1  # 刻度标签大小
+)
+
+# 绘制每个时间点的垂直虚线（黑色细虚线，与原图一致）
+for (t in 11:17) {
+  abline(v = t, col = "black", lty = 3, lwd = 1)  # lty=3：点划线，贴近原图样式
+}
+
+# 添加均值标签（位置与原图匹配，字体大小协调）
+text(x = 17.3, y = mean_X, labels = expression(mu[X]), col = "black", cex = 1.3)
+text(x = 17.3, y = mean_Y, labels = expression(mu[Y]), col = "black", cex = 1.3)
+text(x = 10.3, y = mean_X, labels = "X均值", col = "black", cex = 1.3)
+text(x = 10.3, y = mean_Y, labels = "Y均值", col = "black", cex = 1.3)
+```
 
 ### 动差估计（Method of Moment；MOM）
 
